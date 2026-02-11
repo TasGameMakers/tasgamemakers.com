@@ -60,6 +60,12 @@
         <div class="event-article__cta">
           <a href="{{ . }}" class="btn-new btn-new--purple" target="_blank" rel="noopener">{{ $.Params.action_label | default "More Info" }}</a>
         </div>
+        {{ else }}
+        {{ if .Params.drop_in }}
+        <div class="event-article__cta">
+          <span class="btn-new btn-new--drop-in">Just turn up!</span>
+        </div>
+        {{ end }}
         {{ end }}
       </header>
 

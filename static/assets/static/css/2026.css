@@ -372,6 +372,13 @@ body.v2026 * {
   color: var(--black);
 }
 
+.v2026 .btn-new--drop-in {
+  background: var(--green, #22c55e);
+  color: var(--white);
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+  cursor: default;
+}
+
 .v2026 .btn-new--outline {
   background: transparent;
   color: var(--white);
@@ -678,6 +685,17 @@ body.v2026 * {
   font-size: var(--text-sm);
   color: #666;
   margin: 0;
+}
+
+.v2026 .event-card-new__drop-in {
+  display: inline-block;
+  margin-top: var(--space-xs);
+  padding: 0.15em 0.6em;
+  font-size: var(--text-xs, 0.75rem);
+  font-weight: 700;
+  background: var(--green, #22c55e);
+  color: var(--white, #fff);
+  border-radius: 4px;
 }
 
 
