@@ -64,7 +64,7 @@
       </header>
 
       {{ with .Params.address }}
-      <a href="https://www.google.com/maps/search/?api=1&query={{ $.Params.location | default $.Title | urlquery }}" target="_blank" rel="noopener" class="event-article__map-link" id="event-map-link" style="display:none;">
+      <a href="https://www.google.com/maps/search/?api=1&query={{ . | urlquery }}" target="_blank" rel="noopener" class="event-article__map-link" id="event-map-link" style="display:none;">
         <div class="event-article__map" id="event-map" data-address="{{ . }}" data-label="{{ $.Params.location | default $.Title }}"></div>
         <span class="event-article__map-cta">Open in Google Maps</span>
       </a>
