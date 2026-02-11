@@ -18,6 +18,10 @@
       <header class="event-article__header">
         <a href="/events/" class="event-article__back">&larr; Back to events</a>
 
+        {{ if lt .Date now }}
+        <div class="event-article__past-badge">Past Event</div>
+        {{ end }}
+
         <div class="event-article__meta">
           <div class="event-article__meta-item">
             <strong>Date:</strong>
@@ -67,6 +71,33 @@
         </div>
         {{ end }}
         {{ end }}
+
+        {{/* Build single-event ICS for download */}}
+        {{- $ics_title := printf "Tas Game Makers: %s" .Title -}}
+        {{- $ics_title = replace $ics_title "\\" "\\\\" -}}
+        {{- $ics_title = replace $ics_title ";" "\\;" -}}
+        {{- $ics_title = replace $ics_title "," "\\," -}}
+        {{- $ics_title = replace $ics_title "\n" "\\n" -}}
+        {{- $ics_desc := .Params.summary | default .Title -}}
+        {{- $ics_desc = replace $ics_desc "\\" "\\\\" -}}
+        {{- $ics_desc = replace $ics_desc ";" "\\;" -}}
+        {{- $ics_desc = replace $ics_desc "," "\\," -}}
+        {{- $ics_desc = replace $ics_desc "\n" "\\n" -}}
+        {{- $ics_dtend := "" -}}
+        {{- with .Params.end_date -}}
+          {{- $ics_dtend = printf "DTEND:%s\r\n" ((time .).UTC.Format "20060102T150405Z") -}}
+        {{- end -}}
+        {{- $ics_loc := "" -}}
+        {{- with .Params.location -}}
+          {{- $loc := replace . "\\" "\\\\" -}}
+          {{- $loc = replace $loc ";" "\\;" -}}
+          {{- $loc = replace $loc "," "\\," -}}
+          {{- $ics_loc = printf "LOCATION:%s\r\n" $loc -}}
+        {{- end -}}
+        {{- $ics := printf "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Tas Game Makers//Events//EN\r\nBEGIN:VEVENT\r\nUID:%s\r\nDTSTAMP:%s\r\nDTSTART:%s\r\n%s%sSUMMARY:%s\r\nDESCRIPTION:%s\r\nURL:%s\r\nSTATUS:CONFIRMED\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n" .Permalink (now.UTC.Format "20060102T150405Z") (.Date.UTC.Format "20060102T150405Z") $ics_dtend $ics_loc $ics_title $ics_desc .Permalink -}}
+        <div class="event-article__cta">
+          <a href="data:text/calendar;base64,{{ $ics | base64Encode }}" download="{{ .File.ContentBaseName }}.ics" class="btn-new btn-new--outline-dark">Add to Calendar</a>
+        </div>
       </header>
 
       {{ with .Params.address }}

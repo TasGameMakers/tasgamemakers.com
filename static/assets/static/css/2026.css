@@ -1573,6 +1573,19 @@ body.v2026 .footer--partners {
   font-size: var(--text-lg);
 }
 
+.v2026 .event-article__past-badge {
+  display: inline-block;
+  background: var(--purple-dark);
+  color: var(--white);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 6px 16px;
+  border-radius: var(--radius);
+  margin-bottom: var(--space-md);
+}
+
 .v2026 .event-article__cta {
   margin-top: var(--space-md);
 }
