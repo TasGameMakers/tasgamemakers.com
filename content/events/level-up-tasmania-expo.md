@@ -7,7 +7,8 @@ location: "PW1, 1 Hunter Street, Hobart"
 address: "PW1 Hobart Tasmania"
 event_type: "expo"
 image: "LUT-Color.png"
-external_url: "https://www.screen.tas.gov.au/leveluptasmania"
+action_url: "https://www.screen.tas.gov.au/leveluptasmania"
+action_label: "Visit Screen Tasmania"
 ---
 
 Level Up Tasmania is a celebration of Tasmanian game development.

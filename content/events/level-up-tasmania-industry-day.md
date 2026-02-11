@@ -7,7 +7,8 @@ location: "PW1, 1 Hunter Street, Hobart"
 address: "PW1 Hobart Tasmania"
 event_type: "conference"
 image: "LUT-Color.png"
-external_url: "https://www.screen.tas.gov.au/leveluptasmania"
+action_url: "https://www.screen.tas.gov.au/leveluptasmania"
+action_label: "Visit Screen Tasmania"
 ---
 
 Level Up Tasmania Industry Day is a one-day game development conference.
