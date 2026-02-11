@@ -1,16 +1,27 @@
 <head>
+  {{- $description := .Site.Params.description -}}
+  {{- with .Params.summary }}{{ $description = . }}{{ else }}{{ with .Description }}{{ $description = . }}{{ end }}{{ end -}}
+  {{- $image := printf "%sassets/static/images/tasgamemakers-socialcard.png" .Site.BaseURL -}}
+  {{- with .Params.image }}{{ $image = printf "%sassets/media/images/%s" $.Site.BaseURL . }}{{ end -}}
+
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
-  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+  <meta name="description" content="{{ $description }}" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="{{ .Title }}" />
-  <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+  <meta property="og:description" content="{{ $description }}" />
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
   <meta property="og:url" content="{{ .Permalink }}" />
-  <meta property="og:image" content="{{ .Site.BaseURL }}assets/static/images/tasgamemakers-socialcard.png" />
+  <meta property="og:image" content="{{ $image }}" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ .Title }}" />
+  <meta name="twitter:description" content="{{ $description }}" />
+  <meta name="twitter:image" content="{{ $image }}" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/static/images/TasGM_Logo_32x32.4887edce5135.png">

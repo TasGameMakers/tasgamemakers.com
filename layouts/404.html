@@ -1,41 +1,19 @@
-<!DOCTYPE html>
-<html class="no-js" lang="en">
+{{ define "main" }}
 
-  {{ partial "head.html" . }}
+<div class="page-hero page-hero--pink">
+  <div class="container">
+    <h1 class="page-hero__title">Page Not Found</h1>
+    <p class="page-hero__desc">Sorry, we couldn't find what you were looking for.</p>
+  </div>
+</div>
 
-  <body class="">
-
-    {{ partial "header.html" . }}
-
-    <main id="main" class="main main__dark" role="main">
-
-    <div class="banner">
-
-      <img src="/assets/static/images/banner.c07521c0b39d.png" />
-
+<div class="page-content">
+  <div class="container">
+    <div class="prose" style="text-align: center; padding: var(--space-2xl) 0;">
+      <p>The page you're looking for doesn't exist or has been moved.</p>
+      <a href="/" class="btn-new btn-new--purple">Back to Home</a>
     </div>
+  </div>
+</div>
 
-    <div class="secondary-page">
-
-      <div class="secondary-page--container">
-        <h1 class="secondary-page--heading">Page Not Found </h1>
-        <div class="secondary-page--content">
-          <div class="rich-text">
-            <p>Sorry, this page could not be found.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    </main>
-
-    {{ partial "footer.html" . }}
-
-  </body>
-
-
-  <script type="text/javascript" src="/assets/static/js/mysite.90fdc5a80c4a.js"></script>
-
-
-
-</html>
+{{ end }}
