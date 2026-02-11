@@ -1,0 +1,88 @@
+{{ define "main" }}
+
+<!-- Event Hero -->
+<div class="page-hero event-page-hero" {{ with .Params.image }}style="background-image: url('/assets/media/images/{{ . }}');"{{ end }}>
+  <div class="container">
+    <h1 class="page-hero__title">{{ .Title }}</h1>
+    {{ with .Params.summary }}
+    <p class="page-hero__desc">{{ . }}</p>
+    {{ end }}
+  </div>
+</div>
+
+<!-- Event Content -->
+<div class="page-content">
+  <div class="container">
+    <article class="event-article">
+
+      <header class="event-article__header">
+        <a href="/events/" class="event-article__back">&larr; Back to events</a>
+
+        <div class="event-article__meta">
+          <div class="event-article__meta-item">
+            <strong>Date:</strong>
+            {{- if .Params.end_date }}
+              {{ .Date.Format "Monday, January 2" }} – {{ (time .Params.end_date).Format "Monday, January 2, 2006" }}
+            {{- else }}
+              {{ .Date.Format "Monday, January 2, 2006" }}
+            {{- end }}
+          </div>
+          {{ with .Params.time }}
+          <div class="event-article__meta-item">
+            <strong>Time:</strong> {{ . }}
+          </div>
+          {{ end }}
+          {{ with .Params.location }}
+          <div class="event-article__meta-item">
+            <strong>Location:</strong> {{ . }}
+          </div>
+          {{ end }}
+          {{ with .Params.cost }}
+          <div class="event-article__meta-item">
+            <strong>Cost:</strong> {{ . }}
+          </div>
+          {{ end }}
+        </div>
+
+        {{ with .Params.discord_url }}
+        <div class="event-article__cta">
+          <a href="{{ . }}" class="btn-new btn-new--white" target="_blank" rel="noopener">Join us on Discord</a>
+        </div>
+        {{ end }}
+
+        {{ with .Params.action_url }}
+        <div class="event-article__cta">
+          <a href="{{ . }}" class="btn-new btn-new--purple" target="_blank" rel="noopener">{{ $.Params.action_label | default "More Info" }}</a>
+        </div>
+        {{ end }}
+      </header>
+
+      <div class="prose">
+        {{ .Content }}
+      </div>
+
+      {{ with .Params.action_url }}
+      <div class="event-article__cta">
+        <a href="{{ . }}" class="btn-new btn-new--purple" target="_blank" rel="noopener">{{ $.Params.action_label | default "More Info" }}</a>
+      </div>
+      {{ end }}
+
+      <!-- Photo Gallery -->
+      {{ with .Params.photos }}
+      <section class="event-article__gallery">
+        <h2>Photos</h2>
+        <div class="photo-grid">
+          {{ range . }}
+          <figure class="photo-grid__item">
+            <img src="/assets/media/images/{{ .src }}" alt="{{ .alt }}">
+          </figure>
+          {{ end }}
+        </div>
+      </section>
+      {{ end }}
+
+    </article>
+  </div>
+</div>
+
+{{ end }}

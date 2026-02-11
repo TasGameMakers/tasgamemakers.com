@@ -1,0 +1,41 @@
+.rich-text {
+}
+
+.rich-text p {
+  min-height: 1px;
+}
+
+.rich-text p:not(last-of-type) {
+  margin-bottom: var(--padding-sm);
+}
+
+.rich-text h2 {
+  font-family: var(--accent-font);
+  margin-bottom: var(--padding-sm);
+}
+.rich-text h3 {
+  font-family: var(--accent-font);
+  margin-bottom: var(--padding-sm) / 2;
+}
+
+.rich-text a,
+.rich-text p > a {
+  color: var(--purple);
+  font-weight: 600;
+}
+.rich-text a:hover,
+.rich-text a:focus,
+.rich-text p > a:hover,
+.rich-text p > a:focus {
+  color: var(--pink-dark);
+}
+
+.rich-text ul,
+.rich-text ol {
+  margin-left: 30px;
+}
+
+.rich-text ol li,
+.rich-text ul li {
+  list-style-type: disc;
+}

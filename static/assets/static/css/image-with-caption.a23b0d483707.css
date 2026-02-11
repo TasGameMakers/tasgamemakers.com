@@ -1,0 +1,26 @@
+.image-with-caption {
+  margin: var(--padding-sm) 0 calc(var(--padding-sm) * 2) 0;
+  width: calc(100% - 8px);
+  display: block;
+  overflow: hidden;
+  -webkit-box-shadow: 8px 8px 0px 0px rgba(105, 74, 156, 1);
+  -moz-box-shadow: 8px 8px 0px 0px rgba(105, 74, 156, 1);
+  box-shadow: 8px 8px 0px 0px rgba(105, 74, 156, 1);
+}
+.image-with-caption img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.image-with-caption--caption {
+  color: var(--white);
+  padding: var(--padding-sm);
+  background-color: var(--purple-dark);
+}
+
+@media only screen and (min-width: 764px) {
+}
+
+@media only screen and (min-width: 1024px) {
+}

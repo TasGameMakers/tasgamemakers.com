@@ -1,0 +1,48 @@
+{{- /* Board members grid - 2026 design */ -}}
+{{- $active := slice -}}
+{{- $past := slice -}}
+
+{{- range .Page.Site.Data.board -}}
+  {{- if eq .is_past true -}}
+    {{- $past = $past | append . -}}
+  {{- else -}}
+    {{- $active = $active | append . -}}
+  {{- end -}}
+{{- end -}}
+
+<!-- Board roster nav -->
+<div class="board-roster">
+  {{ range $active }}
+  {{- $slug := .name | urlize -}}
+  <a href="#{{ $slug }}" class="board-roster__item" title="{{ .name }}">
+    <span class="board-roster__photo">
+      {{ if .image }}
+      <img src="/assets/media/images/{{ .image }}" alt="{{ .name }}">
+      {{ else }}
+      {{- $initials := "" -}}
+      {{- $nameParts := split .name " " -}}
+      {{- range $nameParts -}}
+        {{- $initials = printf "%s%s" $initials (substr . 0 1) -}}
+      {{- end -}}
+      <span class="board-roster__initials">{{ $initials }}</span>
+      {{ end }}
+    </span>
+    <span class="board-roster__label">{{ index (split .name " ") 0 }}</span>
+  </a>
+  {{ end }}
+</div>
+
+<div class="board-grid-new">
+  {{ range $active }}
+  {{ partial "2026/board-card.html" . }}
+  {{ end }}
+</div>
+
+{{ if $past }}
+<h3 class="mt-xl">Past Board Members</h3>
+<ul class="past-members-list">
+{{ range $past }}
+  <li>{{ .name }}</li>
+{{ end }}
+</ul>
+{{ end }}

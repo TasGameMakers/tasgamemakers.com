@@ -1,0 +1,19 @@
+{{/* Featured event card - larger horizontal layout
+     Usage: {{ partial "2026/event-card-featured.html" . }}
+     Pass an event page context
+*/}}
+<div class="event-featured">
+  {{ with .Params.image }}
+  <a href="{{ $.RelPermalink }}" class="event-featured__image">
+    <img src="/assets/media/images/{{ . }}" alt="{{ $.Title }}">
+  </a>
+  {{ end }}
+  <div class="event-featured__content">
+    <p class="event-featured__date">{{ .Date.Format "January 2, 2006" }}</p>
+    <h3 class="event-featured__title">{{ .Title }}</h3>
+    {{ with .Params.summary }}
+    <p class="event-featured__desc">{{ . }}</p>
+    {{ end }}
+    <a href="{{ .RelPermalink }}" class="btn-new btn-new--white">Learn More</a>
+  </div>
+</div>

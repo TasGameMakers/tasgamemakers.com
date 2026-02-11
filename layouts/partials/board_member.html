@@ -1,0 +1,22 @@
+<p>
+    <div class="profile profile__dark-purple">
+        <div class="profile--content">
+            <h5 class="profile--position">{{ .position }}</h5>
+            <h4 class="profile--name">{{ .name }}</h4>
+            <a class="profile--twitter" href="https://twitter.com/{{ .twitter }}">
+                <image src="/assets/static/images/twitter.3763bb7891ed.svg" />
+                <span>@{{ .twitter }}</span>
+            </a>
+            <div class="profile--description">
+                <div class="rich-text">
+                    {{ .bio | markdownify }}
+                </div>
+            </div>
+        </div>
+        {{ if .image }}
+        <div class="profile--image">
+            <img alt="A photo of {{ .name }}" height="600" src="/assets/media/images/{{ .image }}" width="600">
+        </div>
+        {{ end }}
+    </div>
+</p>

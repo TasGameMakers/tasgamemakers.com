@@ -1,0 +1,83 @@
+- category: "Game Engines"
+  color: purple
+  links:
+    - name: "Unity"
+      url: "https://unity.com/"
+      description: "Popular cross-platform game engine for 2D and 3D games."
+    - name: "Unreal Engine"
+      url: "https://www.unrealengine.com/"
+      description: "Powerful engine for high-fidelity 3D games and experiences."
+    - name: "Godot"
+      url: "https://godotengine.org/"
+      description: "Free and open-source engine with its own scripting language."
+    - name: "Bitsy"
+      url: "https://bitsy.org/"
+      description: "A tiny editor for little games or worlds—no coding required."
+    - name: "Twine"
+      url: "https://twinery.org/"
+      description: "An open-source tool for telling interactive, nonlinear stories."
+
+- category: "Art & Design"
+  color: pink
+  links:
+    - name: "Aseprite"
+      url: "https://www.aseprite.org/"
+      description: "Animated sprite editor and pixel art tool."
+    - name: "Blender"
+      url: "https://www.blender.org/"
+      description: "Free and open-source 3D creation suite."
+    - name: "Krita"
+      url: "https://krita.org/"
+      description: "Free digital painting application for concept art and illustrations."
+
+- category: "Audio"
+  color: yellow
+  links:
+    - name: "Audacity"
+      url: "https://www.audacityteam.org/"
+      description: "Free, open-source audio editor and recorder."
+    - name: "FMOD"
+      url: "https://www.fmod.com/"
+      description: "Adaptive audio middleware for games."
+    - name: "freesound"
+      url: "https://freesound.org/"
+      description: "Collaborative database of Creative Commons licensed sounds."
+
+- category: "Funding"
+  color: purple
+  links:
+    - name: "Screen Tasmania"
+      url: "https://www.screen.tas.gov.au/"
+      description: "Tasmanian government screen funding and support."
+    - name: "Screen Australia"
+      url: "https://www.screenaustralia.gov.au/"
+      description: "Australian federal screen funding body with games programs."
+    - name: "Film Victoria"
+      url: "https://www.film.vic.gov.au/"
+      description: "Victorian screen funding body supporting games development."
+
+- category: "Learning"
+  color: pink
+  links:
+    - name: "GDC Vault"
+      url: "https://gdcvault.com/"
+      description: "Talks and presentations from the Game Developers Conference."
+    - name: "Game Dev Beginner"
+      url: "https://gamedevbeginner.com/"
+      description: "Tutorials and guides for those starting out in game development."
+    - name: "Brackeys"
+      url: "https://www.youtube.com/c/Brackeys"
+      description: "Popular YouTube channel with Unity and game dev tutorials."
+
+- category: "Community"
+  color: yellow
+  links:
+    - name: "TasGM Discord"
+      url: "https://discord.gg/EYP7FVAWrf"
+      description: "Our own Discord server—join the conversation!"
+    - name: "IGDA"
+      url: "https://igda.org/"
+      description: "International Game Developers Association."
+    - name: "Freeplay"
+      url: "https://freeplay.net.au/"
+      description: "Australia's longest-running independent games festival."

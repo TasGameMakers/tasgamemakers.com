@@ -1,0 +1,14 @@
+{{- /* Embed a single featured event */ -}}
+{{- $slug := .Get "slug" -}}
+{{- $event := false -}}
+
+{{- if $slug -}}
+  {{- $event = site.GetPage (printf "/events/%s" $slug) -}}
+{{- else -}}
+  {{- $events := where site.RegularPages "Section" "events" -}}
+  {{- $event = index $events 0 -}}
+{{- end -}}
+
+{{- with $event -}}
+{{ partial "2026/event-card-featured.html" . }}
+{{- end -}}

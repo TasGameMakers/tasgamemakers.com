@@ -1,0 +1,35 @@
+<header class="header-new{{ if .IsHome }} header-new--home{{ end }}" role="banner">
+  <div class="container">
+    <div class="header-new__inner">
+      <a href="/" class="header-new__logo">
+        <img src="/assets/static/images/logo-header.448e2a9cd8b0.png" alt="Tas Game Makers">
+        <span class="header-new__wordmark">Tas Game Makers</span>
+      </a>
+
+      <nav class="header-new__nav" role="navigation">
+        {{ range .Site.Menus.main }}
+        <a class="header-new__link{{ if $.IsMenuCurrent "main" . }} header-new__link--active{{ end }}" href="{{ .URL }}">{{ .Name }}</a>
+        {{ end }}
+      </nav>
+
+      <button class="header-new__toggle" aria-label="Open menu" data-menu-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <nav class="mobile-menu" data-mobile-menu role="navigation">
+    <div class="mobile-menu__inner">
+      <button class="mobile-menu__close" aria-label="Close menu" data-menu-close>&times;</button>
+      {{ range .Site.Menus.main }}
+      <a class="mobile-menu__link" href="{{ .URL }}">{{ .Name }}</a>
+      {{ end }}
+      <div class="mobile-menu__cta">
+        <a href="{{ .Site.Params.discord_url }}" class="btn-new btn-new--pink">Join Discord</a>
+      </div>
+    </div>
+  </nav>
+</header>

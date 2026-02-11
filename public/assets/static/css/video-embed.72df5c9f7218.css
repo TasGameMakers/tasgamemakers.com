@@ -1,0 +1,36 @@
+.video-embed {
+  margin: var(--padding-sm) 0 calc(var(--padding-sm) * 2) 0;
+
+  width: 100%;
+  min-height: 200px;
+  height: auto;
+
+  -webkit-box-shadow: 8px 8px 0px 0px rgba(105, 74, 156, 1);
+  -moz-box-shadow: 8px 8px 0px 0px rgba(105, 74, 156, 1);
+  box-shadow: 8px 8px 0px 0px rgba(105, 74, 156, 1);
+
+  position: relative;
+}
+.video-embed > iframe {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (min-width: 400px) {
+  .video-embed {
+    min-height: 300px;
+  }
+}
+
+@media only screen and (min-width: 764px) {
+  .video-embed {
+    min-height: 400px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .video-embed {
+    min-height: 500px;
+  }
+}

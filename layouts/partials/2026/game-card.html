@@ -1,0 +1,13 @@
+{{/* Game/showcase card component
+     Usage: {{ partial "2026/game-card.html" . }}
+     Pass a showcase data item (title, creator, image, url, summary)
+*/}}
+<a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="game-card-new">
+  <div class="game-card-new__image">
+    <img src="/assets/media/images/{{ .image }}" alt="{{ .title }}">
+  </div>
+  <div class="game-card-new__overlay">
+    <h4 class="game-card-new__title">{{ .title }}</h4>
+    <p class="game-card-new__creator">{{ .creator }}</p>
+  </div>
+</a>

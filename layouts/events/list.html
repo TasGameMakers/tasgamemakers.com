@@ -1,0 +1,62 @@
+{{ define "main" }}
+
+<!-- Page Header -->
+<div class="page-hero page-hero--pink">
+  <div class="container">
+    <h1 class="page-hero__title">Events</h1>
+    <p class="page-hero__desc">Game jams, talks, social catch-ups, and more. Everyone is welcome.</p>
+    <a href="/events/calendar.ics" class="btn-new btn-new--white" style="margin-top: var(--space-md);">Subscribe to Calendar</a>
+  </div>
+</div>
+
+<!-- Events List -->
+<div class="page-content">
+  <div class="container">
+
+    {{ $now := now }}
+    {{ $upcoming := where .Pages ".Date" "ge" $now }}
+    {{ $past := where .Pages ".Date" "lt" $now }}
+
+    <!-- Upcoming Events by Month -->
+    <section class="events-list-section">
+      <h2>Upcoming Events</h2>
+      {{ if $upcoming }}
+        {{ range $upcoming.GroupByDate "January 2006" "asc" }}
+        <div class="events-month">
+          <h3 class="events-month__title">{{ .Key }}</h3>
+          <div class="events-grid">
+            {{ range .Pages.ByDate }}
+            {{ partial "2026/event-card.html" . }}
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+      {{ else }}
+      <div class="empty-state">
+        <p>No upcoming events scheduled right now.</p>
+        <p>Join our <a href="{{ .Site.Params.discord_url }}">Discord</a> to be the first to know when new events are announced!</p>
+      </div>
+      {{ end }}
+    </section>
+
+    <!-- Past Events by Month -->
+    {{ if $past }}
+    <section class="events-list-section">
+      <h2>Past Events</h2>
+      {{ range $past.GroupByDate "January 2006" "desc" }}
+      <div class="events-month">
+        <h3 class="events-month__title">{{ .Key }}</h3>
+        <div class="events-grid">
+          {{ range .Pages }}
+          {{ partial "2026/event-card.html" . }}
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+    </section>
+    {{ end }}
+
+  </div>
+</div>
+
+{{ end }}

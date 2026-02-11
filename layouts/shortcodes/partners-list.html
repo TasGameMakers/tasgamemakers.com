@@ -1,0 +1,46 @@
+{{- $major := where $.Site.Data.partners "tier" "major" -}}
+{{- $supporter := where $.Site.Data.partners "tier" "supporter" -}}
+
+{{ if $major }}
+<section class="partners-tier">
+  <h2>Major Partners</h2>
+  <div class="partners-grid">
+    {{ range $major }}
+    <div class="partner-card-new">
+      {{ if .logo }}
+      <div class="partner-card-new__logo">
+        <img src="/assets/static/images/{{ .logo }}" alt="{{ .name }}">
+      </div>
+      {{ end }}
+      <h3 class="partner-card-new__name">{{ .name }}</h3>
+      {{ if .description }}
+      <p class="partner-card-new__desc">{{ .description }}</p>
+      {{ end }}
+      <a href="{{ .url }}" class="btn-new btn-new--purple" target="_blank" rel="noopener">Visit Website</a>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{ if $supporter }}
+<section class="partners-tier">
+  <h2>Supporters</h2>
+  <div class="partners-grid">
+    {{ range $supporter }}
+    <div class="partner-card-new">
+      {{ if .logo }}
+      <div class="partner-card-new__logo">
+        <img src="/assets/static/images/{{ .logo }}" alt="{{ .name }}">
+      </div>
+      {{ end }}
+      <h3 class="partner-card-new__name">{{ .name }}</h3>
+      {{ if .description }}
+      <p class="partner-card-new__desc">{{ .description }}</p>
+      {{ end }}
+      <a href="{{ .url }}" class="btn-new btn-new--purple" target="_blank" rel="noopener">Visit Website</a>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

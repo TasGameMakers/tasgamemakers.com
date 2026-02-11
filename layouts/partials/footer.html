@@ -1,0 +1,52 @@
+
+<div class="footer--partners">
+  <p class="footer--partners-label">Supported by</p>
+  <div class="footer--partners-inner">
+    {{ range .Site.Data.partners }}
+    <a class="footer--partner-link" href="{{ .url }}" target="_blank" rel="noopener noreferrer" title="{{ .name }}">
+      <img src="/assets/static/images/{{ .logo }}" alt="{{ .name }}">
+    </a>
+    {{ end }}
+  </div>
+</div>
+
+<footer class="footer" role="contentinfo">
+  <div class="footer--content">
+    <div class="footer--container">
+      <div class="footer--column footer--column__left">
+        <div class="footer--socials">
+
+          <a class="footer--link" href="mailto:{{ .Site.Params.email }}">
+              <image src="/assets/static/images/email.d1be5058dd1e.svg"/>
+              <span>Email us</span>
+          </a>
+
+
+          <a class="footer--link" href="{{ .Site.Params.facebook_url }}">
+            <image src="/assets/static/images/facebook.7dc2e744ce33.svg"/>
+            <span>Facebook</span>
+          </a>
+
+
+          <a class="footer--link" href="{{ .Site.Params.discord_url }}">
+            <image src="/assets/static/images/discord-round.5e43f10afcb5.svg"/>
+            <span>Discord</span>
+          </a>
+
+
+          <a class="footer--link" href="https://twitter.com/{{ .Site.Params.twitter }}">
+            <image src="/assets/static/images/twitter.3763bb7891ed.svg"/>
+            <span>Twitter</span>
+          </a>
+
+        </div>
+      </div>
+      <div class="footer--column footer--column__right">
+        <a class="footer--logo" href="/">
+          <image src="/assets/static/images/TasGM_Logo.b5c1905a0fd2.svg"/>
+
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

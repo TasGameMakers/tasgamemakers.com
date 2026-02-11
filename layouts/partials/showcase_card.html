@@ -1,0 +1,13 @@
+<a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="showcase-card card card__{{ .color }}">
+  <div class="card--image">
+    <img alt="{{ .title }}" height="629" src="/assets/media/images/{{ .image }}" width="720">
+  </div>
+  <div class="card--desc">
+    <div>
+      <h3 class="card--desc-heading">{{ .title }}</h3>
+      <p class="card--desc-subtitle">{{ .summary }}</p>
+      <p class="card--desc-subtitle"><em>by {{ .creator }}</em></p>
+    </div>
+    <span class="card--desc-link">Visit site</span>
+  </div>
+</a>

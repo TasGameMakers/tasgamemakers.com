@@ -1,0 +1,10 @@
+
+<div class="membership-manage">
+    <form action="{{ .Site.Params.manage_membership_endpoint }}" method="post" class="membership-manage__form">
+        <label for="manage-email" class="membership-manage__label">Email Address</label>
+        <div class="membership-manage__row">
+            <input type="email" value="" name="email" id="manage-email" class="membership-manage__input" placeholder="you@example.com" required>
+            <button type="submit" class="btn-new btn-new--purple">Manage</button>
+        </div>
+    </form>
+</div>

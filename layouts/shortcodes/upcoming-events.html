@@ -1,0 +1,19 @@
+{{- /* Embed upcoming events anywhere */ -}}
+{{- $limit := .Get "limit" | default 3 -}}
+{{- $now := now -}}
+{{- $events := where (where site.RegularPages "Section" "events") ".Date" "ge" $now -}}
+
+{{ if $events }}
+<div class="embedded-events">
+  <div class="events-grid">
+    {{ range first (int $limit) $events }}
+    {{ partial "2026/event-card.html" . }}
+    {{ end }}
+  </div>
+  <p class="embedded-events__more"><a href="/events/">View all events &rarr;</a></p>
+</div>
+{{ else }}
+<div class="embedded-events embedded-events--empty">
+  <p>No upcoming events scheduled. <a href="{{ site.Params.discord_url }}">Join our Discord</a> to stay in the loop!</p>
+</div>
+{{ end }}

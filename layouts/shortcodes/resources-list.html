@@ -1,0 +1,16 @@
+{{ range $.Site.Data.resources }}
+<section class="resource-section">
+  <h2 class="resource-section__title">{{ .category }}</h2>
+  <div class="resource-section__grid">
+    {{ range .links }}
+    <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="resource-card">
+      <span class="resource-card__name">{{ .name }}</span>
+      {{ with .description }}
+      <span class="resource-card__desc">{{ . }}</span>
+      {{ end }}
+      <span class="resource-card__arrow">→</span>
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

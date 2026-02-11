@@ -1,0 +1,151 @@
+{{ define "main" }}
+
+<!-- HERO -->
+<section class="hero-new">
+  <div class="hero-new__bg">
+    <img src="/assets/static/images/fold-desktop.64d2de6fa0ae.jpg" alt="">
+  </div>
+  <div class="hero-new__content">
+    <h1 class="hero-new__title">
+      <span>Tasmanian</span>
+      <span>Game Makers</span>
+    </h1>
+    <div class="hero-new__subtitle">Supporting Tasmanian Creatives</div>
+  </div>
+</section>
+
+
+<!-- WHAT WE DO -->
+<section class="section">
+  <div class="container">
+    <div class="section__header text-center">
+      <h2 class="section__title">What We Do</h2>
+      <p class="section__desc" style="margin: 0 auto;">We're a community of game developers and creators — designing, building, and bringing games to life together.</p>
+    </div>
+
+    <div class="pillars-new">
+      <div class="pillar-new">
+        <div class="pillar-new__icon">
+          <img src="/assets/media/images/point-game.width-400.png" alt="">
+        </div>
+        <h3 class="pillar-new__title">Make</h3>
+        <p class="pillar-new__desc">We design, develop, and craft games — from first prototype to finished product.</p>
+      </div>
+
+      <div class="pillar-new">
+        <div class="pillar-new__icon">
+          <img src="/assets/media/images/point-create.width-400.png" alt="">
+        </div>
+        <h3 class="pillar-new__title">Create</h3>
+        <p class="pillar-new__desc">We collaborate on projects, jam together, and support each other's creative work at all skill levels.</p>
+      </div>
+
+      <div class="pillar-new">
+        <div class="pillar-new__icon">
+          <img src="/assets/media/images/point-learn.width-400.png" alt="">
+        </div>
+        <h3 class="pillar-new__title">Learn</h3>
+        <p class="pillar-new__desc">We run workshops, talks, and events to grow our skills in game design, art, audio, programming, and more.</p>
+      </div>
+
+      <div class="pillar-new">
+        <div class="pillar-new__icon">
+          <img src="/assets/media/images/intro_images_share_E9o23Bb.width-400.png" alt="">
+        </div>
+        <h3 class="pillar-new__title">Share</h3>
+        <p class="pillar-new__desc">We showcase our work, give and receive feedback, and stay connected as a development community.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- EVENTS -->
+<section class="section section--white">
+  <div class="container">
+    <div class="section__header">
+      <p class="section__label">What's On</p>
+      <h2 class="section__title">Events</h2>
+      <p class="section__desc">Game jams, talks, social catch-ups, and more. All are welcome.</p>
+    </div>
+
+    {{ $events := where .Site.RegularPages "Section" "events" }}
+    {{ $featured_events := where $events ".Params.featured" true }}
+    {{ $featured := cond (gt (len $featured_events) 0) (index $featured_events 0) (index $events 0) }}
+
+    {{ with $featured }}
+    {{ partial "2026/event-card-featured.html" . }}
+    {{ end }}
+
+    {{ $remaining := where $events "Permalink" "ne" $featured.Permalink }}
+    {{ if gt (len $remaining) 0 }}
+    <div class="events-grid mt-lg">
+      {{ range first 3 $remaining }}
+      {{ partial "2026/event-card.html" . }}
+      {{ end }}
+    </div>
+    {{ end }}
+
+    <div class="text-center mt-lg">
+      <a href="/events/" class="btn-new btn-new--outline">View All Events</a>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- PARTNERS -->
+<div class="partners-strip">
+  <div class="container">
+    <p class="partners-strip__label">Supported By</p>
+    <p class="partners-strip__names">Screen Tasmania &middot; Yarn Spinner &middot; UTAS Play &middot; Hobart City Council</p>
+  </div>
+</div>
+
+
+<!-- JOIN / COMMUNITY -->
+<section class="section">
+  <div class="container">
+    <div class="section__header">
+      <h2 class="section__title">Get Involved</h2>
+      <p class="section__desc">Connect with other local makers and creatives.</p>
+    </div>
+
+    <div class="join-grid">
+      <div class="join-card join-card--discord">
+        <img src="/assets/static/images/discord.5e887b9e3a7c.svg" alt="" class="join-card__icon">
+        <h3 class="join-card__title">Discord</h3>
+        <p class="join-card__desc">For casual discussion about all things games — whether creating, playing, or learning.</p>
+        <a href="{{ .Site.Params.discord_url }}" class="btn-new btn-new--white">Join Server</a>
+      </div>
+      <div class="join-card join-card--bluesky">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 568 501" fill="white" class="join-card__icon"><path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 189.32 552.119 210.559C531.746 279.385 462.932 296.151 401.165 285.185C513.865 303.993 541.685 379.163 474.165 454.333C346.013 597.068 289.27 431.645 286.669 423.662C285.765 421.087 284.99 419.803 284 419.803C283.01 419.803 282.235 421.087 281.331 423.662C278.73 431.645 221.987 597.068 93.8346 454.333C26.3148 379.163 54.1347 303.993 166.835 285.185C105.068 296.151 36.2536 279.385 15.8809 210.559C9.94525 189.32 0 75.2916 0 57.9464C0 -28.9064 76.1339 -1.61183 123.121 33.6637Z"/></svg>
+        <h3 class="join-card__title">Bluesky</h3>
+        <p class="join-card__desc">Follow us for news, updates, and highlights from the Tasmanian game dev community.</p>
+        <a href="{{ .Site.Params.bluesky_url }}" class="btn-new btn-new--white">Follow Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- NEWSLETTER -->
+<section class="section section--purple">
+  <div class="container">
+    <div class="newsletter-new">
+      <h3>Stay in the Loop</h3>
+      <p class="mb-0">Get updates about upcoming events and community news.</p>
+      <form
+        action="https://tasgamemakers.us4.list-manage.com/subscribe/post?u=3d1143bb937d9f47a30ad1306&amp;id=99abe46476"
+        method="post"
+        class="newsletter-new__form mt-lg"
+        target="_blank">
+        <input type="email" name="EMAIL" placeholder="Your email" class="newsletter-new__input" required>
+        <button type="submit" class="btn-new btn-new--pink">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+{{ end }}

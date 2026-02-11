@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{{ $image_name := .Params.image | default "tasgamemakers-socialcard.png" }}
+{{ $image_url := (printf "/assets/static/images/%s" $image_name) | absURL }}
+{{ $description := .Content | plainify | strings.TrimSpace }}
+{{ $redirect_url := .Params.redirect_url }}
+{{ if not $redirect_url }}
+  {{ $redirect_url = index .Site.Params .Params.redirect_name }}
+{{ end }}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Refresh" content="0; url='{{ $redirect_url }}'" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@TasGameMakers" />
+    <meta name="twitter:creator" content="@TasGameMakers" />
+    <meta property="og:url" content="{{ $redirect_url }}" />
+    <meta property="og:title" content="{{ .Title }}" />
+    <meta property="twitter:description" content="{{ $description }}" />
+    <meta property="og:description" content="{{ $description }}" />
+    <meta property="twitter:image" content="{{ $image_url }}" />
+    <meta property="twitter:image:alt" content="{{ .Title }}" />
+    <meta property="og:image" content="{{ .Params.image }}" />
+    <title>{{ .Site.Title }} Redirect</title>
+</head>
+
+<body>
+    You are being redirected <a href="{{ $redirect_url }}">here</a>.
+</body>
+
+</html>

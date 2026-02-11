@@ -1,0 +1,17 @@
+---
+title: "Level Up Tasmania Industry Day"
+date: 2026-04-19T11:00:00+10:00
+summary: "A one-day game development conference. Free."
+location: "PW1, Hobart"
+event_type: "conference"
+image: "LUT-Color.png"
+external_url: "https://www.screen.tas.gov.au/leveluptasmania"
+---
+
+Level Up Tasmania Industry Day is a one-day game development conference.
+
+Join us for talks, panels, and networking with game developers from across Tasmania and beyond.
+
+**Free admission.**
+
+For more information, visit [Screen Tasmania](https://www.screen.tas.gov.au/leveluptasmania).

@@ -1,0 +1,50 @@
+
+<div class="membership-cta">
+    <div class="membership-cta__buttons">
+        <button role="link" type="button" class="btn-new btn-new--purple js-checkout-subscribe">
+            Subscribe ($20 / year, cancel any time)
+        </button>
+
+        <button role="link" type="button" class="btn-new btn-new--outline-dark js-checkout-pif">
+            Purchase A Pay-It-Forward Membership ($20, one time)
+        </button>
+    </div>
+    <div class="js-checkout-error"></div>
+</div>
+
+<script>
+    (function () {
+        var stripe = Stripe('pk_live_wk7uF6ktlUtDLwT3IjbJRkZc00Re5EMjz0');
+
+        function checkout(price_id, mode, redirect, needs_shipping_address) {
+            stripe.redirectToCheckout({
+                lineItems: [{ price: price_id, quantity: 1 }],
+                shippingAddressCollection: needs_shipping_address ? { allowedCountries: ['AU'] } : undefined,
+                billingAddressCollection: 'required',
+                mode: mode,
+                successUrl: redirect,
+                cancelUrl: 'https://tasgamemakers.com/membership/',
+            })
+                .then(function (result) {
+                    if (result.error) {
+                        document.querySelectorAll('.js-checkout-error').forEach(function(el) {
+                            el.textContent = result.error.message;
+                        });
+                    }
+                });
+        }
+
+        document.querySelectorAll('.js-checkout-subscribe').forEach(function(btn) {
+            btn.addEventListener('click', function () {
+                checkout("plan_IVG5clzUMVACbb", 'subscription', 'https://tasgamemakers.com/membership/success/', true)
+            });
+        });
+
+        document.querySelectorAll('.js-checkout-pif').forEach(function(btn) {
+            btn.addEventListener('click', function () {
+                checkout("price_1HuFeMDlEsKw5ereEfstsYjO", 'payment', 'https://tasgamemakers.com/membership/pay-it-forward/', false)
+            });
+        });
+
+    })();
+</script>

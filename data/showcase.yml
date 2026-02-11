@@ -1,0 +1,27 @@
+- title: "Night in the Woods"
+  creator: "Infinite Fall"
+  image: "TasjamOnline_Banner.2e16d0ba.fill-800x700-c100.png"
+  summary: "An adventure game focused on exploration, story, and character, set in the crumbling former mining town of Possum Springs."
+  url: "http://www.nightinthewoods.com/"
+  color: purple
+
+- title: "Frog Detective"
+  creator: "Worm Club"
+  image: "TasGM_GGJ2020_Banner.2e16d0ba.fill-800x700-c100.jpg"
+  summary: "A short and silly mystery adventure game series where you play as a detective who is also a frog."
+  url: "https://frogdetective.net/"
+  color: pink
+
+- title: "Wayward Strand"
+  creator: "Ghost Pattern"
+  image: "TasjamLite_4.d2b1c565.fill-800x700-c100.png"
+  summary: "An interactive story set aboard a flying hospital in 1970s Australia, where every character lives their own life in real time."
+  url: "https://www.waywardstrand.com/"
+  color: yellow
+
+- title: "Yarn Spinner"
+  creator: "Secret Lab"
+  image: "Tasjam_1.f52fd50f.fill-800x700-c100.jpg"
+  summary: "A powerful and friendly tool for writing interactive dialogue in games, used by developers around the world."
+  url: "https://yarnspinner.dev/"
+  color: purple

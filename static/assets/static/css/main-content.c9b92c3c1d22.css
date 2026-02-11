@@ -1,0 +1,16 @@
+.main-content {
+  padding: var(--padding-sm);
+  background-color: pink;
+}
+
+@media only screen and (min-width: 764px) {
+  .main-content {
+    padding: var(--padding-md);
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .main-content {
+    padding: var(--padding-lg);
+  }
+}

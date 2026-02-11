@@ -1,0 +1,31 @@
+.banner {
+  height: 30vh;
+  overflow: hidden;
+  z-index: 0;
+}
+.banner img {
+  width: auto;
+  height: 100%;
+}
+
+@media only screen and (min-width: 764px) {
+  .banner {
+    height: 35vh;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .banner {
+    height: 30vh;
+  }
+  .banner img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .banner {
+    height: 45vh;
+  }
+}

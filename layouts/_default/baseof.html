@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en" }}">
+
+{{ partial "2026/head.html" . }}
+
+<body class="v2026">
+
+  {{ partial "2026/header.html" . }}
+
+  <main id="main" role="main">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  {{ partial "2026/footer.html" . }}
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile menu toggle
+      const toggle = document.querySelector('[data-menu-toggle]');
+      const menu = document.querySelector('[data-mobile-menu]');
+      const close = document.querySelector('[data-menu-close]');
+
+      if (toggle && menu) {
+        toggle.addEventListener('click', () => menu.classList.add('is-open'));
+        close.addEventListener('click', () => menu.classList.remove('is-open'));
+      }
+
+      // Header scroll detection - show logo after scrolling past hero
+      const header = document.querySelector('.header-new--home');
+      if (header) {
+        const scrollThreshold = window.innerHeight * 0.5;
+
+        function checkScroll() {
+          if (window.scrollY > scrollThreshold) {
+            header.classList.add('is-scrolled');
+          } else {
+            header.classList.remove('is-scrolled');
+          }
+        }
+
+        window.addEventListener('scroll', checkScroll, { passive: true });
+        checkScroll();
+      }
+    });
+  </script>
+
+</body>
+</html>

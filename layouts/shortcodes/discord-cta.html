@@ -1,0 +1,8 @@
+{{- /* Discord call-to-action block */ -}}
+{{- $title := .Get "title" | default "Join Our Discord" -}}
+<div class="cta-block cta-block--discord">
+  <img src="/assets/static/images/discord.5e887b9e3a7c.svg" alt="" class="cta-block__icon">
+  <h4 class="cta-block__title">{{ $title }}</h4>
+  <p class="cta-block__desc">Chat with other Tasmanian game makers, share your work, get feedback, and stay connected.</p>
+  <a href="{{ site.Params.discord_url }}" class="btn-new btn-new--white" target="_blank" rel="noopener">Join Server</a>
+</div>

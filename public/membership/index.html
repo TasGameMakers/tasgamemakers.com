@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>Membership - Tas Game Makers</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="description" content="Supporting Tasmanian creatives. We&#39;re inclusive, creative, passionate about making games, and proudly Tasmanian." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  
+  <meta property="og:title" content="Membership" />
+  <meta property="og:description" content="Supporting Tasmanian creatives. We&#39;re inclusive, creative, passionate about making games, and proudly Tasmanian." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://localhost:1313/membership/" />
+  <meta property="og:image" content="http://localhost:1313/assets/static/images/tasgamemakers-socialcard.png" />
+
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/static/images/TasGM_Logo_32x32.4887edce5135.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/static/images/favicon-16x16.23d3df4cbebd.png">
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  
+  <link rel="stylesheet" type="text/css" href="/assets/static/css/2026.css?v=1770786617">
+
+  
+  <script src="https://js.stripe.com/v3/"></script>
+
+  
+  <style>
+    @font-face {
+      font-family: "be_boldregular";
+      src: url("/assets/static/fonts/be-bold-webfont.67898cff2313.woff2") format("woff2"),
+           url("/assets/static/fonts/be-bold-webfont.cd25dde27e53.woff") format("woff");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+</head>
+
+
+<body class="v2026">
+
+  <header class="header-new" role="banner">
+  <div class="container">
+    <div class="header-new__inner">
+      <a href="/" class="header-new__logo">
+        <img src="/assets/static/images/logo-header.448e2a9cd8b0.png" alt="Tas Game Makers">
+        <span class="header-new__wordmark">Tas Game Makers</span>
+      </a>
+
+      <nav class="header-new__nav" role="navigation">
+        
+        <a class="header-new__link" href="/events/">Events</a>
+        
+        <a class="header-new__link" href="/membership/">Membership</a>
+        
+        <a class="header-new__link" href="/about-us/">About Us</a>
+        
+      </nav>
+
+      <button class="header-new__toggle" aria-label="Open menu" data-menu-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  
+  <nav class="mobile-menu" data-mobile-menu role="navigation">
+    <div class="mobile-menu__inner">
+      <button class="mobile-menu__close" aria-label="Close menu" data-menu-close>&times;</button>
+      
+      <a class="mobile-menu__link" href="/events/">Events</a>
+      
+      <a class="mobile-menu__link" href="/membership/">Membership</a>
+      
+      <a class="mobile-menu__link" href="/about-us/">About Us</a>
+      
+      <div class="mobile-menu__cta">
+        <a href="https://discord.gg/EYP7FVAWrf" class="btn-new btn-new--pink">Join Discord</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+  <main id="main" role="main">
+    
+
+
+<div class="page-hero">
+  <div class="container">
+    <h1 class="page-hero__title">Membership</h1>
+    
+  </div>
+</div>
+
+
+<div class="page-content">
+  <div class="container">
+    <div class="prose">
+      <h2 id="join-tas-game-makers">Join Tas Game Makers</h2>
+<p>A TasGM membership costs $20 per year and gives access to member-only events, initiatives, and a vote at our AGM.</p>
+<p>If you are unable to afford membership, please email <a href="mailto:hello@tasgamemakers.com">hello@tasgamemakers.com</a> or a member of the board and they can hook you up!</p>
+
+<div class="membership-cta">
+    <div class="membership-cta__buttons">
+        <button role="link" type="button" class="btn-new btn-new--purple js-checkout-subscribe">
+            Subscribe ($20 / year, cancel any time)
+        </button>
+
+        <button role="link" type="button" class="btn-new btn-new--outline-dark js-checkout-pif">
+            Purchase A Pay-It-Forward Membership ($20, one time)
+        </button>
+    </div>
+    <div class="js-checkout-error"></div>
+</div>
+
+<script>
+    (function () {
+        var stripe = Stripe('pk_live_wk7uF6ktlUtDLwT3IjbJRkZc00Re5EMjz0');
+
+        function checkout(price_id, mode, redirect, needs_shipping_address) {
+            stripe.redirectToCheckout({
+                lineItems: [{ price: price_id, quantity: 1 }],
+                shippingAddressCollection: needs_shipping_address ? { allowedCountries: ['AU'] } : undefined,
+                billingAddressCollection: 'required',
+                mode: mode,
+                successUrl: redirect,
+                cancelUrl: 'https://tasgamemakers.com/membership/',
+            })
+                .then(function (result) {
+                    if (result.error) {
+                        document.querySelectorAll('.js-checkout-error').forEach(function(el) {
+                            el.textContent = result.error.message;
+                        });
+                    }
+                });
+        }
+
+        document.querySelectorAll('.js-checkout-subscribe').forEach(function(btn) {
+            btn.addEventListener('click', function () {
+                checkout("plan_IVG5clzUMVACbb", 'subscription', 'https://tasgamemakers.com/membership/success/', true)
+            });
+        });
+
+        document.querySelectorAll('.js-checkout-pif').forEach(function(btn) {
+            btn.addEventListener('click', function () {
+                checkout("price_1HuFeMDlEsKw5ereEfstsYjO", 'payment', 'https://tasgamemakers.com/membership/pay-it-forward/', false)
+            });
+        });
+
+    })();
+</script>
+
+<h2 id="benefits">Benefits</h2>
+<p>Along with running events and providing platforms for community interaction, TasGM offers individual memberships which give access to a range of benefits.</p>
+<h3 id="member-only-events--initiatives">Member only events + initiatives</h3>
+<p>TasGM hosts member-only events that offer the chance to meet other makers and practitioners in the industry. Help boost your career and skillset by learning from those active in the industry.</p>
+<h3 id="have-your-say">Have your say</h3>
+<p>Members are required to attend TasGM&rsquo;s Annual General Meeting (AGM). Stay up to date with industry news and opportunities and get involved. Members vote in the board members of TasGM, helping to steer it in the direction the community wants most.</p>
+<h3 id="pay-it-forward">Pay it forward</h3>
+<p>If you would like to purchase TasGM memberships to be passed on to other makers who may not be as fortunate, please email us at <a href="mailto:hello@tasgamemakers.com">hello@tasgamemakers.com</a> or a member of the board to organise custom payments.</p>
+<p>Membership fees go towards a range of things: stipends to compensate the time of some of our volunteers who are providing a service (setting up streaming / recording), budgets for event catering, venue hire, making an event bigger (game jams, let&rsquo;s plays) etc.</p>
+<h2 id="become-a-member">Become a Member</h2>
+<p>Your membership is valid for 12 months, and gives access to the benefits listed above. You can also purchase a 12-month membership for a future member, as part of our pay-it-forward initiative!</p>
+
+<div class="membership-cta">
+    <div class="membership-cta__buttons">
+        <button role="link" type="button" class="btn-new btn-new--purple js-checkout-subscribe">
+            Subscribe ($20 / year, cancel any time)
+        </button>
+
+        <button role="link" type="button" class="btn-new btn-new--outline-dark js-checkout-pif">
+            Purchase A Pay-It-Forward Membership ($20, one time)
+        </button>
+    </div>
+    <div class="js-checkout-error"></div>
+</div>
+
+<script>
+    (function () {
+        var stripe = Stripe('pk_live_wk7uF6ktlUtDLwT3IjbJRkZc00Re5EMjz0');
+
+        function checkout(price_id, mode, redirect, needs_shipping_address) {
+            stripe.redirectToCheckout({
+                lineItems: [{ price: price_id, quantity: 1 }],
+                shippingAddressCollection: needs_shipping_address ? { allowedCountries: ['AU'] } : undefined,
+                billingAddressCollection: 'required',
+                mode: mode,
+                successUrl: redirect,
+                cancelUrl: 'https://tasgamemakers.com/membership/',
+            })
+                .then(function (result) {
+                    if (result.error) {
+                        document.querySelectorAll('.js-checkout-error').forEach(function(el) {
+                            el.textContent = result.error.message;
+                        });
+                    }
+                });
+        }
+
+        document.querySelectorAll('.js-checkout-subscribe').forEach(function(btn) {
+            btn.addEventListener('click', function () {
+                checkout("plan_IVG5clzUMVACbb", 'subscription', 'https://tasgamemakers.com/membership/success/', true)
+            });
+        });
+
+        document.querySelectorAll('.js-checkout-pif').forEach(function(btn) {
+            btn.addEventListener('click', function () {
+                checkout("price_1HuFeMDlEsKw5ereEfstsYjO", 'payment', 'https://tasgamemakers.com/membership/pay-it-forward/', false)
+            });
+        });
+
+    })();
+</script>
+
+<h2 id="manage-existing-membership">Manage Existing Membership</h2>
+<p>If you&rsquo;re already a member and you want to update your billing information, please enter the email address that you used to sign up to Tas Game Makers, and we&rsquo;ll send you a link to manage your details.</p>
+
+<div class="membership-manage">
+    <form action="https://tasgamemakers.azurewebsites.net/api/get_portal_link" method="post" class="membership-manage__form">
+        <label for="manage-email" class="membership-manage__label">Email Address</label>
+        <div class="membership-manage__row">
+            <input type="email" value="" name="email" id="manage-email" class="membership-manage__input" placeholder="you@example.com" required>
+            <button type="submit" class="btn-new btn-new--purple">Manage</button>
+        </div>
+    </form>
+</div>
+
+
+    </div>
+  </div>
+</div>
+
+
+  </main>
+
+  <footer class="footer-new" role="contentinfo">
+  <div class="container">
+    <div class="footer-new__grid">
+      <div class="footer-new__brand">
+        <img src="/assets/static/images/TasGM_Logo.b5c1905a0fd2.svg" alt="Tas Game Makers" class="footer-new__logo">
+        <p class="footer-new__tagline">Supporting Tasmanian creatives. We&#39;re inclusive, creative, passionate about making games, and proudly Tasmanian.</p>
+      </div>
+
+      <div>
+        <h4 class="footer-new__heading">Explore</h4>
+        <ul class="footer-new__links">
+          <li><a href="/events/">Events</a></li>
+          <li><a href="/membership/">Membership</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-new__heading">About</h4>
+        <ul class="footer-new__links">
+          <li><a href="/about-us/">About Us</a></li>
+          <li><a href="/code-of-conduct/">Code of Conduct</a></li>
+          <li><a href="/partners/">Partners</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-new__heading">Connect</h4>
+        <div class="footer-new__social">
+          <a href="https://discord.gg/EYP7FVAWrf" title="Discord" target="_blank" rel="noopener">
+            <img src="/assets/static/images/discord-round.5e43f10afcb5.svg" alt="Discord">
+          </a>
+          <a href="mailto:hello@tasgamemakers.com" title="Email">
+            <img src="/assets/static/images/email.d1be5058dd1e.svg" alt="Email">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-new__bottom">
+      <p>&copy; 2026 Tas Game Makers Inc.</p>
+      <p>ABN: 38 847 627 399</p>
+    </div>
+  </div>
+</footer>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      const toggle = document.querySelector('[data-menu-toggle]');
+      const menu = document.querySelector('[data-mobile-menu]');
+      const close = document.querySelector('[data-menu-close]');
+
+      if (toggle && menu) {
+        toggle.addEventListener('click', () => menu.classList.add('is-open'));
+        close.addEventListener('click', () => menu.classList.remove('is-open'));
+      }
+
+      
+      const header = document.querySelector('.header-new--home');
+      if (header) {
+        const scrollThreshold = window.innerHeight * 0.5;
+
+        function checkScroll() {
+          if (window.scrollY > scrollThreshold) {
+            header.classList.add('is-scrolled');
+          } else {
+            header.classList.remove('is-scrolled');
+          }
+        }
+
+        window.addEventListener('scroll', checkScroll, { passive: true });
+        checkScroll();
+      }
+    });
+  </script>
+
+</body>
+</html>

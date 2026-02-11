@@ -1,0 +1,25 @@
+{{/* Event card component
+     Usage: {{ partial "2026/event-card.html" . }}
+     Pass an event page context
+*/}}
+<a href="{{ .RelPermalink }}" class="event-card-new">
+  {{ with .Params.image }}
+  <div class="event-card-new__image">
+    <img src="/assets/media/images/{{ . }}" alt="{{ $.Title }}">
+  </div>
+  {{ end }}
+  <div class="event-card-new__content">
+    <p class="event-card-new__date">
+      {{- if .Params.end_date -}}
+        {{ .Date.Format "Jan 2" }} – {{ (time .Params.end_date).Format "Jan 2, 2006" }}
+      {{- else -}}
+        {{ .Date.Format "Jan 2, 2006" }}
+      {{- end -}}
+      {{- with .Params.time }}, {{ . }}{{ end -}}
+    </p>
+    <h4 class="event-card-new__title">{{ .Title }}</h4>
+    {{ with .Params.summary }}
+    <p class="event-card-new__desc">{{ . | truncate 100 }}</p>
+    {{ end }}
+  </div>
+</a>

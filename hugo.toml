@@ -1,0 +1,48 @@
+baseURL = "https://tasgamemakers.com"
+title = "Tas Game Makers"
+languageCode = "en"
+buildFuture = true
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
+
+[params]
+  email = "hello@tasgamemakers.com"
+  description = "Supporting Tasmanian creatives. We're inclusive, creative, passionate about making games, and proudly Tasmanian."
+  discord_url = "https://discord.gg/EYP7FVAWrf"
+  bluesky_url = "https://bsky.app/profile/tasgamemakers.com"
+  manage_membership_endpoint = "https://tasgamemakers.azurewebsites.net/api/get_portal_link"
+
+[mediaTypes]
+  [mediaTypes."text/calendar"]
+    suffixes = ["ics"]
+
+[outputFormats]
+  [outputFormats.ics]
+    mediaType = "text/calendar"
+    baseName = "calendar"
+    isPlainText = true
+
+[permalinks]
+  events = "/events/:year/:month/:day/:slug/"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[taxonomies]
+
+[[menus.main]]
+  name = "Events"
+  url = "/events/"
+  weight = 1
+
+[[menus.main]]
+  name = "Membership"
+  url = "/membership/"
+  weight = 3
+
+[[menus.main]]
+  name = "About Us"
+  url = "/about-us/"
+  weight = 4

@@ -1,0 +1,99 @@
+.secondary-page {
+  position: relative;
+  padding: 0 0 calc(var(--padding-sm) * 3) 0;
+  margin-top: -10px;
+}
+.secondary-page:before {
+  content: "";
+  overflow: visible;
+  width: 100%;
+  background-color: var(--blue-dark);
+  display: block;
+  position: relative;
+
+  height: 50px;
+  margin-top: -49px;
+  clip-path: polygon(0 93%, 11% 0, 100% 91%, 100% 100%, 0% 100%);
+  -webkit-clip-path: polygon(0 93%, 11% 0, 100% 91%, 100% 100%, 0% 100%);
+}
+.secondary-page--back {
+  text-transform: uppercase;
+  color: var(--white);
+  margin: 0 0 var(--padding-md) 0;
+  display: block;
+  font-weight: 600;
+  text-decoration: none;
+}
+.secondary-page--back:hover,
+.secondary-page--back:focus {
+  text-decoration: underline;
+}
+.secondary-page--container {
+  max-width: 900px;
+  min-height: 40vh;
+  margin: var(--padding-sm) auto 0 auto;
+
+  padding: 0 var(--padding-sm);
+}
+.secondary-page--intro {
+  margin-bottom: var(--padding-md);
+}
+.secondary-page--intro-cta {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+.secondary-page--event-img img {
+  width: 70px;
+  height: auto;
+}
+.secondary-page--heading {
+  word-spacing: normal;
+  width: 80%;
+  font-size: var(--h2);
+}
+.secondary-page--subtitle {
+  color: var(--purple-dark);
+  font-size: var(--h4);
+  margin: var(--padding-sm) 0;
+  line-height: 100%;
+}
+.secondary-page--content {
+  margin-top: var(--padding-lg);
+}
+
+@media only screen and (min-width: 764px) {
+  .secondary-page {
+    padding: 0 0 calc(var(--padding-md) * 2) 0;
+  }
+  .secondary-page--container {
+    padding: 0 var(--padding-md);
+  }
+  .secondary-page--intro-cta {
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+  .secondary-page--heading {
+    font-size: var(--h1);
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .secondary-page {
+    padding: 0 0 calc(var(--padding-lg) * 2) 0;
+  }
+  .secondary-page:before {
+    height: 80px;
+    margin-top: -78px;
+    clip-path: polygon(0 79%, 23% 0, 100% 78%, 100% 100%, 0% 100%);
+    -webkit-clip-path: polygon(0 79%, 23% 0, 100% 78%, 100% 100%, 0% 100%);
+  }
+  .secondary-page--container {
+    padding: 0 var(--padding-lg);
+  }
+}
+
+.secondary-page .mc-field-group input {
+  background-color: var(--white);
+  color: var(--black);
+}

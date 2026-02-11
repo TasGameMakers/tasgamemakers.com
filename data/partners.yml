@@ -1,0 +1,17 @@
+- name: "Screen Tasmania"
+  logo: "screen-tasmania-logo.png"
+  url: "https://www.screen.tas.gov.au/"
+  description: "Screen Tasmania supports the development of the Tasmanian screen industry, including games and interactive media."
+  tier: major
+
+- name: "Yarn Spinner"
+  logo: "yarn-spinner-logo.png"
+  url: "https://yarnspinner.dev/"
+  description: "Yarn Spinner is the friendly tool for writing game dialogue."
+  tier: supporter
+
+- name: "UTAS Play"
+  logo: "utas-play.png"
+  url: "https://www.utas.edu.au/"
+  description: "UTAS Play supports game development and interactive media in Tasmania."
+  tier: supporter

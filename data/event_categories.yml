@@ -1,0 +1,8 @@
+jam:
+  css_class: pink
+
+talk:
+  css_class: yellow
+
+play:
+  css_class: purple

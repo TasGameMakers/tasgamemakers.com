@@ -1,0 +1,53 @@
+@font-face {
+  font-family: "be_boldregular";
+  src: url("../fonts/be-bold-webfont.67898cff2313.woff2") format("woff2"),
+    url("../fonts/be-bold-webfont.cd25dde27e53.woff") format("woff"),
+    url("../fonts/Be-Bold.cc032f312968.otf") format("otf"),
+    url("../fonts/be-bold.534e1374ea84.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+:root {
+  /* COLOURS */
+  --purple: #694a9b;
+  --purple-dark: #2f274c;
+  --blue: #3bd9e6;
+  --blue-dark: #1aa9b5;
+  --pink: #f157ad;
+  --pink-dark: #cf4b95;
+  --yellow: #f9ab60;
+  --yellow-dark: #d68b43;
+  --white: #ffffff;
+  --black: #212626;
+
+  /* PADDING */
+  --padding-very-sm: 10px;
+  --padding-sm: 20px;
+  --padding-md: 40px;
+  --padding-lg: 60px;
+
+  /* FONTS */
+  --accent-font: "be_boldregular";
+  --main-font: "Poppins", sans-serif;
+  --main-font-weight: 500;
+
+  /* FONT SIZES */
+  --body-mob-sm: 14px;
+  --body-mob: 16px;
+  --body: 18px;
+
+  --fold-xl: 200px;
+  --fold: 150px;
+  --fold-tablet: 130px;
+  --fold-sm: 100px;
+  --fold-xs: 70px;
+
+  --h1: 80px;
+  --h2: 60px;
+  --h3: 36px;
+  --h4: 24px;
+  --h5: 22px;
+
+  /* MISC */
+  --panel-shadow: -2px -6px 30px -17px rgba(0, 0, 0, 0.97);
+}

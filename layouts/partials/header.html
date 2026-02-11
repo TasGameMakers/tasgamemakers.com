@@ -1,0 +1,27 @@
+<header class="header" role="banner">
+  <div class="header--container">
+      <div class="header--content">
+        <div data-nav-trigger class="header--menu">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span class="header--hidden">Open menu</span>
+        </div>
+        <nav data-nav-target class='header--nav ' role="navigation">
+          <a class="header--nav-close" data-nav-close href="#">X</a>
+          <div class="header--nav-container">
+            {{ range .Site.Menus.main }}
+            <a class="header--link" href="{{ .URL }}">{{ .Name }}</a>
+            {{ end }}
+          </div>
+        </nav>
+      </div>
+
+    <a href="/" class="header--logo">
+      <h1 class="header--hidden">Tas Game Makers</h1>
+      <span class="header--hidden">Home</span>
+      <img aria-hidden="true" class="header--logo-img" src="/assets/static/images/logo-header.448e2a9cd8b0.png" alt="Tas Game Makers logo" />
+    </a>
+  </div>
+
+</header>
