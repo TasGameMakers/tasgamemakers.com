@@ -1,24 +1,19 @@
 
 :root {
-  /* TasGM Brand Colours */
-  /* Primary */
   --blue: #3BD9E5;          /* Electric blue */
   --pink: #F157AD;          /* 'mazing magenta */
   --orange: #F9AB60;        /* Orange you glad to see me? */
   --purple-dark: #2F274C;   /* McGrimace */
 
-  /* Secondary */
   --blue-dark: #1AA8B5;
   --pink-dark: #CF4A94;
   --orange-dark: #D68C42;
   --purple: #694A9C;
 
-  /* Neutral */
   --white: #ffffff;
   --black: #212626;
   --cream: #faf8f5;
 
-  /* Spacing */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
@@ -26,7 +21,6 @@
   --space-xl: 4rem;
   --space-2xl: 6rem;
 
-  /* Type scale */
   --text-sm: 0.875rem;
   --text-base: 1rem;
   --text-lg: 1.25rem;
@@ -35,7 +29,6 @@
   --text-3xl: 2.5rem;
   --text-4xl: 3.5rem;
 
-  /* Radius */
   --radius-sm: 4px;
   --radius-md: 8px;
 }
@@ -170,7 +163,6 @@ body.v2026 * {
   color: var(--white);
 }
 
-/* Mobile menu button */
 .v2026 .header-new__toggle {
   display: flex;
   flex-direction: column;
@@ -194,7 +186,6 @@ body.v2026 * {
   }
 }
 
-/* Home page header - transparent on mobile until scroll */
 @media (max-width: 899px) {
   .v2026 .header-new--home {
     position: absolute;
@@ -210,7 +201,6 @@ body.v2026 * {
   }
 }
 
-/* Home page header - centered nav, hidden logo until scroll */
 .v2026 .header-new--home .header-new__logo {
   opacity: 0;
   pointer-events: none;
@@ -509,7 +499,6 @@ body.v2026 * {
   background: var(--white);
 }
 
-/* Section headers */
 .v2026 .section__header {
   margin-bottom: var(--space-lg);
 }
@@ -636,7 +625,6 @@ body.v2026 * {
   font-size: var(--text-sm);
 }
 
-/* Event cards grid */
 .v2026 .events-grid {
   display: grid;
   gap: var(--space-lg);
@@ -1172,7 +1160,6 @@ body.v2026 * {
 
 
 
-/* Roster nav — jump-to links */
 .v2026 .board-roster {
   display: flex;
   flex-wrap: wrap;
@@ -1243,12 +1230,10 @@ body.v2026 * {
   color: var(--pink);
 }
 
-/* Smooth scroll for anchor links */
 .v2026 .board-card {
   scroll-margin-top: 2rem;
 }
 
-/* Grid */
 .v2026 .board-grid-new {
   display: grid;
   gap: var(--space-lg);
@@ -1371,7 +1356,6 @@ body.v2026 * {
   color: var(--pink);
 }
 
-/* Past members */
 .v2026 .past-members-list {
   list-style: none;
   padding: 0;
@@ -1389,7 +1373,6 @@ body.v2026 * {
   color: var(--purple);
 }
 
-/* Events by month */
 .v2026 .events-month {
   margin-bottom: var(--space-2xl);
 }
@@ -1414,7 +1397,6 @@ body.v2026 * {
   margin-bottom: var(--space-xl);
 }
 
-/* Membership */
 .v2026 .membership-cta {
   margin: var(--space-lg) 0;
 }
