@@ -1,43 +1,46 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Membership on Tas Game Makers</title><link>https://tasgamemakers.com/membership/</link><description>Recent content in Membership on Tas Game Makers</description><generator>Hugo</generator><language>en</language><atom:link href="https://tasgamemakers.com/membership/index.xml" rel="self" type="application/rss+xml"/><item><title>Can't find that email!</title><link>https://tasgamemakers.com/membership/manage_failure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://tasgamemakers.com/membership/manage_failure/</guid><description>&lt;p&gt;We&amp;rsquo;re sorry, we didn&amp;rsquo;t find a membership for &lt;span id="email_addr"&gt;your address&lt;/span&gt; in our records.&lt;/p&gt;
-&lt;p&gt;Please &lt;a href="https://tasgamemakers.com/membership"&gt;try entering your address again&lt;/a&gt;, or &lt;a href="mailto:hello@tasgamemakers.com"&gt;send us an email&lt;/a&gt; and we&amp;rsquo;ll help you out.&lt;/p&gt;
-&lt;script&gt;
- (function () {
- let params = new URLSearchParams(document.location.search);
- let name = params.get("email");
-
- if (name) {
- document.getElementById("email_addr").innerText = name;
-
- }
-
- })();
-&lt;/script&gt;</description></item><item><title>Email sent!</title><link>https://tasgamemakers.com/membership/manage_success/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://tasgamemakers.com/membership/manage_success/</guid><description>&lt;p&gt;We just sent an email to &lt;span id="email_addr"&gt;your address&lt;/span&gt;. Please check your mail!&lt;/p&gt;
-&lt;p&gt;If you don&amp;rsquo;t see it, please &lt;a href="https://tasgamemakers.com/membership"&gt;try entering your address again&lt;/a&gt;, or &lt;a href="mailto:hello@tasgamemakers.com"&gt;send us an email&lt;/a&gt; and we&amp;rsquo;ll help you out.&lt;/p&gt;
-&lt;script&gt;
- (function () {
- let params = new URLSearchParams(document.location.search);
- let name = params.get("email");
-
- if (name) {
- document.getElementById("email_addr").innerText = name;
-
- }
-
- })();
-&lt;/script&gt;</description></item><item><title>Getting help with your membership</title><link>https://tasgamemakers.com/membership/support/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://tasgamemakers.com/membership/support/</guid><description>&lt;p&gt;We&amp;rsquo;re here to help with your Tas Game Makers membership.&lt;/p&gt;
-&lt;p&gt;If you&amp;rsquo;d like to update your billing information, please enter your email address, and we&amp;rsquo;ll send you a secure link to manage it.&lt;/p&gt;
-
-&lt;div class="membership-manage"&gt;
- &lt;form action="https://tasgamemakers.azurewebsites.net/api/get_portal_link" method="post" class="membership-manage__form"&gt;
- &lt;label for="manage-email" class="membership-manage__label"&gt;Email Address&lt;/label&gt;
- &lt;div class="membership-manage__row"&gt;
- &lt;input type="email" value="" name="email" id="manage-email" class="membership-manage__input" placeholder="you@example.com" required&gt;
- &lt;button type="submit" class="btn-new btn-new--purple"&gt;Manage&lt;/button&gt;
- &lt;/div&gt;
- &lt;/form&gt;
-&lt;/div&gt;
-
-&lt;p&gt;If this isn&amp;rsquo;t working, please send us an email at &lt;a href="mailto:hello@tasgamemakers.com?subject=Membership%20help"&gt;hello@tasgamemakers.com&lt;/a&gt;, and we&amp;rsquo;ll sort it out.&lt;/p&gt;</description></item><item><title>Thank You!</title><link>https://tasgamemakers.com/membership/pay-it-forward/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://tasgamemakers.com/membership/pay-it-forward/</guid><description>&lt;p&gt;You&amp;rsquo;ve just paid for a year&amp;rsquo;s membership for a future member of our community. Thank you so, so much for your generosity - with the help of people like you, we can help build a thriving, vibrant and incredible community of game makers in Tasmania.&lt;/p&gt;
-&lt;p&gt;If you aren&amp;rsquo;t already a member, we&amp;rsquo;d love it if you&amp;rsquo;d &lt;a href="https://tasgamemakers.com/membership/"&gt;consider joining us&lt;/a&gt;. You can also stay up to date on what we&amp;rsquo;re doing by joining our mailing list!&lt;/p&gt;</description></item><item><title>Thank You!</title><link>https://tasgamemakers.com/membership/success/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://tasgamemakers.com/membership/success/</guid><description>&lt;p&gt;Welcome to Tas Game Makers! We&amp;rsquo;re thrilled to have you as a part of our community.&lt;/p&gt;
-&lt;p&gt;We&amp;rsquo;ll send you an email in the next few minutes containing info on how to access your membership benefits. If you don&amp;rsquo;t receive it, please &lt;a href="mailto:hello@tasgamemakers.com"&gt;shoot us an email&lt;/a&gt; and we&amp;rsquo;ll sort it out.&lt;/p&gt;
-&lt;p&gt;See you soon!&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Membership on Tas Game Makers</title>
+    <link>https://tasgamemakers.com/membership/</link>
+    <description>Recent content in Membership on Tas Game Makers</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <atom:link href="https://tasgamemakers.com/membership/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Can&#39;t find that email!</title>
+      <link>https://tasgamemakers.com/membership/manage_failure/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://tasgamemakers.com/membership/manage_failure/</guid>
+      <description>&lt;p&gt;We&amp;rsquo;re sorry, we didn&amp;rsquo;t find a membership for &lt;span id=&#34;email_addr&#34;&gt;your address&lt;/span&gt; in our records.&lt;/p&gt;&#xA;&lt;p&gt;Please &lt;a href=&#34;https://tasgamemakers.com/membership&#34;&gt;try entering your address again&lt;/a&gt;, or &lt;a href=&#34;mailto:hello@tasgamemakers.com&#34;&gt;send us an email&lt;/a&gt; and we&amp;rsquo;ll help you out.&lt;/p&gt;&#xA;&lt;script&gt;&#xA;    (function () {&#xA;        let params = new URLSearchParams(document.location.search);&#xA;        let name = params.get(&#34;email&#34;);&#xA;&#xA;        if (name) {&#xA;        document.getElementById(&#34;email_addr&#34;).innerText = name;&#xA;&#xA;        }&#xA;&#xA;    })();&#xA;&lt;/script&gt;</description>
+    </item>
+    <item>
+      <title>Email sent!</title>
+      <link>https://tasgamemakers.com/membership/manage_success/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://tasgamemakers.com/membership/manage_success/</guid>
+      <description>&lt;p&gt;We just sent an email to &lt;span id=&#34;email_addr&#34;&gt;your address&lt;/span&gt;. Please check your mail!&lt;/p&gt;&#xA;&lt;p&gt;If you don&amp;rsquo;t see it, please &lt;a href=&#34;https://tasgamemakers.com/membership&#34;&gt;try entering your address again&lt;/a&gt;, or &lt;a href=&#34;mailto:hello@tasgamemakers.com&#34;&gt;send us an email&lt;/a&gt; and we&amp;rsquo;ll help you out.&lt;/p&gt;&#xA;&lt;script&gt;&#xA;    (function () {&#xA;        let params = new URLSearchParams(document.location.search);&#xA;        let name = params.get(&#34;email&#34;);&#xA;&#xA;        if (name) {&#xA;        document.getElementById(&#34;email_addr&#34;).innerText = name;&#xA;&#xA;        }&#xA;&#xA;    })();&#xA;&lt;/script&gt;</description>
+    </item>
+    <item>
+      <title>Getting help with your membership</title>
+      <link>https://tasgamemakers.com/membership/support/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://tasgamemakers.com/membership/support/</guid>
+      <description>&lt;p&gt;We&amp;rsquo;re here to help with your Tas Game Makers membership.&lt;/p&gt;&#xA;&lt;p&gt;If you&amp;rsquo;d like to update your billing information, please enter your email address, and we&amp;rsquo;ll send you a secure link to manage it.&lt;/p&gt;&#xA;&#xA;&lt;div class=&#34;membership-manage&#34;&gt;&#xA;    &lt;form action=&#34;https://tasgamemakers.azurewebsites.net/api/get_portal_link&#34; method=&#34;post&#34; class=&#34;membership-manage__form&#34;&gt;&#xA;        &lt;label for=&#34;manage-email&#34; class=&#34;membership-manage__label&#34;&gt;Email Address&lt;/label&gt;&#xA;        &lt;div class=&#34;membership-manage__row&#34;&gt;&#xA;            &lt;input type=&#34;email&#34; value=&#34;&#34; name=&#34;email&#34; id=&#34;manage-email&#34; class=&#34;membership-manage__input&#34; placeholder=&#34;you@example.com&#34; required&gt;&#xA;            &lt;button type=&#34;submit&#34; class=&#34;btn-new btn-new--purple&#34;&gt;Manage&lt;/button&gt;&#xA;        &lt;/div&gt;&#xA;    &lt;/form&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;p&gt;If this isn&amp;rsquo;t working, please send us an email at &lt;a href=&#34;mailto:hello@tasgamemakers.com?subject=Membership%20help&#34;&gt;hello@tasgamemakers.com&lt;/a&gt;, and we&amp;rsquo;ll sort it out.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Thank You!</title>
+      <link>https://tasgamemakers.com/membership/pay-it-forward/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://tasgamemakers.com/membership/pay-it-forward/</guid>
+      <description>&lt;p&gt;You&amp;rsquo;ve just paid for a year&amp;rsquo;s membership for a future member of our community. Thank you so, so much for your generosity - with the help of people like you, we can help build a thriving, vibrant and incredible community of game makers in Tasmania.&lt;/p&gt;&#xA;&lt;p&gt;If you aren&amp;rsquo;t already a member, we&amp;rsquo;d love it if you&amp;rsquo;d &lt;a href=&#34;https://tasgamemakers.com/membership/&#34;&gt;consider joining us&lt;/a&gt;. You can also stay up to date on what we&amp;rsquo;re doing by joining our mailing list!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Thank You!</title>
+      <link>https://tasgamemakers.com/membership/success/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://tasgamemakers.com/membership/success/</guid>
+      <description>&lt;p&gt;Welcome to Tas Game Makers! We&amp;rsquo;re thrilled to have you as a part of our community.&lt;/p&gt;&#xA;&lt;p&gt;We&amp;rsquo;ll send you an email in the next few minutes containing info on how to access your membership benefits. If you don&amp;rsquo;t receive it, please &lt;a href=&#34;mailto:hello@tasgamemakers.com&#34;&gt;shoot us an email&lt;/a&gt; and we&amp;rsquo;ll sort it out.&lt;/p&gt;&#xA;&lt;p&gt;See you soon!&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

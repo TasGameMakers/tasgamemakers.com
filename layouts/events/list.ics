@@ -1,17 +1,23 @@
-BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Tas Game Makers//Events//EN
-CALSCALE:GREGORIAN
-METHOD:PUBLISH
-X-WR-CALNAME:Tas Game Makers Events
-X-WR-TIMEZONE:Australia/Hobart
-{{ range .Pages }}BEGIN:VEVENT
-UID:{{ .Permalink }}
-DTSTART:{{ .Date.UTC.Format "20060102T150405Z" }}
-{{ with .Params.end_date }}DTEND:{{ (time .).UTC.Format "20060102T150405Z" }}
-{{ end }}SUMMARY:Tas Game Makers: {{ .Title }}
-DESCRIPTION:{{ .Params.summary | default .Title }}
-{{ with .Params.location }}LOCATION:{{ . }}
-{{ end }}URL:{{ .Permalink }}
-END:VEVENT
-{{ end }}END:VCALENDAR
+BEGIN:VCALENDAR{{ "\r\n" -}}
+VERSION:2.0{{ "\r\n" -}}
+PRODID:-//Tas Game Makers//Events//EN{{ "\r\n" -}}
+CALSCALE:GREGORIAN{{ "\r\n" -}}
+METHOD:PUBLISH{{ "\r\n" -}}
+X-WR-CALNAME:Tas Game Makers Events{{ "\r\n" -}}
+X-WR-TIMEZONE:Australia/Hobart{{ "\r\n" -}}
+{{ range .Pages -}}
+BEGIN:VEVENT{{ "\r\n" -}}
+UID:{{ .Permalink }}{{ "\r\n" -}}
+DTSTART:{{ .Date.UTC.Format "20060102T150405Z" }}{{ "\r\n" -}}
+{{ with .Params.end_date -}}
+DTEND:{{ (time .).UTC.Format "20060102T150405Z" }}{{ "\r\n" -}}
+{{ end -}}
+SUMMARY:Tas Game Makers: {{ .Title }}{{ "\r\n" -}}
+DESCRIPTION:{{ .Params.summary | default .Title }}{{ "\r\n" -}}
+{{ with .Params.location -}}
+LOCATION:{{ . }}{{ "\r\n" -}}
+{{ end -}}
+URL:{{ .Permalink }}{{ "\r\n" -}}
+END:VEVENT{{ "\r\n" -}}
+{{ end -}}
+END:VCALENDAR{{ "\r\n" -}}
