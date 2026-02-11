@@ -63,9 +63,9 @@
         {{ end }}
       </header>
 
-      {{ if and .Params.map_lat .Params.map_lon }}
-      <a href="https://www.google.com/maps/search/?api=1&query={{ .Params.map_lat }},{{ .Params.map_lon }}" target="_blank" rel="noopener" class="event-article__map-link">
-        <div class="event-article__map" id="event-map" data-lat="{{ .Params.map_lat }}" data-lon="{{ .Params.map_lon }}" data-label="{{ .Params.location | default .Title }}"></div>
+      {{ with .Params.address }}
+      <a href="https://www.google.com/maps/search/?api=1&query={{ $.Params.location | default $.Title | urlquery }}" target="_blank" rel="noopener" class="event-article__map-link" id="event-map-link" style="display:none;">
+        <div class="event-article__map" id="event-map" data-address="{{ . }}" data-label="{{ $.Params.location | default $.Title }}"></div>
         <span class="event-article__map-cta">Open in Google Maps</span>
       </a>
       {{ end }}
@@ -98,30 +98,38 @@
   </div>
 </div>
 
-{{ if and .Params.map_lat .Params.map_lon }}
+{{ with .Params.address }}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 (function() {
   var el = document.getElementById('event-map');
   if (!el) return;
-  var lat = parseFloat(el.dataset.lat);
-  var lon = parseFloat(el.dataset.lon);
+  var address = el.dataset.address;
   var label = el.dataset.label;
-  var map = L.map('event-map', {
-    dragging: false,
-    touchZoom: false,
-    scrollWheelZoom: false,
-    doubleClickZoom: false,
-    boxZoom: false,
-    keyboard: false,
-    zoomControl: false
-  }).setView([lat, lon], 15);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    maxZoom: 19
-  }).addTo(map);
-  L.marker([lat, lon]).addTo(map).bindPopup(label);
+  fetch('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(address) + '&format=json&limit=1')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (!data.length) return;
+      var link = document.getElementById('event-map-link');
+      if (link) link.style.display = '';
+      var lat = parseFloat(data[0].lat);
+      var lon = parseFloat(data[0].lon);
+      var map = L.map('event-map', {
+        dragging: false,
+        touchZoom: false,
+        scrollWheelZoom: false,
+        doubleClickZoom: false,
+        boxZoom: false,
+        keyboard: false,
+        zoomControl: false
+      }).setView([lat, lon], 16);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19
+      }).addTo(map);
+      L.marker([lat, lon]).addTo(map).bindPopup(label);
+    });
 })();
 </script>
 {{ end }}

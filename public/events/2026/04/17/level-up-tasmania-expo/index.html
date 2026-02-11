@@ -30,7 +30,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   
-  <link rel="stylesheet" type="text/css" href="/assets/static/css/2026.css?v=1770790144">
+  <link rel="stylesheet" type="text/css" href="/assets/static/css/2026.css?v=1770790346">
 
   
   <script src="https://js.stripe.com/v3/"></script>
@@ -143,8 +143,8 @@
       </header>
 
       
-      <a href="https://www.google.com/maps/search/?api=1&query=-42.886,147.3336" target="_blank" rel="noopener" class="event-article__map-link">
-        <div class="event-article__map" id="event-map" data-lat="-42.886" data-lon="147.3336" data-label="PW1, 1 Hunter Street, Hobart"></div>
+      <a href="https://www.google.com/maps/search/?api=1&query=PW1%2C&#43;1&#43;Hunter&#43;Street%2C&#43;Hobart" target="_blank" rel="noopener" class="event-article__map-link" id="event-map-link" style="display:none;">
+        <div class="event-article__map" id="event-map" data-address="PW1 Hobart Tasmania" data-label="PW1, 1 Hunter Street, Hobart"></div>
         <span class="event-article__map-cta">Open in Google Maps</span>
       </a>
       
@@ -173,23 +173,31 @@
 (function() {
   var el = document.getElementById('event-map');
   if (!el) return;
-  var lat = parseFloat(el.dataset.lat);
-  var lon = parseFloat(el.dataset.lon);
+  var address = el.dataset.address;
   var label = el.dataset.label;
-  var map = L.map('event-map', {
-    dragging: false,
-    touchZoom: false,
-    scrollWheelZoom: false,
-    doubleClickZoom: false,
-    boxZoom: false,
-    keyboard: false,
-    zoomControl: false
-  }).setView([lat, lon], 15);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    maxZoom: 19
-  }).addTo(map);
-  L.marker([lat, lon]).addTo(map).bindPopup(label);
+  fetch('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(address) + '&format=json&limit=1')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (!data.length) return;
+      var link = document.getElementById('event-map-link');
+      if (link) link.style.display = '';
+      var lat = parseFloat(data[0].lat);
+      var lon = parseFloat(data[0].lon);
+      var map = L.map('event-map', {
+        dragging: false,
+        touchZoom: false,
+        scrollWheelZoom: false,
+        doubleClickZoom: false,
+        boxZoom: false,
+        keyboard: false,
+        zoomControl: false
+      }).setView([lat, lon], 16);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19
+      }).addTo(map);
+      L.marker([lat, lon]).addTo(map).bindPopup(label);
+    });
 })();
 </script>
 
