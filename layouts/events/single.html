@@ -21,17 +21,23 @@
         <div class="event-article__meta">
           <div class="event-article__meta-item">
             <strong>Date:</strong>
-            {{- if .Params.end_date }}
-              {{ .Date.Format "Monday, January 2" }} – {{ (time .Params.end_date).Format "Monday, January 2, 2006" }}
+            {{ if .Params.end_date }}
+              {{- $endDate := time .Params.end_date -}}
+              {{- if eq (.Date.Format "2006-01-02") ($endDate.Format "2006-01-02") }}
+                {{ .Date.Format "Monday, January 2, 2006" }}
+              {{- else }}
+                {{ .Date.Format "Monday, January 2" }} – {{ $endDate.Format "Monday, January 2, 2006" }}
+              {{- end }}
             {{- else }}
               {{ .Date.Format "Monday, January 2, 2006" }}
             {{- end }}
           </div>
-          {{ with .Params.time }}
+          {{- $tz := "AEST" -}}
+          {{- if eq (.Date.Format "-0700") "+1100" }}{{ $tz = "AEDT" }}{{ end -}}
           <div class="event-article__meta-item">
-            <strong>Time:</strong> {{ . }}
+            <strong>Time:</strong>
+            {{ .Date.Format "3:04 PM" }}{{ with .Params.end_date }} – {{ (time .).Format "3:04 PM" }}{{ end }} {{ $tz }}
           </div>
-          {{ end }}
           {{ with .Params.location }}
           <div class="event-article__meta-item">
             <strong>Location:</strong> {{ . }}
@@ -56,6 +62,13 @@
         </div>
         {{ end }}
       </header>
+
+      {{ if and .Params.map_lat .Params.map_lon }}
+      <a href="https://www.google.com/maps/search/?api=1&query={{ .Params.map_lat }},{{ .Params.map_lon }}" target="_blank" rel="noopener" class="event-article__map-link">
+        <div class="event-article__map" id="event-map" data-lat="{{ .Params.map_lat }}" data-lon="{{ .Params.map_lon }}" data-label="{{ .Params.location | default .Title }}"></div>
+        <span class="event-article__map-cta">Open in Google Maps</span>
+      </a>
+      {{ end }}
 
       <div class="prose">
         {{ .Content }}
@@ -84,5 +97,33 @@
     </article>
   </div>
 </div>
+
+{{ if and .Params.map_lat .Params.map_lon }}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function() {
+  var el = document.getElementById('event-map');
+  if (!el) return;
+  var lat = parseFloat(el.dataset.lat);
+  var lon = parseFloat(el.dataset.lon);
+  var label = el.dataset.label;
+  var map = L.map('event-map', {
+    dragging: false,
+    touchZoom: false,
+    scrollWheelZoom: false,
+    doubleClickZoom: false,
+    boxZoom: false,
+    keyboard: false,
+    zoomControl: false
+  }).setView([lat, lon], 15);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 19
+  }).addTo(map);
+  L.marker([lat, lon]).addTo(map).bindPopup(label);
+})();
+</script>
+{{ end }}
 
 {{ end }}

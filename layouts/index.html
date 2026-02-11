@@ -69,15 +69,17 @@
       <p class="section__desc">Game jams, talks, social catch-ups, and more. All are welcome.</p>
     </div>
 
-    {{ $events := where .Site.RegularPages "Section" "events" }}
-    {{ $featured_events := where $events ".Params.featured" true }}
-    {{ $featured := cond (gt (len $featured_events) 0) (index $featured_events 0) (index $events 0) }}
+    {{ $now := now }}
+    {{ $upcoming := where (where .Site.RegularPages "Section" "events") ".Date" "ge" $now }}
+    {{ $upcoming = $upcoming.ByDate }}
+    {{ $featured_upcoming := where $upcoming ".Params.featured" true }}
+    {{ $featured := cond (gt (len $featured_upcoming) 0) (index $featured_upcoming 0) (index $upcoming 0) }}
 
     {{ with $featured }}
     {{ partial "2026/event-card-featured.html" . }}
     {{ end }}
 
-    {{ $remaining := where $events "Permalink" "ne" $featured.Permalink }}
+    {{ $remaining := where $upcoming "Permalink" "ne" $featured.Permalink }}
     {{ if gt (len $remaining) 0 }}
     <div class="events-grid mt-lg">
       {{ range first 3 $remaining }}

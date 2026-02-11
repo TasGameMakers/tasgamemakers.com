@@ -2,12 +2,13 @@
 title: "Level Up Tasmania Expo"
 date: 2026-04-17T11:00:00+10:00
 end_date: 2026-04-18T16:00:00+10:00
-time: "11am – 4pm"
 summary: "A two-day public expo showcasing Tasmanian game development talent."
-location: "PW1, Hobart"
+location: "PW1, 1 Hunter Street, Hobart"
 event_type: "expo"
 image: "LUT-Color.png"
 external_url: "https://www.screen.tas.gov.au/leveluptasmania"
+map_lat: -42.8860
+map_lon: 147.3336
 ---
 
 Level Up Tasmania is a celebration of Tasmanian game development.

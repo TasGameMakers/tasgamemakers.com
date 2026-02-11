@@ -14,8 +14,8 @@
   bio: |
     I'm the co-founder of Secret Lab, a game development studio based in
     beautiful Hobart, Tasmania, Australia. Secret Lab works on games and game
-    development tools, including the award-winning ABC Play School iPad games,
-    BAFTA- and IGF-winning Night in the Woods, the Qantas Joey Playbox, and the
+    development tools, including the award-winning *ABC Play School* iPad games,
+    BAFTA- and IGF-winning *Night in the Woods*, the *Qantas Joey Playbox*, and the
     popular open source Yarn Spinner narrative game framework. I formerly
     worked as a software engineer, and product manager for Meebo, which was
     acquired by Google in 2012. I have a degree in medieval history, a PhD in
@@ -28,7 +28,7 @@
   image: Leo.jpeg
   website: https://leofebeytech.com.au/
   bio: |
-    I am a technology-focused generalist, self employed IT professional (Leo Febey Tech Support and Solution), who has many side hobbies and projects. I regularly attend the monthly meetups for TasGM and also other social tech related groups. I have released a game on Steam, Gravity Flux (via studio name Motley Pixels), which has been on display at Level Up Tas in 2024. I enjoy living in Tassie, spent most of my life here, it's a great place for finding work life balance.
+    I am a technology-focused generalist, self employed IT professional (Leo Febey Tech Support and Solution), who has many side hobbies and projects. I regularly attend the monthly meetups for TasGM and also other social tech related groups. I have released a game on Steam, *Gravity Flux* (via studio name Motley Pixels), which has been on display at Level Up Tas in 2024. I enjoy living in Tassie, spent most of my life here, it's a great place for finding work life balance.
 
 - name: Michael Hinz
   position: Vice President
@@ -56,8 +56,11 @@
 
 - name: Alonso Zevallos Fournier
   position: General Board Member
+  pronouns: he/him
+  image: alonso-zevallos-fournier.png
+  linkedin: alonsozevallosfournier94
   bio: |
-    General Board Member of Tas Game Makers.
+    I'm Alonso, worked in the game industry as a game designer and dev for around 3 years. Currently I'm active in the community trying to organise jams, skilling up and making my own games and software while also trying to get an Aussie Visa! Originally from Peru, I'm really keen to teach others, travelling around and of course games.
 
 - name: Brie Ratten
   position: General Board Member
@@ -70,8 +73,9 @@
 - name: Dean Baron
   position: General Board Member
   image: dean-baron.png
+  pronouns: he/him
   bio: |
-    Dean is a Launceston based game developer and producer. With a big focus on sustainable game development he has moved his focus from not just making games such as ShapeVS and Nullstar: Solus but to providing support for local developers with Smash Attack Studios.
+    Dean is a Launceston based game developer and producer. With a big focus on sustainable game development he has moved his focus from not just making games such as *ShapeVS* and *Nullstar: Solus* but to providing support for local developers with Smash Attack Studios.
 
 - name: Jason Imms
   position: General Board Member
@@ -94,14 +98,14 @@
   instagram: lindsay__mansfield
   bluesky: lindsaymansfield.bsky.social
   bio: |
-    Lindsay Mansfield is a Tasmanian writer, artist, and indie developer of narrative and experimental games. Her debut solo title, Melbourne: Route 96, launched on Steam in 2025, the same year she was selected for Screen Australia's Future Leaders Delegation. Originally published in horror anthologies, she now channels her storytelling into interactive fiction that explores personal and atmospheric themes. She is currently developing her next narrative game, Atlantic. When not creating, she can often be found yelling (loudly) at video games.
+    Lindsay Mansfield is a Tasmanian writer, artist, and indie developer of narrative and experimental games. Her debut solo title, *Melbourne: Route 96*, launched on Steam in 2025, the same year she was selected for Screen Australia's Future Leaders Delegation. Originally published in horror anthologies, she now channels her storytelling into interactive fiction that explores personal and atmospheric themes. She is currently developing her next narrative game, *Atlantic*. When not creating, she can often be found yelling (loudly) at video games.
 
 - name: Lindsay Wells
   position: General Board Member
   pronouns: he/him
   image: LindsayWells.jpeg
   bio: |
-    Dr Lindsay Wells is a lecturer in games design, mobile development, and human computer interaction, with over 15 years of experience teaching at tertiary-level and over 20 years of experience in producing desktop, mobile, web, and game applications as a software developer. He has a passion for delivering high-quality engaging teaching content, with a strong focus on student experience and communication. As a co-founder of the Hobart-based video-game development company Giant Margarita, Dr Wells has published several commercial video games, including the first PlayStation 4 and Xbox One game to come out of Tasmania (Party Golf).
+    Dr Lindsay Wells is a lecturer in games design, mobile development, and human computer interaction, with over 15 years of experience teaching at tertiary-level and over 20 years of experience in producing desktop, mobile, web, and game applications as a software developer. He has a passion for delivering high-quality engaging teaching content, with a strong focus on student experience and communication. As a co-founder of the Hobart-based video-game development company Giant Margarita, Dr Wells has published several commercial video games, including the first PlayStation 4 and Xbox One game to come out of Tasmania (*Party Golf*).
 
 - name: Rhiannon Ross
   position: General Board Member
@@ -109,7 +113,7 @@
   image: Rhiannon.jpg
   bluesky: rhiarhi.bsky.social
   bio: |
-    I'm a software developer based in Launceston, Tasmania. Most recently, I was the lead programmer for Letters to Arralla, and also have experience in local tech education and digital artistry. I want our local creative communities to flourish and will do my best to facilitate that through my role here at Tas Game Makers!
+    I'm a software developer based in Launceston, Tasmania. Most recently, I was the lead programmer for *Letters to Arralla*, and also have experience in local tech education and digital artistry. I want our local creative communities to flourish and will do my best to facilitate that through my role here at Tas Game Makers!
 
 # Past Board Members
 

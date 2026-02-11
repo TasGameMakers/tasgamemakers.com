@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-  <title>Level Up Tasmania Expo - Tas Game Makers</title>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><title>Tasmanian Game Makers, Inc. - Level Up Tasmania Expo</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
-  <meta name="description" content="Supporting Tasmanian creatives. We&#39;re inclusive, creative, passionate about making games, and proudly Tasmanian." />
+  <meta name="description" content="A two-day public expo showcasing Tasmanian game development talent." />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   
   <meta property="og:title" content="Level Up Tasmania Expo" />
-  <meta property="og:description" content="Supporting Tasmanian creatives. We&#39;re inclusive, creative, passionate about making games, and proudly Tasmanian." />
+  <meta property="og:description" content="A two-day public expo showcasing Tasmanian game development talent." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="http://localhost:1313/events/2026/04/17/level-up-tasmania-expo/" />
-  <meta property="og:image" content="http://localhost:1313/assets/static/images/tasgamemakers-socialcard.png" />
+  <meta property="og:image" content="http://localhost:1313/assets/media/images/LUT-Color.png" />
+
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Level Up Tasmania Expo" />
+  <meta name="twitter:description" content="A two-day public expo showcasing Tasmanian game development talent." />
+  <meta name="twitter:image" content="http://localhost:1313/assets/media/images/LUT-Color.png" />
 
   
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/static/images/TasGM_Logo_32x32.4887edce5135.png">
@@ -25,7 +30,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   
-  <link rel="stylesheet" type="text/css" href="/assets/static/css/2026.css?v=1770785809">
+  <link rel="stylesheet" type="text/css" href="/assets/static/css/2026.css?v=1770790144">
+
+  
+  <script src="https://js.stripe.com/v3/"></script>
+
+  
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="4d5e2436-0c70-4055-8f26-afa7d623030b"></script>
 
   
   <style>
@@ -112,16 +123,15 @@
         <div class="event-article__meta">
           <div class="event-article__meta-item">
             <strong>Date:</strong>
-              Friday, April 17 – Saturday, April 18, 2026
+            
+                Friday, April 17 – Saturday, April 18, 2026
+          </div><div class="event-article__meta-item">
+            <strong>Time:</strong>
+            11:00 AM – 4:00 PM AEST
           </div>
           
           <div class="event-article__meta-item">
-            <strong>Time:</strong> 11am – 4pm
-          </div>
-          
-          
-          <div class="event-article__meta-item">
-            <strong>Location:</strong> PW1, Hobart
+            <strong>Location:</strong> PW1, 1 Hunter Street, Hobart
           </div>
           
           
@@ -131,6 +141,13 @@
 
         
       </header>
+
+      
+      <a href="https://www.google.com/maps/search/?api=1&query=-42.886,147.3336" target="_blank" rel="noopener" class="event-article__map-link">
+        <div class="event-article__map" id="event-map" data-lat="-42.886" data-lon="147.3336" data-label="PW1, 1 Hunter Street, Hobart"></div>
+        <span class="event-article__map-cta">Open in Google Maps</span>
+      </a>
+      
 
       <div class="prose">
         <p>Level Up Tasmania is a celebration of Tasmanian game development.</p>
@@ -148,6 +165,34 @@
     </article>
   </div>
 </div>
+
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function() {
+  var el = document.getElementById('event-map');
+  if (!el) return;
+  var lat = parseFloat(el.dataset.lat);
+  var lon = parseFloat(el.dataset.lon);
+  var label = el.dataset.label;
+  var map = L.map('event-map', {
+    dragging: false,
+    touchZoom: false,
+    scrollWheelZoom: false,
+    doubleClickZoom: false,
+    boxZoom: false,
+    keyboard: false,
+    zoomControl: false
+  }).setView([lat, lon], 15);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 19
+  }).addTo(map);
+  L.marker([lat, lon]).addTo(map).bindPopup(label);
+})();
+</script>
+
 
 
   </main>

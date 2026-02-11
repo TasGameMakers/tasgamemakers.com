@@ -1,6 +1,7 @@
 ---
 title: "Your Game is a Business"
 date: 2026-03-05T13:00:00+11:00
+end_date: 2026-03-05T17:00:00+11:00
 summary: "Punch up your business skills with this workshop from games business development consultant Jon Cartwright. Presented by Screen Tasmania."
 location: "Hobart"
 event_type: "workshop"

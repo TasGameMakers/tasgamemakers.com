@@ -3,12 +3,14 @@
   url: "https://www.screen.tas.gov.au/"
   description: "Screen Tasmania supports the development of the Tasmanian screen industry, including games and interactive media."
   tier: major
+  dark_bg: true
 
 - name: "Yarn Spinner"
   logo: "yarn-spinner-logo.png"
   url: "https://yarnspinner.dev/"
   description: "Yarn Spinner is the friendly tool for writing game dialogue."
   tier: supporter
+  dark_bg: true
 
 - name: "UTAS Play"
   logo: "utas-play.png"

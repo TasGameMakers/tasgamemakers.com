@@ -11,13 +11,26 @@
   <div class="event-card-new__content">
     <p class="event-card-new__date">
       {{- if .Params.end_date -}}
-        {{ .Date.Format "Jan 2" }} – {{ (time .Params.end_date).Format "Jan 2, 2006" }}
+        {{- $endDate := time .Params.end_date -}}
+        {{- if eq (.Date.Format "2006-01-02") ($endDate.Format "2006-01-02") -}}
+          {{ .Date.Format "Jan 2, 2006" }}
+        {{- else -}}
+          {{ .Date.Format "Jan 2" }} – {{ $endDate.Format "Jan 2, 2006" }}
+        {{- end -}}
       {{- else -}}
         {{ .Date.Format "Jan 2, 2006" }}
       {{- end -}}
-      {{- with .Params.time }}, {{ . }}{{ end -}}
+    </p>
+    {{- $tz := "AEST" -}}
+    {{- if eq (.Date.Format "-0700") "+1100" }}{{ $tz = "AEDT" }}{{ end -}}
+    <p class="event-card-new__time">
+      {{- .Date.Format "3:04 PM" -}}
+      {{- with .Params.end_date }} – {{ (time .).Format "3:04 PM" }}{{ end }} {{ $tz -}}
     </p>
     <h4 class="event-card-new__title">{{ .Title }}</h4>
+    {{ with .Params.location }}
+    <p class="event-card-new__location">{{ . }}</p>
+    {{ end }}
     {{ with .Params.summary }}
     <p class="event-card-new__desc">{{ . | truncate 100 }}</p>
     {{ end }}

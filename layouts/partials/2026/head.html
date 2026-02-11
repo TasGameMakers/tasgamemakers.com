@@ -4,7 +4,7 @@
   {{- $image := printf "%sassets/static/images/tasgamemakers-socialcard.png" .Site.BaseURL -}}
   {{- with .Params.image }}{{ $image = printf "%sassets/media/images/%s" $.Site.BaseURL . }}{{ end -}}
 
-  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
+  <title>{{ if .IsHome }}Tasmanian Game Makers, Inc.{{ else }}Tasmanian Game Makers, Inc. - {{ .Title }}{{ end }}</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
   <meta name="description" content="{{ $description }}" />
@@ -37,6 +37,9 @@
 
   <!-- Stripe -->
   <script src="https://js.stripe.com/v3/"></script>
+
+  <!-- Analytics -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="4d5e2436-0c70-4055-8f26-afa7d623030b"></script>
 
   <!-- Inline font-face for Be Bold -->
   <style>

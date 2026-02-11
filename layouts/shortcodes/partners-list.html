@@ -8,7 +8,7 @@
     {{ range $major }}
     <div class="partner-card-new">
       {{ if .logo }}
-      <div class="partner-card-new__logo">
+      <div class="partner-card-new__logo{{ if .dark_bg }} partner-card-new__logo--dark{{ end }}">
         <img src="/assets/static/images/{{ .logo }}" alt="{{ .name }}">
       </div>
       {{ end }}
@@ -30,7 +30,7 @@
     {{ range $supporter }}
     <div class="partner-card-new">
       {{ if .logo }}
-      <div class="partner-card-new__logo">
+      <div class="partner-card-new__logo{{ if .dark_bg }} partner-card-new__logo--dark{{ end }}">
         <img src="/assets/static/images/{{ .logo }}" alt="{{ .name }}">
       </div>
       {{ end }}

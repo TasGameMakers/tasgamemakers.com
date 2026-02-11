@@ -1,6 +1,7 @@
 ---
 title: "Online Showcase"
 date: 2026-02-20T19:00:00+11:00
+end_date: 2026-02-20T21:00:00+11:00
 summary: "Show off what you've been working on and see what others have made."
 location: "Discord"
 event_type: "showcase"

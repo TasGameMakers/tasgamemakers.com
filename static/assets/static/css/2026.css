@@ -75,7 +75,7 @@ body.v2026 * {
 .v2026 h1, .v2026 h2, .v2026 h3, .v2026 h4 {
   font-family: "be_boldregular", sans-serif;
   text-transform: uppercase;
-  line-height: 1;
+  line-height: 1.15;
   margin: 0 0 var(--space-sm) 0;
 }
 
@@ -568,11 +568,24 @@ body.v2026 * {
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 1px;
-  margin-bottom: var(--space-sm);
+  margin-bottom: 2px;
   opacity: 0.7;
 }
 
+.v2026 .event-featured__time {
+  font-size: var(--text-sm);
+  opacity: 0.7;
+  margin-bottom: var(--space-sm);
+}
+
 .v2026 .event-featured__title {
+  line-height: 1.3;
+  margin-bottom: var(--space-sm);
+}
+
+.v2026 .event-featured__location {
+  font-size: var(--text-sm);
+  opacity: 0.8;
   margin-bottom: var(--space-sm);
 }
 
@@ -640,11 +653,24 @@ body.v2026 * {
   font-size: var(--text-sm);
   color: var(--purple);
   font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.v2026 .event-card-new__time {
+  font-size: var(--text-sm);
+  color: var(--purple);
   margin-bottom: var(--space-xs);
 }
 
 .v2026 .event-card-new__title {
   font-size: var(--text-lg);
+  line-height: 1.3;
+  margin-bottom: var(--space-sm);
+}
+
+.v2026 .event-card-new__location {
+  font-size: var(--text-sm);
+  color: #666;
   margin-bottom: var(--space-xs);
 }
 
@@ -1448,7 +1474,7 @@ body.v2026 .footer--partners {
 }
 
 .v2026 .events-list-section h2 {
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-xl);
 }
 
 .v2026 .empty-state {
@@ -1531,6 +1557,29 @@ body.v2026 .footer--partners {
 
 .v2026 .event-article__cta {
   margin-top: var(--space-md);
+}
+
+.v2026 .event-article__map-link {
+  display: block;
+  text-decoration: none;
+  margin-bottom: var(--space-lg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.v2026 .event-article__map {
+  height: 300px;
+}
+
+.v2026 .event-article__map-cta {
+  display: block;
+  text-align: center;
+  padding: var(--space-xs) 0;
+  background: var(--purple);
+  color: #fff;
+  font-weight: 600;
+  font-size: var(--text-sm);
 }
 
 .v2026 .event-article__gallery {
@@ -1675,6 +1724,15 @@ body.v2026 .footer--partners {
 .v2026 .partner-card-new__logo img {
   max-height: 80px;
   max-width: 200px;
+}
+
+.v2026 .partner-card-new__logo--dark {
+  background: var(--dark);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .v2026 .partner-card-new__name {
