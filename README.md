@@ -20,7 +20,13 @@ The site will be available at `http://localhost:1313`, for example.
 
 ## Adding an event
 
-Create a new `.md` file in `content/events/`. The filename becomes the URL slug.
+Create a new `.md` file in `content/events/`. The filename becomes the last part of the URL, and the date from the front matter is added automatically. For example, a file called `march-social-meetup.md` with a date of `2026-03-05` becomes:
+
+```
+https://tasgamemakers.com/events/2026/03/05/march-social-meetup/
+```
+
+So keep filenames short, lowercase, and hyphenated (e.g. `my-cool-event.md`).
 
 ### Front matter
 
@@ -48,7 +54,7 @@ image: "my-event.png"
 | `address` | Address for the embedded map and Google Maps link (e.g. `"Salamanca Inn Hobart Tasmania"`). |
 | `event_type` | Category: `social`, `workshop`, `showcase`, `expo`, `conference`, etc. |
 | `image` | Image filename, relative to `/assets/media/images/`. |
-| `cost` | e.g. `"Free"` or `"$10"`. |
+| `cost` | Displayed as-is on the event page. Just a text string, e.g. `"Free"`, `"$10"`, `"Free for members"`. |
 | `drop_in` | Set to `true` to show "Just turn up!" instead of a registration button. |
 | `action_url` | URL for a registration or external link button. |
 | `action_label` | Button text (defaults to "More Info"). |

@@ -1584,6 +1584,8 @@ body.v2026 .footer--partners {
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid rgba(0,0,0,0.08);
+  position: relative;
+  z-index: 1;
 }
 
 .v2026 .event-article__map {
