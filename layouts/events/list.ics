@@ -20,6 +20,31 @@ X-PUBLISHED-TTL:PT1H{{ "\r\n" -}}
 {{- $desc = replace $desc "," "\\," -}}
 {{- $desc = replace $desc "\r" "" -}}
 {{- $desc = replace $desc "\n" "\\n" -}}
+{{- $loc := "" -}}
+{{- with .Params.location -}}
+{{- $loc = replace . "\\" "\\\\" -}}
+{{- $loc = replace $loc ";" "\\;" -}}
+{{- $loc = replace $loc "," "\\," -}}
+{{- $loc = replace $loc "\r" "" -}}
+{{- $loc = replace $loc "\n" "\\n" -}}
+{{- end -}}
+{{- if .Params.event_days -}}
+{{- range $i, $day := .Params.event_days -}}
+{{- $dayStart := time $day.start -}}
+{{- $dayEnd := time $day.end -}}
+BEGIN:VEVENT{{ "\r\n" -}}
+UID:{{ $.Permalink }}day{{ $i }}{{ "\r\n" -}}
+DTSTAMP:{{ now.UTC.Format "20060102T150405Z" }}{{ "\r\n" -}}
+DTSTART:{{ $dayStart.UTC.Format "20060102T150405Z" }}{{ "\r\n" -}}
+DTEND:{{ $dayEnd.UTC.Format "20060102T150405Z" }}{{ "\r\n" -}}
+SUMMARY:{{ $title }} (Day {{ add $i 1 }}){{ "\r\n" -}}
+DESCRIPTION:{{ $desc }}{{ "\r\n" -}}
+{{ if $loc -}}LOCATION:{{ $loc }}{{ "\r\n" -}}{{ end -}}
+URL:{{ $.Permalink }}{{ "\r\n" -}}
+STATUS:CONFIRMED{{ "\r\n" -}}
+END:VEVENT{{ "\r\n" -}}
+{{- end -}}
+{{- else -}}
 BEGIN:VEVENT{{ "\r\n" -}}
 UID:{{ .Permalink }}{{ "\r\n" -}}
 DTSTAMP:{{ now.UTC.Format "20060102T150405Z" }}{{ "\r\n" -}}
@@ -29,16 +54,10 @@ DTEND:{{ (time .).UTC.Format "20060102T150405Z" }}{{ "\r\n" -}}
 {{ end -}}
 SUMMARY:{{ $title }}{{ "\r\n" -}}
 DESCRIPTION:{{ $desc }}{{ "\r\n" -}}
-{{ with .Params.location -}}
-{{- $loc := replace . "\\" "\\\\" -}}
-{{- $loc = replace $loc ";" "\\;" -}}
-{{- $loc = replace $loc "," "\\," -}}
-{{- $loc = replace $loc "\r" "" -}}
-{{- $loc = replace $loc "\n" "\\n" -}}
-LOCATION:{{ $loc }}{{ "\r\n" -}}
-{{ end -}}
+{{ if $loc -}}LOCATION:{{ $loc }}{{ "\r\n" -}}{{ end -}}
 URL:{{ .Permalink }}{{ "\r\n" -}}
 STATUS:CONFIRMED{{ "\r\n" -}}
 END:VEVENT{{ "\r\n" -}}
+{{- end -}}
 {{ end -}}
 END:VCALENDAR{{ "\r\n" -}}

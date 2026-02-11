@@ -1,6 +1,7 @@
 ---
 title: "March Social Meetup (Hobart)"
 date: 2026-03-05T17:30:00+11:00
+end_date: 2026-03-05T21:30:00+11:00
 summary: "Our regular social meetup, with special guest."
 location: "A Hobart Pub"
 event_type: "social"

@@ -23,22 +23,30 @@
         <div class="event-article__meta">
           <div class="event-article__meta-item">
             <strong>Date:</strong>
-            {{ if .Params.end_date }}
-              {{- $endDate := time .Params.end_date -}}
-              {{- if eq (.Date.Format "2006-01-02") ($endDate.Format "2006-01-02") }}
-                {{ .Date.Format "Monday, January 2, 2006" }}
+            {{ with .Params.date_display }}
+              {{ . }}
+            {{ else }}
+              {{ if $.Params.end_date }}
+                {{- $endDate := time $.Params.end_date -}}
+                {{- if eq ($.Date.Format "2006-01-02") ($endDate.Format "2006-01-02") }}
+                  {{ $.Date.Format "Monday, January 2, 2006" }}
+                {{- else }}
+                  {{ $.Date.Format "Monday, January 2" }} – {{ $endDate.Format "Monday, January 2, 2006" }}
+                {{- end }}
               {{- else }}
-                {{ .Date.Format "Monday, January 2" }} – {{ $endDate.Format "Monday, January 2, 2006" }}
+                {{ $.Date.Format "Monday, January 2, 2006" }}
               {{- end }}
-            {{- else }}
-              {{ .Date.Format "Monday, January 2, 2006" }}
-            {{- end }}
+            {{ end }}
           </div>
           {{- $tz := "AEST" -}}
           {{- if eq (.Date.Format "-0700") "+1100" }}{{ $tz = "AEDT" }}{{ end -}}
           <div class="event-article__meta-item">
             <strong>Time:</strong>
-            {{ .Date.Format "3:04 PM" }}{{ with .Params.end_date }} – {{ (time .).Format "3:04 PM" }}{{ end }} {{ $tz }}
+            {{ with .Params.time_display }}
+              {{ . }}
+            {{ else }}
+              {{ $.Date.Format "3:04 PM" }}{{ with $.Params.end_date }} – {{ (time .).Format "3:04 PM" }}{{ end }} {{ $tz }}
+            {{ end }}
           </div>
           {{ with .Params.location }}
           <div class="event-article__meta-item">
@@ -70,7 +78,7 @@
         {{ end }}
         {{ end }}
 
-        {{/* Build single-event ICS for download */}}
+        {{/* Build ICS for download */}}
         {{- $ics_title := printf "Tas Game Makers: %s" .Title -}}
         {{- $ics_title = replace $ics_title "\\" "\\\\" -}}
         {{- $ics_title = replace $ics_title ";" "\\;" -}}
@@ -81,10 +89,6 @@
         {{- $ics_desc = replace $ics_desc ";" "\\;" -}}
         {{- $ics_desc = replace $ics_desc "," "\\," -}}
         {{- $ics_desc = replace $ics_desc "\n" "\\n" -}}
-        {{- $ics_dtend := "" -}}
-        {{- with .Params.end_date -}}
-          {{- $ics_dtend = printf "DTEND:%s\r\n" ((time .).UTC.Format "20060102T150405Z") -}}
-        {{- end -}}
         {{- $ics_loc := "" -}}
         {{- with .Params.location -}}
           {{- $loc := replace . "\\" "\\\\" -}}
@@ -92,7 +96,23 @@
           {{- $loc = replace $loc "," "\\," -}}
           {{- $ics_loc = printf "LOCATION:%s\r\n" $loc -}}
         {{- end -}}
-        {{- $ics := printf "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Tas Game Makers//Events//EN\r\nBEGIN:VEVENT\r\nUID:%s\r\nDTSTAMP:%s\r\nDTSTART:%s\r\n%s%sSUMMARY:%s\r\nDESCRIPTION:%s\r\nURL:%s\r\nSTATUS:CONFIRMED\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n" .Permalink (now.UTC.Format "20060102T150405Z") (.Date.UTC.Format "20060102T150405Z") $ics_dtend $ics_loc $ics_title $ics_desc .Permalink -}}
+        {{- $vevents := "" -}}
+        {{- if .Params.event_days -}}
+          {{- range $i, $day := .Params.event_days -}}
+            {{- $dayStart := time $day.start -}}
+            {{- $dayEnd := time $day.end -}}
+            {{- $uid := printf "%s-day%d" $.Permalink $i -}}
+            {{- $dayTitle := printf "%s (Day %d)" $ics_title (add $i 1) -}}
+            {{- $vevents = printf "%sBEGIN:VEVENT\r\nUID:%s\r\nDTSTAMP:%s\r\nDTSTART:%s\r\nDTEND:%s\r\n%sSUMMARY:%s\r\nDESCRIPTION:%s\r\nURL:%s\r\nSTATUS:CONFIRMED\r\nEND:VEVENT\r\n" $vevents $uid (now.UTC.Format "20060102T150405Z") ($dayStart.UTC.Format "20060102T150405Z") ($dayEnd.UTC.Format "20060102T150405Z") $ics_loc $dayTitle $ics_desc $.Permalink -}}
+          {{- end -}}
+        {{- else -}}
+          {{- $ics_dtend := "" -}}
+          {{- with .Params.end_date -}}
+            {{- $ics_dtend = printf "DTEND:%s\r\n" ((time .).UTC.Format "20060102T150405Z") -}}
+          {{- end -}}
+          {{- $vevents = printf "BEGIN:VEVENT\r\nUID:%s\r\nDTSTAMP:%s\r\nDTSTART:%s\r\n%s%sSUMMARY:%s\r\nDESCRIPTION:%s\r\nURL:%s\r\nSTATUS:CONFIRMED\r\nEND:VEVENT\r\n" .Permalink (now.UTC.Format "20060102T150405Z") (.Date.UTC.Format "20060102T150405Z") $ics_dtend $ics_loc $ics_title $ics_desc .Permalink -}}
+        {{- end -}}
+        {{- $ics := printf "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Tas Game Makers//Events//EN\r\n%sEND:VCALENDAR\r\n" $vevents -}}
         <div class="event-article__cta">
           <a href="data:text/calendar;base64,{{ $ics | base64Encode }}" download="{{ .File.ContentBaseName }}.ics" class="btn-new btn-new--outline-dark">Add to Calendar</a>
         </div>
