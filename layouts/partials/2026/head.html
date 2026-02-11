@@ -10,38 +10,33 @@
   <meta name="description" content="{{ $description }}" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Open Graph -->
   <meta property="og:title" content="{{ .Title }}" />
   <meta property="og:description" content="{{ $description }}" />
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
   <meta property="og:url" content="{{ .Permalink }}" />
   <meta property="og:image" content="{{ $image }}" />
+  <meta property="og:image:alt" content="{{ .Title }}" />
+  <meta property="og:site_name" content="Tas Game Makers" />
+  <meta property="og:locale" content="en_AU" />
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{{ .Title }}" />
   <meta name="twitter:description" content="{{ $description }}" />
   <meta name="twitter:image" content="{{ $image }}" />
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/static/images/TasGM_Logo_32x32.4887edce5135.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/static/images/favicon-16x16.23d3df4cbebd.png">
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Styles -->
   <link rel="stylesheet" type="text/css" href="/assets/static/css/2026.css?v={{ now.Unix }}">
 
-  <!-- Stripe -->
   <script src="https://js.stripe.com/v3/"></script>
 
-  <!-- Analytics -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="4d5e2436-0c70-4055-8f26-afa7d623030b"></script>
 
-  <!-- Inline font-face for Be Bold -->
   <style>
     @font-face {
       font-family: "be_boldregular";

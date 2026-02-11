@@ -1,6 +1,5 @@
 {{ define "main" }}
 
-<!-- Event Hero -->
 <div class="page-hero event-page-hero" {{ with .Params.image }}style="background-image: url('/assets/media/images/{{ . }}');"{{ end }}>
   <div class="container">
     <h1 class="page-hero__title">{{ .Title }}</h1>
@@ -10,7 +9,6 @@
   </div>
 </div>
 
-<!-- Event Content -->
 <div class="page-content">
   <div class="container">
     <article class="event-article">
@@ -117,7 +115,6 @@
       </div>
       {{ end }}
 
-      <!-- Photo Gallery -->
       {{ with .Params.photos }}
       <section class="event-article__gallery">
         <h2>Photos</h2>
