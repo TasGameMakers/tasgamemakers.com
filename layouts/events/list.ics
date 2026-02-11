@@ -9,7 +9,7 @@ X-WR-TIMEZONE:Australia/Hobart
 UID:{{ .Permalink }}
 DTSTART:{{ .Date.UTC.Format "20060102T150405Z" }}
 {{ with .Params.end_date }}DTEND:{{ (time .).UTC.Format "20060102T150405Z" }}
-{{ end }}SUMMARY:{{ .Title }}
+{{ end }}SUMMARY:Tas Game Makers: {{ .Title }}
 DESCRIPTION:{{ .Params.summary | default .Title }}
 {{ with .Params.location }}LOCATION:{{ . }}
 {{ end }}URL:{{ .Permalink }}

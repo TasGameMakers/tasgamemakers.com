@@ -8,7 +8,7 @@ X-WR-TIMEZONE:Australia/Hobart
 BEGIN:VEVENT
 UID:http://localhost:1313/events/2026/04/19/level-up-tasmania-industry-day/
 DTSTART:20260419T010000Z
-SUMMARY:Level Up Tasmania Industry Day
+SUMMARY:Tas Game Makers: Level Up Tasmania Industry Day
 DESCRIPTION:A one-day game development conference. Free.
 LOCATION:PW1, Hobart
 URL:http://localhost:1313/events/2026/04/19/level-up-tasmania-industry-day/
@@ -17,7 +17,7 @@ BEGIN:VEVENT
 UID:http://localhost:1313/events/2026/04/17/level-up-tasmania-expo/
 DTSTART:20260417T010000Z
 DTEND:20260418T060000Z
-SUMMARY:Level Up Tasmania Expo
+SUMMARY:Tas Game Makers: Level Up Tasmania Expo
 DESCRIPTION:A two-day public expo showcasing Tasmanian game development talent.
 LOCATION:PW1, Hobart
 URL:http://localhost:1313/events/2026/04/17/level-up-tasmania-expo/
@@ -25,7 +25,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:http://localhost:1313/events/2026/03/05/march-social-meetup-hobart/
 DTSTART:20260305T063000Z
-SUMMARY:March Social Meetup (Hobart)
+SUMMARY:Tas Game Makers: March Social Meetup (Hobart)
 DESCRIPTION:Our regular social meetup, with special guest.
 LOCATION:A Hobart Pub
 URL:http://localhost:1313/events/2026/03/05/march-social-meetup-hobart/
@@ -33,7 +33,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:http://localhost:1313/events/2026/03/05/your-game-is-a-business/
 DTSTART:20260305T020000Z
-SUMMARY:Your Game is a Business
+SUMMARY:Tas Game Makers: Your Game is a Business
 DESCRIPTION:Punch up your business skills with this workshop from games business development consultant Jon Cartwright. Presented by Screen Tasmania.
 LOCATION:Hobart
 URL:http://localhost:1313/events/2026/03/05/your-game-is-a-business/
@@ -41,7 +41,7 @@ END:VEVENT
 BEGIN:VEVENT
 UID:http://localhost:1313/events/2026/02/20/online-showcase/
 DTSTART:20260220T080000Z
-SUMMARY:Online Showcase
+SUMMARY:Tas Game Makers: Online Showcase
 DESCRIPTION:Show off what you've been working on and see what others have made.
 LOCATION:Discord
 URL:http://localhost:1313/events/2026/02/20/online-showcase/
