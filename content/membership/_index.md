@@ -14,6 +14,8 @@ If you are unable to afford membership, please email hello@tasgamemakers.com or 
 
 {{< membership-create >}}
 
+Membership fees go towards a range of things: stipends to compensate the time of some of our volunteers who are providing a service (setting up streaming / recording), budgets for event catering, venue hire, making an event bigger (game jams, let's plays) etc.
+
 ## Benefits
 
 Along with running events and providing platforms for community interaction, TasGM offers individual memberships which give access to a range of benefits.
@@ -28,9 +30,7 @@ Members are required to attend TasGM's Annual General Meeting (AGM). Stay up to 
 
 ### Pay it forward
 
-If you would like to purchase TasGM memberships to be passed on to other makers who may not be as fortunate, please email us at hello@tasgamemakers.com or a member of the board to organise custom payments.
-
-Membership fees go towards a range of things: stipends to compensate the time of some of our volunteers who are providing a service (setting up streaming / recording), budgets for event catering, venue hire, making an event bigger (game jams, let's plays) etc.
+Want to help someone else join? You can purchase an extra membership to be passed on to a maker who might not be able to afford one. Just use the signup form below to buy an additional membership, or email us at hello@tasgamemakers.com if you'd like to arrange something specific.
 
 ## Become a Member
 

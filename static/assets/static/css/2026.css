@@ -1429,7 +1429,14 @@ body.v2026 * {
 
 .v2026 .membership-manage__row {
   display: flex;
+  flex-direction: column;
   gap: var(--space-sm);
+}
+
+@media (min-width: 500px) {
+  .v2026 .membership-manage__row {
+    flex-direction: row;
+  }
 }
 
 .v2026 .membership-manage__input {

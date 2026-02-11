@@ -9,8 +9,14 @@
   position: President
   pronouns: he/him
   bluesky: paris.id.au
+  linkedin: parisba
   website: https://paris.id.au
   image: profileImages_Paris.jpg
+  links:
+    - title: Yarn Spinner
+      url: https://www.yarnspinner.dev
+    - title: Secret Lab
+      url: https://www.secretlab.games
   bio: |
     I'm the co-founder of Secret Lab, a game development studio based in
     beautiful Hobart, Tasmania, Australia. Secret Lab works on games and game
