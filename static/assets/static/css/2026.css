@@ -608,7 +608,10 @@ body.v2026 * {
 }
 
 .v2026 .event-featured__title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
   font-size: var(--text-xl);
+  text-transform: none;
   line-height: 1.3;
   margin-bottom: var(--space-xs);
 }
@@ -693,7 +696,10 @@ body.v2026 * {
 }
 
 .v2026 .event-card-new__title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
   font-size: var(--text-lg);
+  text-transform: none;
   line-height: 1.3;
   margin-bottom: var(--space-sm);
 }
