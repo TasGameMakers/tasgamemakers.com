@@ -104,7 +104,8 @@ The `image` field in front matter sets the header image for the event page and t
 
 | Filename | Good for |
 |---|---|
-| `socialmeetup.png` | Social meetups |
+| `socialmeetup.png` | Social meetups (general) |
+| `social-nipaluna.png` | Social meetups (nipaluna/Hobart) |
 | `showcase.png` | Showcases |
 | `workshop.png` | Workshops |
 | `LUT-Color.png` | Level Up Tasmania events |

@@ -5,7 +5,7 @@ summary: "Our regular social meetup, with special guest."
 location: "A Hobart Pub"
 event_type: "social"
 drop_in: true
-image: "socialmeetup.png"
+image: "social-nipaluna.png"
 ---
 
 Our regular social meetup, with special guest.
