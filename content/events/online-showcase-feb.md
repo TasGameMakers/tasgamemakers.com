@@ -1,12 +1,12 @@
 ---
-title: "Online Showcase"
+title: "Discord Showcase"
 date: 2026-02-20T19:00:00+11:00
 end_date: 2026-02-20T21:00:00+11:00
 summary: "Show off what you've been working on and see what others have made."
-location: "Discord"
 event_type: "showcase"
-drop_in: true
+location: "Discord"
 image: "showcase.png"
+drop_in: true
 discord_url: "https://discord.gg/Y7xtu4z"
 ---
 
