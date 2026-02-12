@@ -8,7 +8,7 @@ address: "Salamanca Inn Hobart Tasmania"
 event_type: "workshop"
 image: "workshop-yourgameis.png"
 featured: true
-action_url: "https://www.eventbrite.com.au/e/your-game-is-a-business-tickets-1234567890"
+action_url: "https://www.eventbrite.com.au/e/your-game-is-a-business-tickets-1982739256490"
 action_label: "Register Now"
 cost: "Free"
 ---
