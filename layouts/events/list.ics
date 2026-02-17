@@ -7,7 +7,7 @@ X-WR-CALNAME:Tas Game Makers Events{{ "\r\n" -}}
 X-WR-TIMEZONE:Australia/Hobart{{ "\r\n" -}}
 REFRESH-INTERVAL;VALUE=DURATION:PT1H{{ "\r\n" -}}
 X-PUBLISHED-TTL:PT1H{{ "\r\n" -}}
-{{ range .Pages -}}
+{{ range where .Pages ".Params.unlisted" "ne" true -}}
 {{- $title := printf "Tas Game Makers: %s" .Title -}}
 {{- $title = replace $title "\\" "\\\\" -}}
 {{- $title = replace $title ";" "\\;" -}}

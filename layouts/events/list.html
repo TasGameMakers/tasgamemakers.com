@@ -15,8 +15,8 @@
   <div class="container">
 
     {{ $now := now }}
-    {{ $upcoming := where .Pages ".Date" "ge" $now }}
-    {{ $past := where .Pages ".Date" "lt" $now }}
+    {{ $upcoming := where (where .Pages ".Date" "ge" $now) ".Params.unlisted" "ne" true }}
+    {{ $past := where (where .Pages ".Date" "lt" $now) ".Params.unlisted" "ne" true }}
 
     <section class="events-list-section">
       <h2>Upcoming Events</h2>

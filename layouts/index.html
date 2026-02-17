@@ -67,7 +67,7 @@
     </div>
 
     {{ $now := now }}
-    {{ $upcoming := where (where .Site.RegularPages "Section" "events") ".Date" "ge" $now }}
+    {{ $upcoming := where (where (where .Site.RegularPages "Section" "events") ".Date" "ge" $now) ".Params.unlisted" "ne" true }}
     {{ $upcoming = $upcoming.ByDate }}
     {{ $featured_upcoming := where $upcoming ".Params.featured" true }}
     {{ $featured := cond (gt (len $featured_upcoming) 0) (index $featured_upcoming 0) (index $upcoming 0) }}

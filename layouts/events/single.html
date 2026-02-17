@@ -11,6 +11,7 @@
 
 <div class="page-content">
   <div class="container">
+    <div class="event-layout">
     <article class="event-article">
 
       <header class="event-article__header">
@@ -149,6 +150,13 @@
       {{ end }}
 
     </article>
+
+    {{ with .Params.image }}
+    <aside class="event-sidebar">
+      <img src="/assets/media/images/{{ . }}" alt="{{ $.Title }}" class="event-sidebar__image">
+    </aside>
+    {{ end }}
+    </div>
   </div>
 </div>
 
