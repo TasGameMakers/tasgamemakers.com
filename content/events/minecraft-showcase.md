@@ -11,7 +11,7 @@ action_url: "https://docs.google.com/forms/d/e/1FAIpQLScs6f-zDe94U9l-aO4GiNCYmtU
 action_label: "Submit an Entry"
 unlisted: true
 slug: "minecraft-showcase"
-aliases: ["/mc2026"]
+aliases: ["/mc2026", "/events/2026/02/27/minecraft-showcase/"]
 ---
 
 The **Level Up Tasmania Minecraft Showcase** is a competition for Tasmanian school students!
