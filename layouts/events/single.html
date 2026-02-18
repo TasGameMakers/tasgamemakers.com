@@ -17,7 +17,7 @@
       <header class="event-article__header">
         <a href="/events/" class="event-article__back">&larr; Back to events</a>
 
-        {{ if lt .Date now }}
+        {{ if lt (cond (isset .Params "end_date") (time .Params.end_date) .Date) now }}
         <div class="event-article__past-badge">Past Event</div>
         {{ end }}
 

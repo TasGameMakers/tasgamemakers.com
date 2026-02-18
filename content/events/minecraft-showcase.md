@@ -18,6 +18,8 @@ The **Level Up Tasmania Minecraft Showcase** is a competition for Tasmanian scho
 
 Students can work in **teams of up to 5** to create something related to video games, for the chance to be featured at Tasmania's largest gaming event Level Up Tasmania and also to win prizes! To enter, simply **build something about gaming in Minecraft**—recreating something from an existing game, or inventing a new kind of minigame with the mechanics available—and submit either screenshots or a world file via the button above before **11:59pm on the 10th April 2026**.
 
+<a href="https://docs.google.com/forms/d/e/1FAIpQLScs6f-zDe94U9l-aO4GiNCYmtUAJ5M8dMLMIzI-WGLhdahLaA/viewform?usp=header" class="btn-new btn-new--purple" target="_blank" rel="noopener">Submit an Entry</a>
+
 ## Key Details
 
 * **Submissions open:** Wednesday 18th February 2026
