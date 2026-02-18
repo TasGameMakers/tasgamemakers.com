@@ -84,7 +84,7 @@ There are three judges who will be looking at all the entries, giving feedback t
 
 **What are the prizes I can win? How is it decided?**
 
-The top 3 stand-out entries will each receive $100 credit for [Area 52](https://area52.com.au/pages/3653-AboutUs), the largest pop culture store in Hobart that sells all sorts of games and gaming-related books, merch, and more.
+The top 3 stand-out entries will each receive $100 credit for [Area 52](https://area52.com.au/pages/3653-AboutUs), the largest pop culture store in Hobart that sells all sorts of games and gaming-related books, merch, and more. (Area 52 is not affiliated with this competition.)
 
 Those 3 entries will be selected by the judges based on aspects like creativity and style. We're looking for creativity in how the medium of Minecraft is used to interpret the theme, interesting takes on the theme of gaming, and coordinated efforts like consistent style across the build. But the timeline for the competition is short, and the scale of each submission is a lesser factor. So there's no need to crunch or make something massive!
 
@@ -93,3 +93,5 @@ Those 3 entries will be selected by the judges based on aspects like creativity 
 You can ask a teacher, parent or guardian to contact the president of Tas Gamemakers—the community organisation running this competition—via email at [paris@secretlab.games](mailto:paris@secretlab.games)
 
 {{< featured-event slug="level-up-tasmania-expo" >}}
+
+*This competition is not affiliated with, endorsed by, or associated with Mojang Studios, Microsoft, or the Minecraft brand.*
