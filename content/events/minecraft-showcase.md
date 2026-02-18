@@ -34,6 +34,8 @@ Students can work in **teams of up to 5** to create something related to video g
 
 * [What is Level Up Tasmania?](#what-is-level-up-tasmania)
 * [Are there any rules about what I can build?](#rules)
+* [Can a single student be part of multiple teams or entries?](#multiple-entries)
+* [Can students have help from parents, guardians, or teachers?](#help-from-adults)
 * [How do I find screenshots or export a world file?](#screenshots-and-world-files)
 * [What information should I include with my submission?](#submission-info)
 * [Who is judging the competition?](#judges)
@@ -57,6 +59,14 @@ Submissions should relate to gaming, either by building something related to an 
 Submissions **may be** designed for multiplayer, such as making a racing course that makes no sense to play alone. Submissions **may not** rely on custom mods or textures. World file submissions should use a recent version of Minecraft (1.19 or later), though any edition is fine. Any included text, such as on in-game signs, must be in English and include no coarse language.
 
 As entries may be selected for showcasing at the Level Up Tasmania event, content must be **appropriate for a [PG](https://www.classification.gov.au/classification-ratings/parental-guidance) audience (even if you are building something based on a game that itself is rated higher)**. That means _what you build_ must not contain swearing, intense violence, adult themes, or be intended to be rude or offensive. If you're unsure whether what you have built fits these guidelines, you can ask a teacher, parent or guardian to contact the organisers via email at [paris@secretlab.games](mailto:paris@secretlab.games)
+
+<h3 id="multiple-entries">Can a single student be part of multiple teams or entries?</h3>
+
+Yes! A student can be part of more than one team and can submit multiple entries. Each entry should be submitted separately.
+
+<h3 id="help-from-adults">Can students have help from parents, guardians, or teachers?</h3>
+
+Yes! Students are welcome to get help from parents, guardians, or teachers. However, the work should be primarily the students' own — adults should be helping and guiding, not doing the building for them.
 
 <h3 id="screenshots-and-world-files">How do I find screenshots I have taken in Minecraft? How do I export a world file from Minecraft?</h3>
 

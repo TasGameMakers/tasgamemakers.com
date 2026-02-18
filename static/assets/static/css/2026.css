@@ -874,6 +874,8 @@ body.v2026 .footer--partners {
   margin-bottom: var(--space-md);
 }
 
+.v2026 .event-article [id] { scroll-margin-top: 6.5rem; }
+
 .v2026 .event-article__cta { margin-top: var(--space-md); }
 
 .v2026 .event-article__map-link {
