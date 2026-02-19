@@ -9,7 +9,6 @@ event_type: "competition"
 image: "minecraft-showcase.png"
 action_url: "https://docs.google.com/forms/d/e/1FAIpQLScs6f-zDe94U9l-aO4GiNCYmtUAJ5M8dMLMIzI-WGLhdahLaA/viewform?usp=header"
 action_label: "Submit an Entry"
-unlisted: true
 slug: "minecraft-showcase"
 aliases: ["/mc2026", "/events/2026/02/27/minecraft-showcase/"]
 ---
