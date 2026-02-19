@@ -20,7 +20,7 @@ Students can work in **teams of up to 5** to create something related to video g
 
 <a href="https://docs.google.com/forms/d/e/1FAIpQLScs6f-zDe94U9l-aO4GiNCYmtUAJ5M8dMLMIzI-WGLhdahLaA/viewform?usp=header" class="btn-new btn-new--purple" target="_blank" rel="noopener">Submit an Entry</a>
 
-**Downloads:** [Info Sheet for Students](/assets/media/minecraft-showcase/info_sheet_students.pdf) | [Info Sheet for Teachers](/assets/media/minecraft-showcase/info_sheet_teachers.pdf) | [Promotional Poster](/assets/media/minecraft-showcase/promotional_poster.pdf)
+**Downloads:** [Info Sheet for Students](/assets/media/minecraft-showcase/info_sheet_students.pdf) | [Info Sheet for Teachers](/assets/media/minecraft-showcase/info_sheet_teachers.pdf) | [Promotional Poster](/assets/media/minecraft-showcase/promotional_poster.pdf) | [Promotional Poster (Printable)](/assets/media/minecraft-showcase/promotional_poster_printable.pdf)
 
 ## Key Details
 
