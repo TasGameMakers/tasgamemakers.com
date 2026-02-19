@@ -11,4 +11,4 @@ image: "social-nipaluna.png"
 
 Our regular social meetup, with special guest.
 
-Come along for drinks, chat, and good company. All welcome — whether you're making games, playing games, or just curious about games.
+Come along for drinks, chat, and good company. All welcome — whether you're making games, playing games, or just curious about games. You don't need to be a member of Tas Game Makers to attend.

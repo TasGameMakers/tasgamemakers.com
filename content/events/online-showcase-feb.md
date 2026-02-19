@@ -14,4 +14,4 @@ Join us on Discord for our regular online showcase!
 
 Show off what you've been working on — games, art, music, tools, prototypes, whatever you're making. See what others in the community have been up to, give feedback, and get inspired.
 
-All skill levels welcome. Whether you've got a polished project or just a rough idea, we'd love to see it.
+All skill levels welcome. Whether you've got a polished project or just a rough idea, we'd love to see it. You don't need to be a member of Tas Game Makers to participate.

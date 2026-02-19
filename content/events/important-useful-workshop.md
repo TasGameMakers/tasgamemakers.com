@@ -39,6 +39,6 @@ Presented by Screen Tasmania, this is an open event for anyone who fits the foll
 - You must be actively working on a digital game.
 - Priority will be given to people exhibiting at Level Up Tasmania 2026.
 
-**Tickets are free but registration is essential to confirm numbers.**
+**Tickets are free but registration is essential to confirm numbers.** You don't need to be a member of Tas Game Makers to attend.
 
 *This event presented by Screen Tasmania.*

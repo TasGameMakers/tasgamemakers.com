@@ -22,6 +22,6 @@ Level Up Tasmania is a celebration of Tasmanian game development.
 
 **Friday 17 & Saturday 18 April** at PW1 in Hobart.
 
-Come and play games made by local creators, meet the developers, and experience the best of Tasmanian game development!
+Come and play games made by local creators, meet the developers, and experience the best of Tasmanian game development! You don't need to be a member of Tas Game Makers to attend.
 
 For more information, visit [Screen Tasmania](https://www.screen.tas.gov.au/leveluptasmania).

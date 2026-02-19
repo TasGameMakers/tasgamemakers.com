@@ -10,4 +10,4 @@ image: "socialmeetup.png"
 
 Our first meetup of the year at Du Cane in Launceston.
 
-Come along for drinks, pizza, chat, and good company. Some Hobartians are planning on heading up for the event too! All welcome — whether you're making games, playing games, or just curious about games.
+Come along for drinks, pizza, chat, and good company. Some Hobartians are planning on heading up for the event too! All welcome — whether you're making games, playing games, or just curious about games. You don't need to be a member of Tas Game Makers to attend.

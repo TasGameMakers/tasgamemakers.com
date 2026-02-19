@@ -15,6 +15,6 @@ Level Up Tasmania Industry Day is a one-day game development conference.
 
 Join us for talks, panels, and networking with game developers from across Tasmania and beyond.
 
-**Free admission.**
+**Free admission.** You don't need to be a member of Tas Game Makers to attend.
 
 For more information, visit [Screen Tasmania](https://www.screen.tas.gov.au/leveluptasmania).

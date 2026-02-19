@@ -31,6 +31,8 @@ Students can work in **teams of up to 5** to create something related to video g
 * **What you can win:** selected entries will be shown off at Level Up Tasmania event, top 3 entries will get $100 gift cards to Area 52
 * **Submissions must come from a parent, guardian, or teacher on behalf of the student(s)**
 
+You don't need to be a member of Tas Game Makers to enter.
+
 ## Frequently Asked Questions
 
 * [What is Level Up Tasmania?](#what-is-level-up-tasmania)
@@ -41,6 +43,7 @@ Students can work in **teams of up to 5** to create something related to video g
 * [What information should I include with my submission?](#submission-info)
 * [Who is judging the competition?](#judges)
 * [What are the prizes I can win?](#prizes)
+* [Do I need to be a member of Tas Game Makers to enter?](#membership)
 * [What if I don't have a Google Account?](#no-google-account)
 * [What if I have more questions?](#more-questions)
 
@@ -107,6 +110,10 @@ There are three judges who will be looking at all the entries, giving feedback t
 The top 3 stand-out entries will each receive $100 credit for [Area 52](https://area52.com.au/pages/3653-AboutUs), the largest pop culture store in Hobart that sells all sorts of games and gaming-related books, merch, and more. (Area 52 is not affiliated with this competition.)
 
 Those 3 entries will be selected by the judges based on aspects like creativity and style. We're looking for creativity in how the medium of Minecraft is used to interpret the theme, interesting takes on the theme of gaming, and coordinated efforts like consistent style across the build. But the timeline for the competition is short, and the scale of each submission is a lesser factor. So there's no need to crunch or make something massive!
+
+<h3 id="membership">Do I need to be a member of Tas Game Makers, Inc. to enter?</h3>
+
+No! This competition is open to all Tasmania-based school students or school-aged children. You don't need to be a member of Tas Game Makers, Inc. to submit an entry.
 
 <h3 id="no-google-account">What if the parent, guardian, or teacher submitting doesn't have a Google Account?</h3>
 

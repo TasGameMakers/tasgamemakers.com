@@ -12,4 +12,4 @@ image: "social-nipaluna.png"
 
 Our regular social meetup at Hobart Brewing Co, which also doubled as the kick-off for [TasJam 2025](/events/tasjam-2025/)!
 
-Come along for drinks, chat, and good company. All welcome — whether you're making games, playing games, or just curious about games.
+Come along for drinks, chat, and good company. All welcome — whether you're making games, playing games, or just curious about games. You don't need to be a member of Tas Game Makers to attend.

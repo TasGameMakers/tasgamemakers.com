@@ -19,4 +19,6 @@ This jam was a little different to the usual TasJams — a 2 week long game jam,
 
 The jam kicked off at our November social meetup on **Wednesday 26th November** at 5:30pm at Hobart Brewing Co, and wrapped up on **Tuesday 9th December** at 6pm, with presentations on **Wednesday 10th December** in the evening.
 
+You don't need to be a member of Tas Game Makers to participate in TasJam.
+
 Check out the submissions on the [jam page](https://itch.io/jam/tasjam2025).
