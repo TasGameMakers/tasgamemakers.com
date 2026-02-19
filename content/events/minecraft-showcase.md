@@ -110,7 +110,7 @@ Those 3 entries will be selected by the judges based on aspects like creativity 
 
 <h3 id="no-google-account">What if the parent, guardian, or teacher submitting doesn't have a Google Account?</h3>
 
-If the person submitting on behalf of the student(s) doesn't have a Google Account and can't use the submission form, they can email the entry directly to Paris Buttfield-Addison, president of Tas Game Makers, Inc., at [paris@secretlab.games](mailto:paris@secretlab.games). Please include the same information that the form asks for: the student(s)' names, their school, screenshots or a world file, and a short description of the entry.
+If the person submitting on behalf of the student(s) doesn't have a Google Account and can't use the submission form, they can email Paris Buttfield-Addison, president of Tas Game Makers, Inc., at [paris@secretlab.games](mailto:paris@secretlab.games) to arrange an alternate way to submit.
 
 <h3 id="more-questions">What if I have more questions not answered here?</h3>
 
