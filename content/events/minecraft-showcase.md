@@ -41,6 +41,7 @@ Students can work in **teams of up to 5** to create something related to video g
 * [What information should I include with my submission?](#submission-info)
 * [Who is judging the competition?](#judges)
 * [What are the prizes I can win?](#prizes)
+* [What if I don't have a Google Account?](#no-google-account)
 * [What if I have more questions?](#more-questions)
 
 <h3 id="what-is-level-up-tasmania">What is Level Up Tasmania? How will selected entries be showcased at Level Up Tasmania?</h3>
@@ -99,7 +100,7 @@ There are three judges who will be looking at all the entries, giving feedback t
 
 * Kesh (AKA NestInTheNorthWest) - A Tasmanian Minecraft Streamer and Twitch Affiliate
 * Mars (AKA AttackOnMars) - A Tasmanian Science Communicator and Award-Winning Minecrafter
-* Paris Buttfield-Addison - A Tasmanian Game Developer and the President of Tas Gamemakers
+* Paris Buttfield-Addison - A Tasmanian Game Developer and the President of Tas Game Makers, Inc.
 
 <h3 id="prizes">What are the prizes I can win? How is it decided?</h3>
 
@@ -107,10 +108,14 @@ The top 3 stand-out entries will each receive $100 credit for [Area 52](https://
 
 Those 3 entries will be selected by the judges based on aspects like creativity and style. We're looking for creativity in how the medium of Minecraft is used to interpret the theme, interesting takes on the theme of gaming, and coordinated efforts like consistent style across the build. But the timeline for the competition is short, and the scale of each submission is a lesser factor. So there's no need to crunch or make something massive!
 
+<h3 id="no-google-account">What if the parent, guardian, or teacher submitting doesn't have a Google Account?</h3>
+
+If the person submitting on behalf of the student(s) doesn't have a Google Account and can't use the submission form, they can email the entry directly to Paris Buttfield-Addison, president of Tas Game Makers, Inc., at [paris@secretlab.games](mailto:paris@secretlab.games). Please include the same information that the form asks for: the student(s)' names, their school, screenshots or a world file, and a short description of the entry.
+
 <h3 id="more-questions">What if I have more questions not answered here?</h3>
 
-You can ask a teacher, parent or guardian to contact the president of Tas Gamemakers—the community organisation running this competition—via email at [paris@secretlab.games](mailto:paris@secretlab.games)
+You can ask a teacher, parent or guardian to contact the president of Tas Game Makers, Inc.—the community organisation running this competition—via email at [paris@secretlab.games](mailto:paris@secretlab.games)
 
 {{< featured-event slug="level-up-tasmania-expo" >}}
 
-*This competition is not affiliated with, endorsed by, or associated with Mojang Studios, Microsoft, or the Minecraft brand.*
+*This competition is not affiliated with, endorsed by, or associated with Mojang Studios, Microsoft, or the Minecraft brand. It is also not affiliated with the Department of State Growth or Screen Tasmania — selected entries are simply being shown at Level Up Tasmania.*
