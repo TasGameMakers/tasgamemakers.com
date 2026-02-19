@@ -67,7 +67,15 @@
     </div>
 
     {{ $now := now }}
-    {{ $upcoming := where (where (where .Site.RegularPages "Section" "events") ".Date" "ge" $now) ".Params.unlisted" "ne" true }}
+    {{ $allEvents := where (where .Site.RegularPages "Section" "events") ".Params.unlisted" "ne" true }}
+    {{ $upcoming := slice }}
+    {{ range $allEvents }}
+      {{ $endDate := .Date }}
+      {{ with .Params.end_date }}{{ $endDate = time . }}{{ end }}
+      {{ if ge $endDate $now }}
+        {{ $upcoming = $upcoming | append . }}
+      {{ end }}
+    {{ end }}
     {{ $upcoming = $upcoming.ByDate }}
     {{ $featured_upcoming := where $upcoming ".Params.featured" true }}
     {{ $featured := cond (gt (len $featured_upcoming) 0) (index $featured_upcoming 0) (index $upcoming 0) }}

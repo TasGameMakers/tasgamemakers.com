@@ -15,8 +15,18 @@
   <div class="container">
 
     {{ $now := now }}
-    {{ $upcoming := where (where .Pages ".Date" "ge" $now) ".Params.unlisted" "ne" true }}
-    {{ $past := where (where .Pages ".Date" "lt" $now) ".Params.unlisted" "ne" true }}
+    {{ $allEvents := where .Pages ".Params.unlisted" "ne" true }}
+    {{ $upcoming := slice }}
+    {{ $past := slice }}
+    {{ range $allEvents }}
+      {{ $endDate := .Date }}
+      {{ with .Params.end_date }}{{ $endDate = time . }}{{ end }}
+      {{ if ge $endDate $now }}
+        {{ $upcoming = $upcoming | append . }}
+      {{ else }}
+        {{ $past = $past | append . }}
+      {{ end }}
+    {{ end }}
 
     <section class="events-list-section">
       <h2>Upcoming Events</h2>
