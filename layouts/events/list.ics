@@ -48,9 +48,15 @@ END:VEVENT{{ "\r\n" -}}
 BEGIN:VEVENT{{ "\r\n" -}}
 UID:{{ .Permalink }}{{ "\r\n" -}}
 DTSTAMP:{{ now.UTC.Format "20060102T150405Z" }}{{ "\r\n" -}}
+{{- if .Params.event_allday -}}
+DTSTART;VALUE=DATE:{{ .Date.UTC.Format "20060102" }}{{ "\r\n" -}}
+DTEND;VALUE=DATE:{{ (time .Params.end_date).UTC.Format "20060102" }}{{ "\r\n" -}}
+X-MICROSOFT-CDO-ALLDAYEVENT: TRUE{{ "\r\n" -}}
+{{- else -}}
 DTSTART:{{ .Date.UTC.Format "20060102T150405Z" }}{{ "\r\n" -}}
 {{ with .Params.end_date -}}
 DTEND:{{ (time .).UTC.Format "20060102T150405Z" }}{{ "\r\n" -}}
+{{ end -}}
 {{ end -}}
 SUMMARY:{{ $title }}{{ "\r\n" -}}
 DESCRIPTION:{{ $desc }}{{ "\r\n" -}}
