@@ -1,10 +1,10 @@
 ---
-title: "Tasmanian Games on Steam"
-summary: "Video games made in Tasmania, available on Steam."
+title: "Tasmanian Games"
+summary: "Tasmanian games, and games with Tasmanian developers involved."
 type: page
 ---
 
-A growing list of video games made in lutruwita/Tasmania, available on Steam. Know of a Tasmanian-made game that should be listed here? [Get in touch!](mailto:hello@tasgamemakers.com)
+A growing list of Tasmanian games, and games with Tasmanian developers involved, available on Steam. Know of a game that should be listed here? [Get in touch!](mailto:hello@tasgamemakers.com)
 
 You can also follow the [Made in Tas](https://store.steampowered.com/curator/45944704-Made-In-Tas/) curator on Steam to get notified when new Tasmanian games are released.
 
