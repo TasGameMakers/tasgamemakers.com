@@ -1,0 +1,166 @@
+{{- /*
+  Steam Games Grid Shortcode
+
+  Renders a responsive grid of Steam game cards with infinite scroll.
+  Pass app IDs as positional parameters:
+    {{< steam-games-grid "228360" "266510" "290770" >}}
+
+  - Fetches game data from Steam API at build time
+  - Processes images through Hugo pipeline (webp)
+  - Sorts by release date (newest first)
+  - Progressive loading via IntersectionObserver
+*/ -}}
+
+{{- $appIDs := slice -}}
+{{- range $i := seq 0 100 -}}
+  {{- with $.Get $i -}}
+    {{- $appIDs = $appIDs | append . -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $monthMap := dict "Jan" "01" "Feb" "02" "Mar" "03" "Apr" "04" "May" "05" "Jun" "06" "Jul" "07" "Aug" "08" "Sep" "09" "Oct" "10" "Nov" "11" "Dec" "12" -}}
+{{- $games := slice -}}
+
+{{- range $appID := $appIDs -}}
+  {{- $imageURL := printf "https://cdn.akamai.steamstatic.com/steam/apps/%s/header.jpg" $appID -}}
+  {{- $storeURL := printf "https://store.steampowered.com/app/%s/" $appID -}}
+  {{- $name := "" -}}
+  {{- $desc := "" -}}
+  {{- $dev := "" -}}
+  {{- $sortKey := "0000-00-00" -}}
+
+  {{- $apiURL := printf "https://store.steampowered.com/api/appdetails?appids=%s" $appID -}}
+  {{- $apiResult := try (resources.GetRemote $apiURL) -}}
+  {{- with $apiResult.Value -}}
+    {{- $json := .Content | transform.Unmarshal -}}
+    {{- $appData := index $json $appID -}}
+    {{- if and $appData (index $appData "success") -}}
+      {{- $data := index $appData "data" -}}
+      {{- with $data -}}
+        {{- $name = index . "name" -}}
+        {{- $desc = index . "short_description" -}}
+        {{- with index . "header_image" -}}
+          {{- $imageURL = . -}}
+        {{- end -}}
+        {{- $devs := index . "developers" -}}
+        {{- if $devs -}}
+          {{- $dev = delimit $devs ", " -}}
+        {{- end -}}
+        {{- with index . "release_date" -}}
+          {{- $dateStr := index . "date" | default "" -}}
+          {{- if $dateStr -}}
+            {{- $years := findRE `\b(19|20)\d{2}\b` $dateStr -}}
+            {{- $months := findRE `\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b` $dateStr -}}
+            {{- if $years -}}
+              {{- $y := index $years 0 -}}
+              {{- $m := "00" -}}
+              {{- if $months -}}
+                {{- $m = index $monthMap (index $months 0) | default "00" -}}
+              {{- end -}}
+              {{- $allNums := findRE `\b\d{1,2}\b` $dateStr -}}
+              {{- $d := "00" -}}
+              {{- if $allNums -}}
+                {{- $d = index $allNums 0 -}}
+                {{- if eq (len $d) 1 -}}
+                  {{- $d = printf "0%s" $d -}}
+                {{- end -}}
+              {{- end -}}
+              {{- $sortKey = printf "%s-%s-%s" $y $m $d -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if not $name -}}
+    {{- $name = printf "App %s" $appID -}}
+  {{- end -}}
+
+  {{- /* Process image through Hugo pipeline */ -}}
+  {{- $processedImage := $imageURL -}}
+  {{- $imgResult := try (resources.GetRemote $imageURL) -}}
+  {{- with $imgResult.Value -}}
+    {{- if eq .MediaType.MainType "image" -}}
+      {{- $webpResult := try (.Resize "460x webp") -}}
+      {{- with $webpResult.Value -}}
+        {{- $processedImage = .RelPermalink -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- $game := dict "appID" $appID "name" $name "desc" $desc "dev" $dev "image" $processedImage "url" $storeURL "sortKey" $sortKey -}}
+  {{- $games = $games | append $game -}}
+{{- end -}}
+
+{{- /* Sort by release date, newest first */ -}}
+{{- $games = sort $games "sortKey" "desc" -}}
+
+{{- $batchSize := 12 -}}
+
+{{- if gt (len $games) 0 -}}
+<div class="steam-grid" id="steam-grid">
+  {{- range $i, $game := $games -}}
+  {{- $batch := div $i $batchSize -}}
+  <div class="steam-grid__card{{ if gt $batch 0 }} steam-grid__card--hidden{{ end }}" data-batch="{{ $batch }}">
+    <a href="{{ $game.url }}" class="steam-grid__link" target="_blank" rel="noopener noreferrer">
+      <div class="steam-grid__image">
+        <img src="{{ $game.image }}" alt="{{ $game.name }}" loading="lazy">
+      </div>
+      <div class="steam-grid__info">
+        <h4 class="steam-grid__title">{{ $game.name }}</h4>
+        {{- if $game.desc -}}
+        <p class="steam-grid__desc">{{ $game.desc | safeHTML }}</p>
+        {{- end -}}
+        {{- if $game.dev -}}
+        <div class="steam-grid__footer">
+          <span class="steam-grid__developer">{{ $game.dev }}</span>
+        </div>
+        {{- end -}}
+      </div>
+    </a>
+  </div>
+  {{- end -}}
+</div>
+
+<div class="steam-grid-loader" id="steam-grid-loader">
+  <div class="steam-grid-loader__spinner"></div>
+</div>
+
+<script>
+(function() {
+  var grid = document.getElementById('steam-grid');
+  var loader = document.getElementById('steam-grid-loader');
+  if (!grid || !loader) return;
+
+  var currentBatch = 0;
+
+  function showNextBatch() {
+    currentBatch++;
+    var cards = grid.querySelectorAll('[data-batch="' + currentBatch + '"]');
+    if (cards.length === 0) {
+      loader.style.display = 'none';
+      observer.disconnect();
+      return;
+    }
+    cards.forEach(function(card) {
+      card.classList.remove('steam-grid__card--hidden');
+      card.classList.add('steam-grid__card--reveal');
+    });
+    var nextCards = grid.querySelectorAll('[data-batch="' + (currentBatch + 1) + '"]');
+    if (nextCards.length === 0) {
+      loader.style.display = 'none';
+      observer.disconnect();
+    }
+  }
+
+  var observer = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) {
+      showNextBatch();
+    }
+  }, { rootMargin: '200px' });
+
+  observer.observe(loader);
+})();
+</script>
+{{- end -}}

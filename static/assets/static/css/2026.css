@@ -1274,3 +1274,142 @@ body.v2026 .footer--partners {
 .v2026 .mb-0  { margin-bottom: 0; }
 .v2026 .mt-lg { margin-top: var(--space-lg); }
 .v2026 .mt-xl { margin-top: var(--space-xl); }
+
+
+/* ========================================
+   Steam Games Grid
+   ======================================== */
+
+/* Widen prose container when it holds a steam grid */
+.v2026 .prose:has(.steam-grid) {
+  max-width: none;
+}
+
+.v2026 .steam-grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: 1fr;
+  margin-top: var(--space-lg);
+}
+@media (min-width: 600px)  { .v2026 .steam-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px)  { .v2026 .steam-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.v2026 .steam-grid__card {
+  display: flex;
+}
+.v2026 .steam-grid__card--hidden {
+  display: none;
+}
+.v2026 .steam-grid__card--reveal {
+  animation: steam-card-fadein 0.35s ease;
+}
+@keyframes steam-card-fadein {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.v2026 .steam-grid__link {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+  text-decoration: none;
+  color: var(--black);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.v2026 .steam-grid__link:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.15);
+  color: var(--black);
+}
+
+.v2026 .steam-grid__image {
+  position: relative;
+  padding-top: 46.74%; /* Steam header images are 460x215 */
+  overflow: hidden;
+  background: #1b2838;
+  flex-shrink: 0;
+}
+.v2026 .steam-grid__image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  transition: transform 0.3s;
+}
+.v2026 .steam-grid__link:hover .steam-grid__image img {
+  transform: scale(1.05);
+}
+
+.v2026 .steam-grid__info {
+  padding: 16px;
+  height: 170px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.v2026 .steam-grid__title {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: none;
+  line-height: 1.3;
+  min-height: calc(2 * 1.3em); /* reserve space for 2 lines */
+  margin-bottom: 4px;
+  color: var(--black);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.v2026 .steam-grid__desc {
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #666;
+  line-height: 1.4;
+  min-height: calc(3 * 1.4em); /* reserve space for 3 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.v2026 .steam-grid__footer {
+  margin-top: auto;
+}
+
+.v2026 .steam-grid__developer {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--purple);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Loading spinner */
+.v2026 .steam-grid-loader {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-xl) 0;
+}
+.v2026 .steam-grid-loader__spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgba(0,0,0,0.1);
+  border-top-color: var(--purple);
+  border-radius: 50%;
+  animation: steam-spin 0.7s linear infinite;
+}
+@keyframes steam-spin {
+  to { transform: rotate(360deg); }
+}
