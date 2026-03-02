@@ -8,6 +8,8 @@ summary: "A Minecraft competition for Tasmanian school students. Submissions may
 event_type: "competition"
 event_allday: true
 event_bookend: true
+event_bookend_start_label: "Submissions Open"
+event_bookend_end_label: "Submissions Close"
 image: "minecraft-showcase.png"
 action_url: "https://docs.google.com/forms/d/e/1FAIpQLScs6f-zDe94U9l-aO4GiNCYmtUAJ5M8dMLMIzI-WGLhdahLaA/viewform?usp=header"
 action_label: "Submit an Entry"
