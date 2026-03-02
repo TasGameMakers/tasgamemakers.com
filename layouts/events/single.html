@@ -106,6 +106,14 @@
             {{- $dayTitle := printf "%s (Day %d)" $ics_title (add $i 1) -}}
             {{- $vevents = printf "%sBEGIN:VEVENT\r\nUID:%s\r\nDTSTAMP:%s\r\nDTSTART:%s\r\nDTEND:%s\r\n%sSUMMARY:%s\r\nDESCRIPTION:%s\r\nURL:%s\r\nSTATUS:CONFIRMED\r\nEND:VEVENT\r\n" $vevents $uid (now.UTC.Format "20060102T150405Z") ($dayStart.UTC.Format "20060102T150405Z") ($dayEnd.UTC.Format "20060102T150405Z") $ics_loc $dayTitle $ics_desc $.Permalink -}}
           {{- end -}}
+        {{- else if and .Params.event_allday .Params.event_bookend .Params.end_date -}}
+          {{- $endDate := time .Params.end_date -}}
+          {{- $startUid := printf "%s-start" .Permalink -}}
+          {{- $endUid := printf "%s-end" .Permalink -}}
+          {{- $startTitle := printf "%s (Start)" $ics_title -}}
+          {{- $endTitle := printf "%s (End)" $ics_title -}}
+          {{- $vevents = printf "BEGIN:VEVENT\r\nUID:%s\r\nDTSTAMP:%s\r\nDTSTART;VALUE=DATE:%s\r\nDTEND;VALUE=DATE:%s\r\nX-MICROSOFT-CDO-ALLDAYEVENT:TRUE\r\n%sSUMMARY:%s\r\nDESCRIPTION:%s\r\nURL:%s\r\nSTATUS:CONFIRMED\r\nEND:VEVENT\r\n" $startUid (now.UTC.Format "20060102T150405Z") (.Date.Format "20060102") (.Date.AddDate 0 0 1 | time.Format "20060102") $ics_loc $startTitle $ics_desc .Permalink -}}
+          {{- $vevents = printf "%sBEGIN:VEVENT\r\nUID:%s\r\nDTSTAMP:%s\r\nDTSTART;VALUE=DATE:%s\r\nDTEND;VALUE=DATE:%s\r\nX-MICROSOFT-CDO-ALLDAYEVENT:TRUE\r\n%sSUMMARY:%s\r\nDESCRIPTION:%s\r\nURL:%s\r\nSTATUS:CONFIRMED\r\nEND:VEVENT\r\n" $vevents $endUid (now.UTC.Format "20060102T150405Z") ($endDate.Format "20060102") ($endDate.AddDate 0 0 1 | time.Format "20060102") $ics_loc $endTitle $ics_desc .Permalink -}}
         {{- else -}}
           {{- $ics_dtend := "" -}}
           {{- with .Params.end_date -}}

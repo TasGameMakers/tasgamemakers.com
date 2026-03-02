@@ -7,6 +7,7 @@ time_display: "Submissions open 18 Feb, close 10 Apr"
 summary: "A Minecraft competition for Tasmanian school students. Submissions may be shown at Level Up Tasmania!"
 event_type: "competition"
 event_allday: true
+event_bookend: true
 image: "minecraft-showcase.png"
 action_url: "https://docs.google.com/forms/d/e/1FAIpQLScs6f-zDe94U9l-aO4GiNCYmtUAJ5M8dMLMIzI-WGLhdahLaA/viewform?usp=header"
 action_label: "Submit an Entry"

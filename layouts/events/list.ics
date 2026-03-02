@@ -44,6 +44,32 @@ URL:{{ $.Permalink }}{{ "\r\n" -}}
 STATUS:CONFIRMED{{ "\r\n" -}}
 END:VEVENT{{ "\r\n" -}}
 {{- end -}}
+{{- else if and .Params.event_allday .Params.event_bookend .Params.end_date -}}
+{{- $endDate := time .Params.end_date -}}
+BEGIN:VEVENT{{ "\r\n" -}}
+UID:{{ .Permalink }}start{{ "\r\n" -}}
+DTSTAMP:{{ now.UTC.Format "20060102T150405Z" }}{{ "\r\n" -}}
+DTSTART;VALUE=DATE:{{ .Date.Format "20060102" }}{{ "\r\n" -}}
+DTEND;VALUE=DATE:{{ .Date.AddDate 0 0 1 | time.Format "20060102" }}{{ "\r\n" -}}
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE{{ "\r\n" -}}
+SUMMARY:{{ $title }} (Start){{ "\r\n" -}}
+DESCRIPTION:{{ $desc }}{{ "\r\n" -}}
+{{ if $loc -}}LOCATION:{{ $loc }}{{ "\r\n" -}}{{ end -}}
+URL:{{ .Permalink }}{{ "\r\n" -}}
+STATUS:CONFIRMED{{ "\r\n" -}}
+END:VEVENT{{ "\r\n" -}}
+BEGIN:VEVENT{{ "\r\n" -}}
+UID:{{ .Permalink }}end{{ "\r\n" -}}
+DTSTAMP:{{ now.UTC.Format "20060102T150405Z" }}{{ "\r\n" -}}
+DTSTART;VALUE=DATE:{{ $endDate.Format "20060102" }}{{ "\r\n" -}}
+DTEND;VALUE=DATE:{{ $endDate.AddDate 0 0 1 | time.Format "20060102" }}{{ "\r\n" -}}
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE{{ "\r\n" -}}
+SUMMARY:{{ $title }} (End){{ "\r\n" -}}
+DESCRIPTION:{{ $desc }}{{ "\r\n" -}}
+{{ if $loc -}}LOCATION:{{ $loc }}{{ "\r\n" -}}{{ end -}}
+URL:{{ .Permalink }}{{ "\r\n" -}}
+STATUS:CONFIRMED{{ "\r\n" -}}
+END:VEVENT{{ "\r\n" -}}
 {{- else -}}
 BEGIN:VEVENT{{ "\r\n" -}}
 UID:{{ .Permalink }}{{ "\r\n" -}}
@@ -51,7 +77,7 @@ DTSTAMP:{{ now.UTC.Format "20060102T150405Z" }}{{ "\r\n" -}}
 {{- if .Params.event_allday -}}
 DTSTART;VALUE=DATE:{{ .Date.UTC.Format "20060102" }}{{ "\r\n" -}}
 DTEND;VALUE=DATE:{{ (time .Params.end_date).UTC.Format "20060102" }}{{ "\r\n" -}}
-X-MICROSOFT-CDO-ALLDAYEVENT: TRUE{{ "\r\n" -}}
+X-MICROSOFT-CDO-ALLDAYEVENT:TRUE{{ "\r\n" -}}
 {{- else -}}
 DTSTART:{{ .Date.UTC.Format "20060102T150405Z" }}{{ "\r\n" -}}
 {{ with .Params.end_date -}}
