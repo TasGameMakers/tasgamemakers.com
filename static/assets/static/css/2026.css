@@ -1349,8 +1349,8 @@ body.v2026 .footer--partners {
 }
 
 .v2026 .steam-grid__info {
-  padding: 16px;
-  height: 170px;
+  padding: 16px 16px 8px;
+  flex: 1;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -1384,10 +1384,10 @@ body.v2026 .footer--partners {
 }
 
 .v2026 .steam-grid__footer {
-  margin-top: auto;
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 0 16px 12px;
 }
 
 .v2026 .steam-grid__developer {
@@ -1425,11 +1425,34 @@ body.v2026 .footer--partners {
 .v2026 .steam-grid__section-heading:first-of-type {
   margin-top: 0;
 }
+.v2026 .steam-grid__card-link {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-decoration: none;
+  color: var(--black);
+  min-height: 0;
+}
+.v2026 .steam-grid__card-link:hover {
+  color: var(--black);
+}
+.v2026 .steam-grid__platforms {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.v2026 .steam-grid__platform-link {
+  display: flex;
+  color: rgba(0, 0, 0, 0.3);
+  transition: color 0.15s;
+}
+.v2026 .steam-grid__platform-link:hover {
+  color: var(--purple);
+}
 .v2026 .steam-grid__platform {
   width: auto;
   height: 16px;
-  color: rgba(0, 0, 0, 0.3);
-  flex-shrink: 0;
-  margin-left: auto;
   display: block;
 }

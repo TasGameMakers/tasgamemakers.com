@@ -2,23 +2,31 @@
   Games Grid Shortcode
 
   Renders a responsive grid of game cards with infinite scroll.
-  Pass Steam app IDs (numeric) and itch.io URLs as positional parameters:
-    {{< games-grid "228360" "https://cheeseness.itch.io/hive-time" >}}
+  Supports three parameter formats:
+    "228360"                              — Steam-only game
+    "https://cheeseness.itch.io/hive-time" — itch.io-only game
+    "228360|https://doublefine.itch.io/full-throttle-remastered" — both platforms
 
   - Steam games: fetches from Steam API, splits into Coming Soon / Released
   - Itch.io games: fetches OG meta tags, added to Released section
-  - All released games sorted by date (newest first)
+  - Dual-platform: uses Steam data, shows both platform icons
+  - Alphabetically sorted within each section
   - Progressive loading via IntersectionObserver
 */ -}}
 
-{{- $steamIDs := slice -}}
-{{- $itchURLs := slice -}}
+{{- $steamOnly := slice -}}
+{{- $itchOnly := slice -}}
+{{- $dualPlatform := slice -}}
 {{- range $i := seq 0 200 -}}
   {{- with $.Get $i -}}
-    {{- if hasPrefix . "https://" -}}
-      {{- $itchURLs = $itchURLs | append . -}}
+    {{- $val := . -}}
+    {{- if in $val "|" -}}
+      {{- $parts := split $val "|" -}}
+      {{- $dualPlatform = $dualPlatform | append (dict "steam" (index $parts 0) "itch" (index $parts 1)) -}}
+    {{- else if hasPrefix $val "https://" -}}
+      {{- $itchOnly = $itchOnly | append $val -}}
     {{- else -}}
-      {{- $steamIDs = $steamIDs | append . -}}
+      {{- $steamOnly = $steamOnly | append $val -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
@@ -27,8 +35,18 @@
 {{- $comingSoonGames := slice -}}
 {{- $releasedGames := slice -}}
 
-{{- /* Fetch Steam games */ -}}
-{{- range $appID := $steamIDs -}}
+{{- /* Helper: fetch Steam game data — used for steam-only and dual-platform */ -}}
+{{- $allSteamEntries := slice -}}
+{{- range $steamOnly -}}
+  {{- $allSteamEntries = $allSteamEntries | append (dict "steam" . "itch" "") -}}
+{{- end -}}
+{{- range $dualPlatform -}}
+  {{- $allSteamEntries = $allSteamEntries | append . -}}
+{{- end -}}
+
+{{- range $entry := $allSteamEntries -}}
+  {{- $appID := .steam -}}
+  {{- $itchURL := .itch -}}
   {{- $imageURL := printf "https://cdn.akamai.steamstatic.com/steam/apps/%s/header.jpg" $appID -}}
   {{- $storeURL := printf "https://store.steampowered.com/app/%s/" $appID -}}
   {{- $name := "" -}}
@@ -88,7 +106,6 @@
     {{- $name = printf "App %s" $appID -}}
   {{- end -}}
 
-  {{- /* Process image through Hugo pipeline */ -}}
   {{- $processedImage := $imageURL -}}
   {{- $imgResult := try (resources.GetRemote $imageURL) -}}
   {{- with $imgResult.Value -}}
@@ -100,7 +117,12 @@
     {{- end -}}
   {{- end -}}
 
-  {{- $game := dict "name" $name "desc" $desc "dev" $dev "image" $processedImage "url" $storeURL "sortKey" $sortKey "platform" "steam" -}}
+  {{- $platform := "steam" -}}
+  {{- if $itchURL -}}
+    {{- $platform = "both" -}}
+  {{- end -}}
+
+  {{- $game := dict "name" $name "desc" $desc "dev" $dev "image" $processedImage "url" $storeURL "itchURL" $itchURL "sortKey" $sortKey "platform" $platform -}}
   {{- if $comingSoon -}}
     {{- $comingSoonGames = $comingSoonGames | append $game -}}
   {{- else -}}
@@ -108,8 +130,8 @@
   {{- end -}}
 {{- end -}}
 
-{{- /* Fetch itch.io games (always released) */ -}}
-{{- range $url := $itchURLs -}}
+{{- /* Fetch itch.io-only games (always released) */ -}}
+{{- range $url := $itchOnly -}}
   {{- $name := "" -}}
   {{- $desc := "" -}}
   {{- $dev := "" -}}
@@ -119,7 +141,6 @@
   {{- with $pageResult.Value -}}
     {{- $html := .Content -}}
 
-    {{- /* twitter:title - try both attribute orders */ -}}
     {{- $titleMatch := findRESubmatch `content="([^"]*)" name="twitter:title"` $html 1 -}}
     {{- if not $titleMatch -}}
       {{- $titleMatch = findRESubmatch `name="twitter:title" content="([^"]*)"` $html 1 -}}
@@ -133,7 +154,6 @@
       {{- end -}}
     {{- end -}}
 
-    {{- /* og:description - try both attribute orders */ -}}
     {{- $descMatch := findRESubmatch `content="([^"]*)" property="og:description"` $html 1 -}}
     {{- if not $descMatch -}}
       {{- $descMatch = findRESubmatch `property="og:description" content="([^"]*)"` $html 1 -}}
@@ -142,7 +162,6 @@
       {{- $desc = index (index $descMatch 0) 1 -}}
     {{- end -}}
 
-    {{- /* og:image - try both attribute orders */ -}}
     {{- $imgMatch := findRESubmatch `content="([^"]*)" property="og:image"` $html 1 -}}
     {{- if not $imgMatch -}}
       {{- $imgMatch = findRESubmatch `property="og:image" content="([^"]*)"` $html 1 -}}
@@ -169,7 +188,7 @@
     {{- end -}}
   {{- end -}}
 
-  {{- $game := dict "name" $name "desc" $desc "dev" $dev "image" $processedImage "url" $url "sortKey" "0000-00-00" "platform" "itch" -}}
+  {{- $game := dict "name" $name "desc" $desc "dev" $dev "image" $processedImage "url" $url "itchURL" "" "sortKey" "0000-00-00" "platform" "itch" -}}
   {{- $releasedGames = $releasedGames | append $game -}}
 {{- end -}}
 
@@ -178,26 +197,37 @@
 
 {{- $batchSize := 12 -}}
 
+{{- /* Reusable card template via define won't work in shortcodes, so use a partial-like approach inline */ -}}
+
 {{- if gt (len $comingSoonGames) 0 -}}
 <h3 class="steam-grid__section-heading">Coming Soon</h3>
 <div class="steam-grid">
   {{- range $comingSoonGames -}}
   <div class="steam-grid__card">
-    <a href="{{ .url }}" class="steam-grid__link" target="_blank" rel="noopener noreferrer">
-      <div class="steam-grid__image">
-        <img src="{{ .image }}" alt="{{ .name }}" loading="lazy">
-      </div>
-      <div class="steam-grid__info">
-        <h4 class="steam-grid__title">{{ .name }}</h4>
-        {{- if .desc -}}
-        <p class="steam-grid__desc">{{ .desc | safeHTML }}</p>
-        {{- end -}}
-        <div class="steam-grid__footer">
-          {{- if .dev -}}<span class="steam-grid__developer">{{ .dev }}</span>{{- end -}}
-          {{ partial "platform-icon.html" .platform }}
+    <div class="steam-grid__link">
+      <a href="{{ .url }}" class="steam-grid__card-link" target="_blank" rel="noopener noreferrer">
+        <div class="steam-grid__image">
+          <img src="{{ .image }}" alt="{{ .name }}" loading="lazy">
         </div>
+        <div class="steam-grid__info">
+          <h4 class="steam-grid__title">{{ .name }}</h4>
+          {{- if .desc -}}
+          <p class="steam-grid__desc">{{ .desc | safeHTML }}</p>
+          {{- end -}}
+        </div>
+      </a>
+      <div class="steam-grid__footer">
+        {{- if .dev -}}<span class="steam-grid__developer">{{ .dev }}</span>{{- end -}}
+        <span class="steam-grid__platforms">
+          {{- if or (eq .platform "steam") (eq .platform "both") -}}
+          <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="steam-grid__platform-link" title="View on Steam">{{ partial "platform-icon.html" "steam" }}</a>
+          {{- end -}}
+          {{- if or (eq .platform "itch") (eq .platform "both") -}}
+          <a href="{{ cond (eq .platform "both") .itchURL .url }}" target="_blank" rel="noopener noreferrer" class="steam-grid__platform-link" title="View on itch.io">{{ partial "platform-icon.html" "itch" }}</a>
+          {{- end -}}
+        </span>
       </div>
-    </a>
+    </div>
   </div>
   {{- end -}}
 </div>
@@ -209,23 +239,32 @@
   {{- range $i, $game := $releasedGames -}}
   {{- $batch := div $i $batchSize -}}
   <div class="steam-grid__card{{ if gt $batch 0 }} steam-grid__card--hidden{{ end }}" data-batch="{{ $batch }}">
-    <a href="{{ $game.url }}" class="steam-grid__link" target="_blank" rel="noopener noreferrer">
-      <div class="steam-grid__image">
-        {{- if $game.image -}}
-        <img src="{{ $game.image }}" alt="{{ $game.name }}" loading="lazy">
-        {{- end -}}
-      </div>
-      <div class="steam-grid__info">
-        <h4 class="steam-grid__title">{{ $game.name }}</h4>
-        {{- if $game.desc -}}
-        <p class="steam-grid__desc">{{ $game.desc | safeHTML }}</p>
-        {{- end -}}
-        <div class="steam-grid__footer">
-          {{- if $game.dev -}}<span class="steam-grid__developer">{{ $game.dev }}</span>{{- end -}}
-          {{ partial "platform-icon.html" $game.platform }}
+    <div class="steam-grid__link">
+      <a href="{{ $game.url }}" class="steam-grid__card-link" target="_blank" rel="noopener noreferrer">
+        <div class="steam-grid__image">
+          {{- if $game.image -}}
+          <img src="{{ $game.image }}" alt="{{ $game.name }}" loading="lazy">
+          {{- end -}}
         </div>
+        <div class="steam-grid__info">
+          <h4 class="steam-grid__title">{{ $game.name }}</h4>
+          {{- if $game.desc -}}
+          <p class="steam-grid__desc">{{ $game.desc | safeHTML }}</p>
+          {{- end -}}
+        </div>
+      </a>
+      <div class="steam-grid__footer">
+        {{- if $game.dev -}}<span class="steam-grid__developer">{{ $game.dev }}</span>{{- end -}}
+        <span class="steam-grid__platforms">
+          {{- if or (eq $game.platform "steam") (eq $game.platform "both") -}}
+          <a href="{{ $game.url }}" target="_blank" rel="noopener noreferrer" class="steam-grid__platform-link" title="View on Steam">{{ partial "platform-icon.html" "steam" }}</a>
+          {{- end -}}
+          {{- if or (eq $game.platform "itch") (eq $game.platform "both") -}}
+          <a href="{{ cond (eq $game.platform "both") $game.itchURL $game.url }}" target="_blank" rel="noopener noreferrer" class="steam-grid__platform-link" title="View on itch.io">{{ partial "platform-icon.html" "itch" }}</a>
+          {{- end -}}
+        </span>
       </div>
-    </a>
+    </div>
   </div>
   {{- end -}}
 </div>
