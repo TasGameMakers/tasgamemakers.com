@@ -3,12 +3,12 @@ title: "March Social Meetup (Hobart)"
 date: 2026-03-05T17:30:00+11:00
 end_date: 2026-03-05T21:30:00+11:00
 summary: "Our regular social meetup, with special guest."
-location: "A Hobart Pub"
+location: "Preachers, 5 Knopwood St, Hobart TAS 7000"
 event_type: "social"
 drop_in: true
 image: "social-nipaluna.png"
 ---
 
-Our regular social meetup, with special guest.
+Our regular social meetup, with special guest Jon Cartwright.
 
 Come along for drinks, chat, and good company. All welcome — whether you're making games, playing games, or just curious about games. You don't need to be a member of Tas Game Makers to attend.
