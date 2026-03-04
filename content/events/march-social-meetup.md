@@ -4,6 +4,7 @@ date: 2026-03-05T17:30:00+11:00
 end_date: 2026-03-05T21:30:00+11:00
 summary: "Our regular social meetup, with special guest."
 location: "Preachers, 5 Knopwood St, Hobart TAS 7000"
+address: "5 Knopwood St, Hobart TAS 7000"
 event_type: "social"
 drop_in: true
 image: "social-nipaluna.png"
