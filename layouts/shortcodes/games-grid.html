@@ -1,27 +1,34 @@
 {{- /*
-  Steam Games Grid Shortcode
+  Games Grid Shortcode
 
-  Renders a responsive grid of Steam game cards with infinite scroll.
-  Pass app IDs as positional parameters:
-    {{< steam-games-grid "228360" "266510" "290770" >}}
+  Renders a responsive grid of game cards with infinite scroll.
+  Pass Steam app IDs (numeric) and itch.io URLs as positional parameters:
+    {{< games-grid "228360" "https://cheeseness.itch.io/hive-time" >}}
 
-  - Fetches game data from Steam API at build time
-  - Processes images through Hugo pipeline (webp)
-  - Sorts by release date (newest first)
+  - Steam games: fetches from Steam API, splits into Coming Soon / Released
+  - Itch.io games: fetches OG meta tags, added to Released section
+  - All released games sorted by date (newest first)
   - Progressive loading via IntersectionObserver
 */ -}}
 
-{{- $appIDs := slice -}}
-{{- range $i := seq 0 100 -}}
+{{- $steamIDs := slice -}}
+{{- $itchURLs := slice -}}
+{{- range $i := seq 0 200 -}}
   {{- with $.Get $i -}}
-    {{- $appIDs = $appIDs | append . -}}
+    {{- if hasPrefix . "https://" -}}
+      {{- $itchURLs = $itchURLs | append . -}}
+    {{- else -}}
+      {{- $steamIDs = $steamIDs | append . -}}
+    {{- end -}}
   {{- end -}}
 {{- end -}}
 
 {{- $monthMap := dict "Jan" "01" "Feb" "02" "Mar" "03" "Apr" "04" "May" "05" "Jun" "06" "Jul" "07" "Aug" "08" "Sep" "09" "Oct" "10" "Nov" "11" "Dec" "12" -}}
-{{- $games := slice -}}
+{{- $comingSoonGames := slice -}}
+{{- $releasedGames := slice -}}
 
-{{- range $appID := $appIDs -}}
+{{- /* Fetch Steam games */ -}}
+{{- range $appID := $steamIDs -}}
   {{- $imageURL := printf "https://cdn.akamai.steamstatic.com/steam/apps/%s/header.jpg" $appID -}}
   {{- $storeURL := printf "https://store.steampowered.com/app/%s/" $appID -}}
   {{- $name := "" -}}
@@ -93,22 +100,81 @@
     {{- end -}}
   {{- end -}}
 
-  {{- $game := dict "appID" $appID "name" $name "desc" $desc "dev" $dev "image" $processedImage "url" $storeURL "sortKey" $sortKey "comingSoon" $comingSoon -}}
-  {{- $games = $games | append $game -}}
-{{- end -}}
-
-{{- /* Split into coming soon and released */ -}}
-{{- $comingSoonGames := slice -}}
-{{- $releasedGames := slice -}}
-{{- range $games -}}
-  {{- if .comingSoon -}}
-    {{- $comingSoonGames = $comingSoonGames | append . -}}
+  {{- $game := dict "name" $name "desc" $desc "dev" $dev "image" $processedImage "url" $storeURL "sortKey" $sortKey "platform" "steam" -}}
+  {{- if $comingSoon -}}
+    {{- $comingSoonGames = $comingSoonGames | append $game -}}
   {{- else -}}
-    {{- $releasedGames = $releasedGames | append . -}}
+    {{- $releasedGames = $releasedGames | append $game -}}
   {{- end -}}
 {{- end -}}
+
+{{- /* Fetch itch.io games (always released) */ -}}
+{{- range $url := $itchURLs -}}
+  {{- $name := "" -}}
+  {{- $desc := "" -}}
+  {{- $dev := "" -}}
+  {{- $imageURL := "" -}}
+
+  {{- $pageResult := try (resources.GetRemote $url) -}}
+  {{- with $pageResult.Value -}}
+    {{- $html := .Content -}}
+
+    {{- /* twitter:title - try both attribute orders */ -}}
+    {{- $titleMatch := findRESubmatch `content="([^"]*)" name="twitter:title"` $html 1 -}}
+    {{- if not $titleMatch -}}
+      {{- $titleMatch = findRESubmatch `name="twitter:title" content="([^"]*)"` $html 1 -}}
+    {{- end -}}
+    {{- if $titleMatch -}}
+      {{- $fullTitle := index (index $titleMatch 0) 1 -}}
+      {{- $parts := split $fullTitle " by " -}}
+      {{- $name = index $parts 0 -}}
+      {{- if gt (len $parts) 1 -}}
+        {{- $dev = index $parts 1 -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{- /* og:description - try both attribute orders */ -}}
+    {{- $descMatch := findRESubmatch `content="([^"]*)" property="og:description"` $html 1 -}}
+    {{- if not $descMatch -}}
+      {{- $descMatch = findRESubmatch `property="og:description" content="([^"]*)"` $html 1 -}}
+    {{- end -}}
+    {{- if $descMatch -}}
+      {{- $desc = index (index $descMatch 0) 1 -}}
+    {{- end -}}
+
+    {{- /* og:image - try both attribute orders */ -}}
+    {{- $imgMatch := findRESubmatch `content="([^"]*)" property="og:image"` $html 1 -}}
+    {{- if not $imgMatch -}}
+      {{- $imgMatch = findRESubmatch `property="og:image" content="([^"]*)"` $html 1 -}}
+    {{- end -}}
+    {{- if $imgMatch -}}
+      {{- $imageURL = index (index $imgMatch 0) 1 -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if not $name -}}
+    {{- $name = $url -}}
+  {{- end -}}
+
+  {{- $processedImage := $imageURL -}}
+  {{- if $imageURL -}}
+    {{- $imgResult := try (resources.GetRemote $imageURL) -}}
+    {{- with $imgResult.Value -}}
+      {{- if eq .MediaType.MainType "image" -}}
+        {{- $fillResult := try (.Fill "460x215 webp") -}}
+        {{- with $fillResult.Value -}}
+          {{- $processedImage = .RelPermalink -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- $game := dict "name" $name "desc" $desc "dev" $dev "image" $processedImage "url" $url "sortKey" "0000-00-00" "platform" "itch" -}}
+  {{- $releasedGames = $releasedGames | append $game -}}
+{{- end -}}
+
 {{- $comingSoonGames = sort $comingSoonGames "name" -}}
-{{- $releasedGames = sort $releasedGames "sortKey" "desc" -}}
+{{- $releasedGames = sort $releasedGames "name" -}}
 
 {{- $batchSize := 12 -}}
 
@@ -126,11 +192,10 @@
         {{- if .desc -}}
         <p class="steam-grid__desc">{{ .desc | safeHTML }}</p>
         {{- end -}}
-        {{- if .dev -}}
         <div class="steam-grid__footer">
-          <span class="steam-grid__developer">{{ .dev }}</span>
+          {{- if .dev -}}<span class="steam-grid__developer">{{ .dev }}</span>{{- end -}}
+          {{ partial "platform-icon.html" .platform }}
         </div>
-        {{- end -}}
       </div>
     </a>
   </div>
@@ -146,18 +211,19 @@
   <div class="steam-grid__card{{ if gt $batch 0 }} steam-grid__card--hidden{{ end }}" data-batch="{{ $batch }}">
     <a href="{{ $game.url }}" class="steam-grid__link" target="_blank" rel="noopener noreferrer">
       <div class="steam-grid__image">
+        {{- if $game.image -}}
         <img src="{{ $game.image }}" alt="{{ $game.name }}" loading="lazy">
+        {{- end -}}
       </div>
       <div class="steam-grid__info">
         <h4 class="steam-grid__title">{{ $game.name }}</h4>
         {{- if $game.desc -}}
         <p class="steam-grid__desc">{{ $game.desc | safeHTML }}</p>
         {{- end -}}
-        {{- if $game.dev -}}
         <div class="steam-grid__footer">
-          <span class="steam-grid__developer">{{ $game.dev }}</span>
+          {{- if $game.dev -}}<span class="steam-grid__developer">{{ $game.dev }}</span>{{- end -}}
+          {{ partial "platform-icon.html" $game.platform }}
         </div>
-        {{- end -}}
       </div>
     </a>
   </div>

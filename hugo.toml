@@ -43,6 +43,11 @@ buildFuture = true
   weight = 3
 
 [[menus.main]]
+  name = "Tasmanian Games"
+  url = "/tasmanian-games/"
+  weight = 4
+
+[[menus.main]]
   name = "About Us"
   url = "/about-us/"
-  weight = 4
+  weight = 5

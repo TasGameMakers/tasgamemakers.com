@@ -1,0 +1,102 @@
+{{- /*
+  Itch.io Games Grid Shortcode
+
+  Renders a grid of itch.io game cards matching the Steam grid style.
+  Pass itch.io URLs as positional parameters:
+    {{< itch-games-grid "https://cheeseness.itch.io/hive-time" "https://splerp.itch.io/art-for-snakes" >}}
+
+  - Fetches game metadata from itch.io page OG tags at build time
+  - Processes cover images through Hugo pipeline (webp)
+*/ -}}
+
+{{- $urls := slice -}}
+{{- range $i := seq 0 100 -}}
+  {{- with $.Get $i -}}
+    {{- $urls = $urls | append . -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $games := slice -}}
+
+{{- range $url := $urls -}}
+  {{- $name := "" -}}
+  {{- $desc := "" -}}
+  {{- $dev := "" -}}
+  {{- $imageURL := "" -}}
+
+  {{- $pageResult := try (resources.GetRemote $url) -}}
+  {{- with $pageResult.Value -}}
+    {{- $html := .Content -}}
+
+    {{- /* Extract twitter:title → "Game Name by Developer" */ -}}
+    {{- $titleMatch := findRESubmatch `content="([^"]*)" name="twitter:title"` $html 1 -}}
+    {{- if $titleMatch -}}
+      {{- $fullTitle := index (index $titleMatch 0) 1 -}}
+      {{- $parts := split $fullTitle " by " -}}
+      {{- $name = index $parts 0 -}}
+      {{- if gt (len $parts) 1 -}}
+        {{- $dev = index $parts 1 -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{- /* Extract og:description */ -}}
+    {{- $descMatch := findRESubmatch `content="([^"]*)" property="og:description"` $html 1 -}}
+    {{- if $descMatch -}}
+      {{- $desc = index (index $descMatch 0) 1 -}}
+    {{- end -}}
+
+    {{- /* Extract og:image */ -}}
+    {{- $imgMatch := findRESubmatch `content="([^"]*)" property="og:image"` $html 1 -}}
+    {{- if $imgMatch -}}
+      {{- $imageURL = index (index $imgMatch 0) 1 -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if not $name -}}
+    {{- $name = $url -}}
+  {{- end -}}
+
+  {{- /* Process image through Hugo pipeline */ -}}
+  {{- $processedImage := $imageURL -}}
+  {{- if $imageURL -}}
+    {{- $imgResult := try (resources.GetRemote $imageURL) -}}
+    {{- with $imgResult.Value -}}
+      {{- if eq .MediaType.MainType "image" -}}
+        {{- $fillResult := try (.Fill "460x215 webp") -}}
+        {{- with $fillResult.Value -}}
+          {{- $processedImage = .RelPermalink -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- $game := dict "name" $name "desc" $desc "dev" $dev "image" $processedImage "url" $url -}}
+  {{- $games = $games | append $game -}}
+{{- end -}}
+
+{{- if gt (len $games) 0 -}}
+<div class="steam-grid">
+  {{- range $games -}}
+  <div class="steam-grid__card">
+    <a href="{{ .url }}" class="steam-grid__link" target="_blank" rel="noopener noreferrer">
+      <div class="steam-grid__image">
+        {{- if .image -}}
+        <img src="{{ .image }}" alt="{{ .name }}" loading="lazy">
+        {{- end -}}
+      </div>
+      <div class="steam-grid__info">
+        <h4 class="steam-grid__title">{{ .name }}</h4>
+        {{- if .desc -}}
+        <p class="steam-grid__desc">{{ .desc | safeHTML }}</p>
+        {{- end -}}
+        {{- if .dev -}}
+        <div class="steam-grid__footer">
+          <span class="steam-grid__developer">{{ .dev }}</span>
+        </div>
+        {{- end -}}
+      </div>
+    </a>
+  </div>
+  {{- end -}}
+</div>
+{{- end -}}

@@ -1385,6 +1385,9 @@ body.v2026 .footer--partners {
 
 .v2026 .steam-grid__footer {
   margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .v2026 .steam-grid__developer {
@@ -1412,4 +1415,21 @@ body.v2026 .footer--partners {
 }
 @keyframes steam-spin {
   to { transform: rotate(360deg); }
+}
+.v2026 .steam-grid__section-heading {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--purple-dark);
+  margin: var(--space-lg) 0 var(--space-sm);
+}
+.v2026 .steam-grid__section-heading:first-of-type {
+  margin-top: 0;
+}
+.v2026 .steam-grid__platform {
+  width: auto;
+  height: 16px;
+  color: rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+  margin-left: auto;
+  display: block;
 }
