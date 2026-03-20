@@ -75,8 +75,7 @@ jobs:
         with:
           path: ${{ runner.temp }}/hugo_cache
           key: hugo-${{ github.run_id }}
-          restore-keys:
-            hugo-
+          restore-keys: hugo-
       - name: Build the site
         run: |
           hugo \
@@ -104,3 +103,23 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Notify Discord
+        uses: tsickert/discord-webhook@v7.0.0
+        if: success()
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          embed-title: "Website Deployment Succeeded"
+          embed-description: "Deployed to site: ${{ github.event.head_commit.message }}"
+          embed-footer-text: "${{ github.sha }}"
+          embed-color: 0x77BB41
+          embed-url: ${{steps.deployment.outputs.page_url}}
+      - name: Notify Discord for Failure
+        uses: tsickert/discord-webhook@v7.0.0
+        if: failure()
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          embed-title: "Website Deployment Failed"
+          embed-color: 0xE32400
+          embed-description: "Run ${{ github.run_id }} attempt ${{ github.run_attempt }} failed"
+          embed-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}
+          embed-footer-text: "${{ github.sha }}"
