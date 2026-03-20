@@ -4,6 +4,7 @@ date: 2026-03-25T17:30:00+11:00
 end_date: 2026-03-25T21:30:00+11:00
 summary: "A bonus second meetup for March at Boodle Beasley in North Hobart."
 location: "Boodle Beasley, North Hobart"
+address: "Boodle Beasley, North Hobart"
 event_type: "social"
 drop_in: true
 image: "social-nipaluna.png"

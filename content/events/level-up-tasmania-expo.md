@@ -11,7 +11,7 @@ event_days:
     end: 2026-04-18T16:00:00+10:00
 summary: "A two-day public expo showcasing Tasmanian game development talent."
 location: "Princes Wharf No. 1 (PW1), Castray Esplanade, Hobart TAS 7000"
-address: "Princes Wharf No. 1 (PW1), Castray Esplanade, Hobart TAS 7000"
+address: "Castray Esplanade, Hobart TAS 7000"
 event_type: "expo"
 image: "LUT-Color.png"
 action_url: "https://events.humanitix.com/leveluptas"
