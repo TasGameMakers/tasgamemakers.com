@@ -109,7 +109,7 @@ jobs:
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           embed-title: "Website Deployment Succeeded"
-          embed-description: "Deployed to site: ${{ github.event.head_commit.message }}"
+          embed-description: "Deployed to site by ${{github.event.pusher.username}}: ${{ github.event.head_commit.message }}"
           embed-footer-text: "${{ github.sha }}"
           embed-color: 0x77BB41
           embed-url: ${{steps.deployment.outputs.page_url}}
