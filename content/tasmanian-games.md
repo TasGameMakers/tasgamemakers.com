@@ -4,6 +4,11 @@ summary: "Tasmanian games, and games with Tasmanian developers involved."
 type: page
 ---
 
+<div class="cta-block cta-block--levelup">
+  <h4 class="cta-block__title">Want to see many of these games and more in-person?</h4>
+  <p class="cta-block__desc">Come to the free <a href="/events/2026/04/17/level-up-tasmania-expo/">Level Up Tasmania Expo</a>! If you want to learn about game development, or are a game developer, come to <a href="/events/2026/04/19/level-up-tasmania-industry-day/">Industry Day</a>.</p>
+</div>
+
 A growing list of Tasmanian games, and games with Tasmanian developers involved, available on Steam and itch.io. Know of a game that should be listed here? [Get in touch!](mailto:hello@tasgamemakers.com)
 
 You can also follow the [Made in Tas](https://store.steampowered.com/curator/45944704-Made-In-Tas/) curator on Steam to get notified when new Tasmanian games are released.

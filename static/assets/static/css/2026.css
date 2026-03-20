@@ -658,6 +658,22 @@ body.v2026 .footer--partners {
 /* CTA blocks (e.g. discord callout inside a page) */
 .v2026 .cta-block { padding: var(--space-lg); margin: var(--space-lg) 0; }
 .v2026 .cta-block--discord { background: #5865F2; color: #fff; box-shadow: 4px 4px 0 #4752C4; }
+.v2026 .cta-block--levelup {
+  background: #fff;
+  color: var(--purple-dark);
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+}
+.v2026 .cta-block--levelup .cta-block__title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: var(--text-xl);
+  text-transform: none;
+  line-height: 1.3;
+}
+.v2026 .cta-block--levelup .cta-block__desc { opacity: 0.85; }
+.v2026 .cta-block--levelup a { color: var(--purple); font-weight: 600; }
+.v2026 .cta-block--levelup a:hover { color: var(--pink); }
 .v2026 .cta-block__icon  { width: 48px; height: 48px; margin-bottom: var(--space-md); }
 .v2026 .cta-block__title { margin-bottom: var(--space-sm); }
 .v2026 .cta-block__desc  { margin-bottom: var(--space-md); opacity: 0.9; }
