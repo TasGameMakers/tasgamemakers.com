@@ -2,9 +2,10 @@
   Games Grid Shortcode
 
   Renders a responsive grid of game cards with infinite scroll.
-  Supports three parameter formats:
+  Supports four parameter formats:
     "228360"                              — Steam-only game
-    "https://cheeseness.itch.io/hive-time" — itch.io-only game
+    "https://cheeseness.itch.io/hive-time" — itch.io-only game (released)
+    "coming-soon:https://example.itch.io/game" — itch.io-only game (coming soon)
     "228360|https://doublefine.itch.io/full-throttle-remastered" — both platforms
 
   - Steam games: fetches from Steam API, splits into Coming Soon / Released
@@ -16,6 +17,7 @@
 
 {{- $steamOnly := slice -}}
 {{- $itchOnly := slice -}}
+{{- $itchComingSoon := slice -}}
 {{- $dualPlatform := slice -}}
 {{- range $i := seq 0 200 -}}
   {{- with $.Get $i -}}
@@ -23,6 +25,8 @@
     {{- if in $val "|" -}}
       {{- $parts := split $val "|" -}}
       {{- $dualPlatform = $dualPlatform | append (dict "steam" (index $parts 0) "itch" (index $parts 1)) -}}
+    {{- else if hasPrefix $val "coming-soon:" -}}
+      {{- $itchComingSoon = $itchComingSoon | append (strings.TrimPrefix "coming-soon:" $val) -}}
     {{- else if hasPrefix $val "https://" -}}
       {{- $itchOnly = $itchOnly | append $val -}}
     {{- else -}}
@@ -130,8 +134,18 @@
   {{- end -}}
 {{- end -}}
 
-{{- /* Fetch itch.io-only games (always released) */ -}}
+{{- /* Fetch itch.io-only games */ -}}
+{{- $allItchEntries := slice -}}
 {{- range $url := $itchOnly -}}
+  {{- $allItchEntries = $allItchEntries | append (dict "url" $url "comingSoon" false) -}}
+{{- end -}}
+{{- range $url := $itchComingSoon -}}
+  {{- $allItchEntries = $allItchEntries | append (dict "url" $url "comingSoon" true) -}}
+{{- end -}}
+
+{{- range $entry := $allItchEntries -}}
+  {{- $url := .url -}}
+  {{- $isComingSoon := .comingSoon -}}
   {{- $name := "" -}}
   {{- $desc := "" -}}
   {{- $dev := "" -}}
@@ -189,7 +203,11 @@
   {{- end -}}
 
   {{- $game := dict "name" $name "desc" $desc "dev" $dev "image" $processedImage "url" $url "itchURL" "" "sortKey" "0000-00-00" "platform" "itch" -}}
-  {{- $releasedGames = $releasedGames | append $game -}}
+  {{- if $isComingSoon -}}
+    {{- $comingSoonGames = $comingSoonGames | append $game -}}
+  {{- else -}}
+    {{- $releasedGames = $releasedGames | append $game -}}
+  {{- end -}}
 {{- end -}}
 
 {{- $comingSoonGames = sort $comingSoonGames "name" -}}
