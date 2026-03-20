@@ -3,8 +3,8 @@ title: "Level Up Tasmania Industry Day"
 date: 2026-04-19T11:00:00+10:00
 end_date: 2026-04-19T17:00:00+10:00
 summary: "A one-day game development conference. Free."
-location: "PW1, 1 Hunter Street, Hobart"
-address: "PW1 Hobart Tasmania"
+location: "Princes Wharf No. 1 (PW1), Castray Esplanade, Hobart TAS 7000"
+address: "Princes Wharf No. 1 (PW1), Castray Esplanade, Hobart TAS 7000"
 event_type: "conference"
 image: "LUT-Color.png"
 featured: true
