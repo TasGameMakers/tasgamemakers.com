@@ -11,6 +11,7 @@ buildFuture = true
   email = "hello@tasgamemakers.com"
   description = "Supporting Tasmanian creatives. We're inclusive, creative, passionate about making games, and proudly Tasmanian."
   discord_url = "https://discord.gg/EYP7FVAWrf"
+  lutvote_url = "https://forms.office.com/pages/responsepage.aspx?id=iqvrZPTMXEui0ytOly2WsvFqCAM5TslOglqgUx36nr9UMVFRVTBVMFhVSU1TUlE0Q05aWDdHNklGRi4u&route=shorturl"
   bluesky_url = "https://bsky.app/profile/tasgamemakers.com"
   manage_membership_endpoint = "https://tasgamemakers.azurewebsites.net/api/get_portal_link"
 
