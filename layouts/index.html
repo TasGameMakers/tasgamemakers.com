@@ -76,7 +76,7 @@
         {{ $upcoming = $upcoming | append . }}
       {{ end }}
     {{ end }}
-    {{ $upcoming = $upcoming.ByDate }}
+    {{ $upcoming = sort $upcoming "Date" }}
     {{ $featured_upcoming := where $upcoming ".Params.featured" true }}
     {{ $featured := cond (gt (len $featured_upcoming) 0) (index $featured_upcoming 0) (index $upcoming 0) }}
 
