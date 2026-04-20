@@ -1,0 +1,60 @@
+{{ define "main" }}
+
+<div class="page-hero">
+  <div class="container">
+    <h1 class="page-hero__title">{{ .Title }}</h1>
+    {{ with .Params.summary }}
+    <p class="page-hero__desc">{{ . }}</p>
+    {{ end }}
+  </div>
+</div>
+
+<div class="page-content">
+  <div class="container">
+    <div class="archive-grid">
+      {{ range .Pages.ByDate.Reverse }}
+      {{ $year := .Params.mc_year }}
+      {{ $data := index (where $.Site.Data.minecraft "year" $year) 0 }}
+      <a href="{{ .Permalink }}" class="archive-card">
+        <div class="archive-card__body">
+          <h2>{{ .Title }}</h2>
+          {{ with $data }}
+          <p>{{ .summary }}</p>
+          {{ end }}
+        </div>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</div>
+
+<style>
+  .archive-grid {
+    display: grid;
+    gap: var(--space-lg);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 768px) {
+    .archive-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .archive-card {
+    background: #fff;
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.1);
+    border: 3px solid var(--purple-dark);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s, box-shadow 0.15s;
+    display: flex;
+    flex-direction: column;
+  }
+  .archive-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 rgba(0,0,0,0.12);
+    color: inherit;
+  }
+  .archive-card__body { padding: var(--space-md) var(--space-lg); }
+  .archive-card__body h2 { color: var(--purple-dark); margin-bottom: var(--space-xs); }
+  .archive-card__body p { font-size: var(--text-sm); margin: 0; }
+</style>
+
+{{ end }}

@@ -1,0 +1,187 @@
+{{ define "main" }}
+
+{{ $year := .Params.lut_year }}
+{{ $data := index (where .Site.Data.lut "year" $year) 0 }}
+
+<div class="page-hero">
+  <div class="container">
+    <h1 class="page-hero__title">{{ .Title }}</h1>
+    {{ with $data }}
+    <p class="page-hero__desc">{{ .dates }} · {{ .venue }}</p>
+    {{ end }}
+  </div>
+</div>
+
+<div class="page-content">
+  <div class="container">
+
+    {{ with $data }}
+
+    <div class="lut-intro section">
+      {{ with .logo }}
+      <img src="/assets/media/images/lut/{{ $year }}/{{ . }}" alt="Level Up Tasmania {{ $year }}" class="lut-logo">
+      {{ end }}
+      <p class="lut-summary">{{ .summary }}</p>
+      {{ with .url }}<a class="btn-new btn-new--pink" href="{{ . }}" target="_blank" rel="noopener">Event website</a>{{ end }}
+    </div>
+
+    {{ with .photos }}
+    <div class="section">
+      <h2>Photos</h2>
+      <div class="lut-photos">
+        {{ range . }}
+        <img src="/assets/media/images/lut/{{ $year }}/{{ . }}" alt="Level Up Tasmania {{ $year }}" loading="lazy">
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+    {{ with .exhibitors }}
+    <div class="section">
+      <h2>Exhibitors</h2>
+      <div class="lut-exhibitor-grid">
+        {{ range . }}
+        <div class="lut-exhibitor">
+          {{ with .image }}
+          <div class="lut-exhibitor__img">
+            <img src="/assets/media/images/lut/{{ $year }}/{{ . }}" alt="{{ $.name }}" loading="lazy">
+          </div>
+          {{ end }}
+          <div class="lut-exhibitor__info">
+            <strong>{{ .name }}</strong>
+            <span>{{ .creator }}</span>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+    {{ with .programme }}
+    <div class="section">
+      <h2>Programme</h2>
+      {{ range . }}
+      <div class="lut-day">
+        <h4>{{ .day }}</h4>
+        <div class="lut-talks">
+          {{ range .talks }}
+          <div class="lut-talk">
+            <span class="lut-talk__time">{{ .time }}</span>
+            <div class="lut-talk__info">
+              <strong>{{ .title }}</strong>
+              <span>{{ .speakers }}</span>
+            </div>
+          </div>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    {{ with .sponsors_image }}
+    <div class="section" style="text-align:center;">
+      <h2>Supporters</h2>
+      <img src="/assets/media/images/lut/{{ $year }}/{{ . }}" alt="Level Up Tasmania {{ $year }} supporters" class="lut-sponsors-img">
+    </div>
+    {{ end }}
+
+    {{ end }}
+
+    <div class="section" style="text-align:center;">
+      <a href="/level-up-tasmania/" class="btn-new btn-new--purple">&larr; All Level Up Tasmania events</a>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .lut-logo { max-width: 300px; margin-bottom: var(--space-md); }
+  .lut-summary { font-size: var(--text-lg); max-width: 700px; }
+
+  .lut-photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-sm);
+  }
+  .lut-photos img {
+    width: 100%;
+    height: auto;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+  }
+
+  .lut-exhibitor-grid {
+    display: grid;
+    gap: var(--space-sm);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 500px)  { .lut-exhibitor-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 768px)  { .lut-exhibitor-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .lut-exhibitor {
+    background: #fff;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .lut-exhibitor__img {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--purple-dark);
+  }
+  .lut-exhibitor__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .lut-exhibitor__info {
+    padding: var(--space-sm) var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .lut-exhibitor__info strong { color: var(--purple-dark); }
+  .lut-exhibitor__info span { font-size: var(--text-sm); color: #666; }
+
+  .lut-day { margin-bottom: var(--space-lg); }
+  .lut-day h4 {
+    background: var(--purple-dark);
+    color: #fff;
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    margin-bottom: var(--space-md);
+    font-size: var(--text-base);
+    letter-spacing: 1px;
+  }
+
+  .lut-talks { display: flex; flex-direction: column; gap: var(--space-sm); }
+  .lut-talk {
+    display: flex;
+    gap: var(--space-md);
+    background: #fff;
+    padding: var(--space-sm) var(--space-md);
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.08);
+  }
+  .lut-talk__time {
+    flex: 0 0 auto;
+    min-width: 7rem;
+    font-weight: 600;
+    color: var(--pink);
+    font-size: var(--text-sm);
+    padding-top: 0.1rem;
+  }
+  .lut-talk__info { display: flex; flex-direction: column; gap: 0.15rem; }
+  .lut-talk__info strong { color: var(--purple-dark); }
+  .lut-talk__info span { font-size: var(--text-sm); color: #666; }
+
+  .lut-sponsors-img { max-width: 700px; width: 100%; height: auto; }
+
+  @media (max-width: 500px) {
+    .lut-talk { flex-direction: column; gap: var(--space-xs); }
+    .lut-talk__time { min-width: auto; }
+  }
+</style>
+
+{{ end }}

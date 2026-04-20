@@ -1,0 +1,128 @@
+{{ define "main" }}
+
+{{ $year := .Params.mc_year }}
+{{ $data := index (where .Site.Data.minecraft "year" $year) 0 }}
+
+<div class="page-hero">
+  <div class="container">
+    <h1 class="page-hero__title">{{ .Title }}</h1>
+    {{ with $data }}
+    <p class="page-hero__desc">{{ .summary }}</p>
+    {{ end }}
+  </div>
+</div>
+
+<div class="page-content">
+  <div class="container">
+
+    {{ with $data }}
+
+    {{ with .winners }}
+    <div class="section">
+      <h2>Winners</h2>
+      <div class="mc-grid mc-grid--winners">
+        {{ range . }}
+        <div class="mc-entry mc-entry--winner">
+          {{ with .image }}
+          <div class="mc-entry__img">
+            <img src="/assets/media/images/{{ . }}" alt="Minecraft submission" loading="lazy">
+          </div>
+          {{ end }}
+          <div class="mc-entry__info">
+            <strong>{{ .name }}</strong>
+            <span>{{ .team }}</span>
+          </div>
+          <span class="mc-entry__badge">Winner</span>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+    {{ with .submissions }}
+    <div class="section">
+      <h2>All Submissions</h2>
+      <div class="mc-grid">
+        {{ range . }}
+        <div class="mc-entry">
+          {{ with .image }}
+          <div class="mc-entry__img">
+            <img src="/assets/media/images/{{ . }}" alt="Minecraft submission" loading="lazy">
+          </div>
+          {{ end }}
+          <div class="mc-entry__info">
+            <strong>{{ .name }}</strong>
+            <span>{{ .team }}</span>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+    {{ end }}
+
+    <div class="section" style="text-align:center;">
+      <a href="/minecraft/" class="btn-new btn-new--purple">&larr; All Minecraft competitions</a>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .mc-grid {
+    display: grid;
+    gap: var(--space-md);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 500px)  { .mc-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 768px)  { .mc-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1000px) { .mc-grid--winners { grid-template-columns: repeat(5, 1fr); } }
+
+  .mc-entry {
+    position: relative;
+    background: #fff;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+  .mc-entry--winner {
+    box-shadow: 4px 4px 0 var(--pink-dark);
+    border: 3px solid var(--pink);
+  }
+
+  .mc-entry__img {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: var(--purple-dark);
+  }
+  .mc-entry__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .mc-entry__info {
+    padding: var(--space-sm) var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .mc-entry__info strong { color: var(--purple-dark); }
+  .mc-entry__info span { font-size: var(--text-sm); color: #666; }
+
+  .mc-entry__badge {
+    position: absolute;
+    top: var(--space-xs);
+    right: var(--space-xs);
+    background: var(--pink);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.25rem 0.6rem;
+  }
+</style>
+
+{{ end }}
