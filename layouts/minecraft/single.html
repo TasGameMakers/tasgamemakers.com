@@ -10,7 +10,7 @@
   <div class="container">
     <h1 class="page-hero__title">{{ .Title }}</h1>
     {{ with $data }}
-    <p class="page-hero__desc">{{ .summary }}</p>
+    <div class="page-hero__desc">{{ .summary | markdownify }}</div>
     {{ end }}
   </div>
 </div>
@@ -19,7 +19,7 @@
   <div class="container">
     <h1 class="page-hero__title">{{ .Title }}</h1>
     {{ with $data }}
-    <p class="page-hero__desc">{{ .summary }}</p>
+    <div class="page-hero__desc">{{ .summary | markdownify }}</div>
     {{ end }}
   </div>
 </div>
@@ -56,7 +56,7 @@
 
     {{ with .winners }}
     <div class="section">
-      <h2>Winners</h2>
+      <h2>Judge's Picks</h2>
       <div class="mc-winners-grid">
         {{ range . }}
         {{ $entryName := .name }}
@@ -85,7 +85,7 @@
 
     {{ with .submissions }}
     <div class="section">
-      <h2>All Submissions</h2>
+      <h2>Selected for Showcase</h2>
       <div class="mc-grid">
         {{ range . }}
         {{ $entryName := .name }}
