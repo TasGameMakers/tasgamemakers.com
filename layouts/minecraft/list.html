@@ -11,6 +11,9 @@
 
 <div class="page-content">
   <div class="container">
+    {{ with .Content }}
+    <div class="prose" style="margin-bottom: var(--space-xl);">{{ . }}</div>
+    {{ end }}
     <div class="archive-grid">
       {{ range .Pages.ByDate.Reverse }}
       {{ $year := .Params.mc_year }}

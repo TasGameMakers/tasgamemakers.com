@@ -18,13 +18,21 @@
       <a href="{{ .Permalink }}" class="archive-card">
         {{ with $data }}
         {{ with .card_image }}
+        {{ $cardImg := resources.Get (printf "media/images/lut/%d/%s" $year .) }}
+        {{ if $cardImg }}
+        {{ $cardThumb := $cardImg.Fill "600x300 Center q80" }}
         <div class="archive-card__img">
-          <img src="/assets/media/images/lut/{{ $year }}/{{ . }}" alt="{{ $data.dates }}">
+          <img src="{{ $cardThumb.RelPermalink }}" alt="{{ $data.dates }}" width="{{ $cardThumb.Width }}" height="{{ $cardThumb.Height }}">
         </div>
+        {{ end }}
         {{ else }}{{ with .logo }}
+        {{ $logoImg := resources.Get (printf "media/images/lut/%d/%s" $year .) }}
+        {{ if $logoImg }}
+        {{ $logoThumb := $logoImg.Fit "200x200 q85" }}
         <div class="archive-card__img archive-card__img--logo">
-          <img src="/assets/media/images/lut/{{ $year }}/{{ . }}" alt="{{ $data.dates }}">
+          <img src="{{ $logoThumb.RelPermalink }}" alt="{{ $data.dates }}" width="{{ $logoThumb.Width }}" height="{{ $logoThumb.Height }}">
         </div>
+        {{ end }}
         {{ end }}{{ end }}
         {{ end }}
         <div class="archive-card__body">

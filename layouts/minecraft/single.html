@@ -3,6 +3,18 @@
 {{ $year := .Params.mc_year }}
 {{ $data := index (where .Site.Data.minecraft "year" $year) 0 }}
 
+{{ $headerImg := resources.Get "media/images/minecraft/2026/booth.jpg" }}
+{{ if $headerImg }}
+{{ $headerCrop := $headerImg.Fill "1400x400 Center q80" }}
+<div class="mc-page-hero" style="background-image: url('{{ $headerCrop.RelPermalink }}');">
+  <div class="container">
+    <h1 class="page-hero__title">{{ .Title }}</h1>
+    {{ with $data }}
+    <p class="page-hero__desc">{{ .summary }}</p>
+    {{ end }}
+  </div>
+</div>
+{{ else }}
 <div class="page-hero">
   <div class="container">
     <h1 class="page-hero__title">{{ .Title }}</h1>
@@ -11,29 +23,61 @@
     {{ end }}
   </div>
 </div>
+{{ end }}
 
 <div class="page-content">
   <div class="container">
 
     {{ with $data }}
 
+    <!-- Showcase at LUT section -->
+    <div class="section mc-showcase">
+      {{ $booth := resources.Get "media/images/minecraft/2026/booth.jpg" }}
+      {{ $pres := resources.Get "media/images/minecraft/2026/presentation.jpg" }}
+      <div class="mc-showcase__row">
+        {{ if $booth }}
+        {{ $boothThumb := $booth.Fill "540x360 Center q80" }}
+        <div class="mc-showcase__photo" data-lightbox="{{ $booth.RelPermalink }}">
+          <img src="{{ $boothThumb.RelPermalink }}" alt="Minecraft Competition booth at Level Up Tasmania 2026" loading="lazy" width="{{ $boothThumb.Width }}" height="{{ $boothThumb.Height }}">
+        </div>
+        {{ end }}
+        {{ if $pres }}
+        {{ $presThumb := $pres.Fill "540x360 Center q80" }}
+        <div class="mc-showcase__photo" data-lightbox="{{ $pres.RelPermalink }}">
+          <img src="{{ $presThumb.RelPermalink }}" alt="Winners announced on stage at Level Up Tasmania 2026" loading="lazy" width="{{ $presThumb.Width }}" height="{{ $presThumb.Height }}">
+        </div>
+        {{ end }}
+      </div>
+      <div class="mc-showcase__text">
+        <h3>Showcased at Level Up Tasmania 2026</h3>
+        <p>These entries were showcased at <a href="/level-up-tasmania/2026/">Level Up Tasmania 2026</a> at Princes Wharf No. 1 in Hobart. We had a booth where the public could play the builds, and winners were announced on stage during a live presentation.</p>
+      </div>
+    </div>
+
     {{ with .winners }}
     <div class="section">
       <h2>Winners</h2>
-      <div class="mc-grid mc-grid--winners">
+      <div class="mc-winners-grid">
         {{ range . }}
-        <div class="mc-entry mc-entry--winner">
-          {{ with .image }}
+        {{ $entryName := .name }}
+        {{ $entryTeam := .team }}
+        {{ with .image }}
+        {{ $img := resources.Get (printf "media/images/%s" .) }}
+        {{ if $img }}
+        {{ $full := $img }}
+        {{ $thumb := $img.Fill "700x394 Center q85" }}
+        <div class="mc-entry mc-entry--winner" data-lightbox="{{ $full.RelPermalink }}">
           <div class="mc-entry__img">
-            <img src="/assets/media/images/{{ . }}" alt="Minecraft submission" loading="lazy">
+            <img src="{{ $thumb.RelPermalink }}" alt="{{ $entryName }}" loading="lazy" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}">
           </div>
-          {{ end }}
           <div class="mc-entry__info">
-            <strong>{{ .name }}</strong>
-            <span>{{ .team }}</span>
+            <strong>{{ $entryName }}</strong>
+            <span>{{ $entryTeam }}</span>
           </div>
           <span class="mc-entry__badge">Winner</span>
         </div>
+        {{ end }}
+        {{ end }}
         {{ end }}
       </div>
     </div>
@@ -44,23 +88,36 @@
       <h2>All Submissions</h2>
       <div class="mc-grid">
         {{ range . }}
-        <div class="mc-entry">
-          {{ with .image }}
+        {{ $entryName := .name }}
+        {{ $entryTeam := .team }}
+        {{ with .image }}
+        {{ $img := resources.Get (printf "media/images/%s" .) }}
+        {{ if $img }}
+        {{ $full := $img }}
+        {{ $thumb := $img.Fill "600x338 Center q80" }}
+        <div class="mc-entry" data-lightbox="{{ $full.RelPermalink }}">
           <div class="mc-entry__img">
-            <img src="/assets/media/images/{{ . }}" alt="Minecraft submission" loading="lazy">
+            <img src="{{ $thumb.RelPermalink }}" alt="{{ $entryName }}" loading="lazy" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}">
           </div>
-          {{ end }}
           <div class="mc-entry__info">
-            <strong>{{ .name }}</strong>
-            <span>{{ .team }}</span>
+            <strong>{{ $entryName }}</strong>
+            <span>{{ $entryTeam }}</span>
           </div>
         </div>
+        {{ end }}
+        {{ end }}
         {{ end }}
       </div>
     </div>
     {{ end }}
 
     {{ end }}
+
+    <div class="section mc-signup">
+      <h2>Stay in the loop</h2>
+      <p>Want to know when the next Minecraft Competition opens? Sign up for notifications and we&rsquo;ll let you know.</p>
+      <a class="btn-new btn-new--pink" href="https://docs.google.com/forms/d/e/1FAIpQLScTXp2kxeV1vwlZoTiJnX-ZLy_coB4DAQTwMS_yXc2X-5m4Fw/viewform?usp=publish-editor" target="_blank" rel="noopener">Sign up for notifications</a>
+    </div>
 
     <div class="section" style="text-align:center;">
       <a href="/minecraft/" class="btn-new btn-new--purple">&larr; All Minecraft competitions</a>
@@ -69,7 +126,86 @@
   </div>
 </div>
 
+<!-- Lightbox -->
+<div class="mc-lightbox" id="mc-lightbox" aria-hidden="true">
+  <div class="mc-lightbox__backdrop" data-lightbox-close></div>
+  <div class="mc-lightbox__content">
+    <img src="" alt="" id="mc-lightbox-img">
+    <button class="mc-lightbox__close" data-lightbox-close aria-label="Close">&times;</button>
+  </div>
+</div>
+
 <style>
+  /* --- Page hero with booth image --- */
+  .mc-page-hero {
+    background-size: cover;
+    background-position: center;
+    padding: var(--space-2xl) 0;
+    position: relative;
+  }
+  .mc-page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(47, 39, 76, 0.72);
+  }
+  .mc-page-hero .container { position: relative; z-index: 1; }
+  .mc-page-hero .page-hero__title { color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+  .mc-page-hero .page-hero__desc { color: #fff; opacity: 0.92; }
+
+  /* --- Showcase section --- */
+  .mc-showcase__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+  }
+  @media (min-width: 600px) {
+    .mc-showcase__row { grid-template-columns: 1fr 1fr; }
+  }
+  .mc-showcase__photo {
+    overflow: hidden;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .mc-showcase__photo:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.12);
+  }
+  .mc-showcase__photo img { width: 100%; height: auto; display: block; }
+  .mc-showcase__text h3 { color: var(--purple-dark); }
+  .mc-showcase__text p { line-height: 1.6; max-width: 700px; }
+
+  /* --- Signup CTA --- */
+  .mc-signup {
+    background: var(--purple-dark);
+    color: #fff;
+    padding: var(--space-xl);
+    text-align: center;
+  }
+  .mc-signup h2 { color: #fff; }
+  .mc-signup p { max-width: 500px; margin: 0 auto var(--space-md); opacity: 0.9; }
+
+  /* --- Winners grid --- */
+  .mc-winners-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
+  }
+  .mc-winners-grid .mc-entry {
+    flex: 0 0 100%;
+  }
+  @media (min-width: 600px) {
+    .mc-winners-grid .mc-entry { flex: 0 0 calc(50% - var(--space-md) / 2); }
+  }
+  @media (min-width: 900px) {
+    .mc-winners-grid .mc-entry { flex: 0 0 calc(33.333% - var(--space-md) * 2 / 3); }
+  }
+  .mc-winners-grid .mc-entry__img { aspect-ratio: 16 / 9; }
+
+  /* --- Grid for submissions --- */
   .mc-grid {
     display: grid;
     gap: var(--space-md);
@@ -77,17 +213,26 @@
   }
   @media (min-width: 500px)  { .mc-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 768px)  { .mc-grid { grid-template-columns: repeat(3, 1fr); } }
-  @media (min-width: 1000px) { .mc-grid--winners { grid-template-columns: repeat(5, 1fr); } }
 
+  /* --- Entry card --- */
   .mc-entry {
     position: relative;
     background: #fff;
     box-shadow: 4px 4px 0 rgba(0,0,0,0.08);
     overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .mc-entry:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.12);
   }
   .mc-entry--winner {
     box-shadow: 4px 4px 0 var(--pink-dark);
     border: 3px solid var(--pink);
+  }
+  .mc-entry--winner:hover {
+    box-shadow: 6px 6px 0 var(--pink-dark);
   }
 
   .mc-entry__img {
@@ -123,6 +268,89 @@
     letter-spacing: 1px;
     padding: 0.25rem 0.6rem;
   }
+
+  /* --- Lightbox --- */
+  .mc-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .mc-lightbox.is-open { display: flex; }
+  .mc-lightbox__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    animation: lbFade 0.2s ease;
+  }
+  .mc-lightbox__content {
+    position: relative;
+    max-width: 95vw;
+    max-height: 95vh;
+    animation: lbPop 0.25s ease;
+  }
+  .mc-lightbox__content img {
+    max-width: 95vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    display: block;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  }
+  .mc-lightbox__close {
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    background: var(--pink);
+    color: #fff;
+    border: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .mc-lightbox__close:hover { background: var(--pink-dark); }
+  body.mc-lightbox-open { overflow: hidden; }
+
+  @keyframes lbFade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes lbPop { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 </style>
+
+<script>
+(function() {
+  // Lightbox
+  var lightbox = document.getElementById('mc-lightbox');
+  var lbImg = document.getElementById('mc-lightbox-img');
+  if (lightbox) {
+    document.querySelectorAll('[data-lightbox]').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        lbImg.src = this.dataset.lightbox;
+        lightbox.classList.add('is-open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('mc-lightbox-open');
+      });
+    });
+
+    function closeLb() {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('mc-lightbox-open');
+      lbImg.src = '';
+    }
+
+    lightbox.querySelectorAll('[data-lightbox-close]').forEach(function(el) {
+      el.addEventListener('click', closeLb);
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLb();
+    });
+  }
+})();
+</script>
 
 {{ end }}

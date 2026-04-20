@@ -19,7 +19,11 @@
 
     <div class="lut-intro section">
       {{ with .logo }}
-      <img src="/assets/media/images/lut/{{ $year }}/{{ . }}" alt="Level Up Tasmania {{ $year }}" class="lut-logo">
+      {{ $logoImg := resources.Get (printf "media/images/lut/%d/%s" $year .) }}
+      {{ if $logoImg }}
+      {{ $logoThumb := $logoImg.Fit "300x300 q85" }}
+      <img src="{{ $logoThumb.RelPermalink }}" alt="Level Up Tasmania {{ $year }}" class="lut-logo" width="{{ $logoThumb.Width }}" height="{{ $logoThumb.Height }}">
+      {{ end }}
       {{ end }}
       <p class="lut-summary">{{ .summary }}</p>
       {{ with .url }}<a class="btn-new btn-new--pink" href="{{ . }}" target="_blank" rel="noopener">Event website</a>{{ end }}
@@ -30,7 +34,11 @@
       <h2>Photos</h2>
       <div class="lut-photos">
         {{ range . }}
-        <img src="/assets/media/images/lut/{{ $year }}/{{ . }}" alt="Level Up Tasmania {{ $year }}" loading="lazy">
+        {{ $photoImg := resources.Get (printf "media/images/lut/%d/%s" $year .) }}
+        {{ if $photoImg }}
+        {{ $photoThumb := $photoImg.Fit "800x600 q80" }}
+        <img src="{{ $photoThumb.RelPermalink }}" alt="Level Up Tasmania {{ $year }}" loading="lazy" width="{{ $photoThumb.Width }}" height="{{ $photoThumb.Height }}">
+        {{ end }}
         {{ end }}
       </div>
     </div>
@@ -41,15 +49,21 @@
       <h2>Exhibitors</h2>
       <div class="lut-exhibitor-grid">
         {{ range . }}
+        {{ $exName := .name }}
+        {{ $exCreator := .creator }}
         <div class="lut-exhibitor">
           {{ with .image }}
+          {{ $exImg := resources.Get (printf "media/images/lut/%d/%s" $year .) }}
+          {{ if $exImg }}
+          {{ $exThumb := $exImg.Fill "400x225 Center q80" }}
           <div class="lut-exhibitor__img">
-            <img src="/assets/media/images/lut/{{ $year }}/{{ . }}" alt="{{ $.name }}" loading="lazy">
+            <img src="{{ $exThumb.RelPermalink }}" alt="{{ $exName }}" loading="lazy" width="{{ $exThumb.Width }}" height="{{ $exThumb.Height }}">
           </div>
           {{ end }}
+          {{ end }}
           <div class="lut-exhibitor__info">
-            <strong>{{ .name }}</strong>
-            <span>{{ .creator }}</span>
+            <strong>{{ $exName }}</strong>
+            <span>{{ $exCreator }}</span>
           </div>
         </div>
         {{ end }}
@@ -80,10 +94,14 @@
     {{ end }}
 
     {{ with .sponsors_image }}
+    {{ $spImg := resources.Get (printf "media/images/lut/%d/%s" $year .) }}
+    {{ if $spImg }}
+    {{ $spThumb := $spImg.Fit "700x400 q85" }}
     <div class="section" style="text-align:center;">
       <h2>Supporters</h2>
-      <img src="/assets/media/images/lut/{{ $year }}/{{ . }}" alt="Level Up Tasmania {{ $year }} supporters" class="lut-sponsors-img">
+      <img src="{{ $spThumb.RelPermalink }}" alt="Level Up Tasmania {{ $year }} supporters" class="lut-sponsors-img" width="{{ $spThumb.Width }}" height="{{ $spThumb.Height }}">
     </div>
+    {{ end }}
     {{ end }}
 
     {{ end }}
