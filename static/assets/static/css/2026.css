@@ -645,6 +645,51 @@ body.v2026 .footer--partners {
 .v2026 .prose .event-featured p { color: inherit; margin-bottom: 2px; }
 .v2026 .prose .event-featured h3 { margin-top: 0; margin-bottom: var(--space-xs); }
 
+/* callout boxes in prose (blockquotes): match the site's card / CTA-block look */
+.v2026 .prose blockquote {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-lg) 0;
+}
+.v2026 .prose blockquote > :first-child { margin-top: 0; }
+.v2026 .prose blockquote > :last-child { margin-bottom: 0; }
+.v2026 .prose blockquote p { color: var(--black); }
+
+/* "On this page" table of contents */
+.v2026 .prose .page-toc {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+  padding: var(--space-md) var(--space-lg);
+  margin: 0 0 var(--space-xl);
+}
+.v2026 .prose .page-toc__title {
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: var(--space-xs);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.v2026 .prose .page-toc #TableOfContents ul { list-style: none; margin: 0; padding-left: 0; }
+.v2026 .prose .page-toc #TableOfContents ul ul { padding-left: var(--space-md); margin-top: 2px; }
+.v2026 .prose .page-toc li { margin-bottom: 2px; font-size: 1rem; line-height: 1.5; }
+
+/* footnotes / sources */
+.v2026 .prose .footnotes {
+  margin-top: var(--space-2xl);
+  border-top: 1px solid rgba(0,0,0,0.12);
+  padding-top: var(--space-md);
+  font-size: 1rem;
+}
+.v2026 .prose .footnotes p { color: #555; }
+
+/* filled buttons keep their own text colour inside prose */
+.v2026 .prose a.btn-new--pink,
+.v2026 .prose a.btn-new--purple { color: #fff; }
+
 /* empty states / "nothing here yet" */
 .v2026 .empty-state {
   background: #f5f5f5;

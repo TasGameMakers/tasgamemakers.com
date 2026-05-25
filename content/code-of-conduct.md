@@ -1,7 +1,9 @@
 ---
 title: Code of Conduct
 type: page
-url: /code-of-conduct/
+url: /policies-and-positions/code-of-conduct/
+aliases:
+  - /code-of-conduct/
 main_class: main__dark
 ---
 
