@@ -1,7 +1,9 @@
 ---
 title: Privacy Policy
 type: page
-url: /privacy/
+url: /policies-and-positions/privacy/
+aliases:
+  - /privacy/
 main_class: main__dark
 ---
 

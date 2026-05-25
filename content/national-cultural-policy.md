@@ -1,7 +1,9 @@
 ---
 title: "National Cultural Policy Submission (2026)"
 type: page
-url: /national-cultural-policy/
+url: /policies-and-positions/ncp-2026/
+aliases:
+  - /national-cultural-policy/
 summary: "Games are the art form of our time. Our submission to Australia's next National Cultural Policy: fund video games as culture, and back regional Australia, where that investment goes furthest."
 main_class: main__dark
 ---
