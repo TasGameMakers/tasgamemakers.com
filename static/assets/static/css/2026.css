@@ -686,6 +686,12 @@ body.v2026 .footer--partners {
 }
 .v2026 .prose .footnotes p { color: #555; }
 
+/* offset in-page anchor jumps (TOC, footnotes) for the sticky header */
+.v2026 .page-content [id] { scroll-margin-top: 6.5rem; }
+
+/* separate adjacent footnote references so they read as 3,4 not 34 */
+.v2026 sup[id^="fnref"] + sup[id^="fnref"]::before { content: ","; }
+
 /* filled buttons keep their own text colour inside prose */
 .v2026 .prose a.btn-new--pink,
 .v2026 .prose a.btn-new--purple { color: #fff; }
