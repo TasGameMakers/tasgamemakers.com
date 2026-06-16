@@ -1,0 +1,53 @@
+{{/*
+  Content adapter: generates one detail page per photo in this event.
+  Drop new images into assets/media/images/photos/level-up-tasmania-2026/
+  named with a photographer prefix (see $photographers below) and the
+  detail pages + gallery entries appear automatically — no per-photo md.
+*/}}
+
+{{ $dir := "media/images/photos/level-up-tasmania-2026" }}
+{{ $photographers := dict
+  "jm" "Jillian Mundy"
+  "bh" "Brad Harris"
+  "jp" "Jonathon Manning & Paris Buttfield-Addison"
+}}
+
+{{ $images := resources.Match (printf "%s/*.{jpg,jpeg,png,webp}" $dir) }}
+
+{{/* Group by photographer prefix so we can interleave (don't segment by photographer). */}}
+{{ $groups := dict }}
+{{ range $images }}
+  {{ $prefix := substr (path.BaseName .Name) 0 2 }}
+  {{ $existing := index $groups $prefix | default slice }}
+  {{ $groups = merge $groups (dict $prefix ($existing | append .)) }}
+{{ end }}
+
+{{/* Interleave the groups round-robin into a single ordered list. */}}
+{{ $maxLen := 0 }}
+{{ range $groups }}{{ $maxLen = math.Max $maxLen (len .) }}{{ end }}
+{{ $ordered := slice }}
+{{ if gt $maxLen 0 }}
+  {{ range $i := seq 0 (sub $maxLen 1) }}
+    {{ range $prefix, $group := $groups }}
+      {{ if lt $i (len $group) }}
+        {{ $ordered = $ordered | append (index $group $i) }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ range $i, $img := $ordered }}
+  {{ $base := path.BaseName $img.Name }}
+  {{ $prefix := substr $base 0 2 }}
+  {{ $photographer := index $photographers $prefix | default "Unknown" }}
+  {{ $.AddPage (dict
+    "kind" "page"
+    "path" $base
+    "title" "Level Up Tasmania 2026"
+    "weight" (add $i 1)
+    "params" (dict
+      "photographer" $photographer
+      "image" $img.Name
+    )
+  ) }}
+{{ end }}

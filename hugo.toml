@@ -49,6 +49,11 @@ buildFuture = true
   weight = 4
 
 [[menus.main]]
+  name = "Photos"
+  url = "/photos/"
+  weight = 5
+
+[[menus.main]]
   name = "About Us"
   url = "/about-us/"
-  weight = 5
+  weight = 6

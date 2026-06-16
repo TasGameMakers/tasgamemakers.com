@@ -1,0 +1,62 @@
+{{ define "main" }}
+
+{{ $img := resources.Get .Params.image }}
+
+<div class="photo-detail">
+  <div class="container">
+
+    {{ if $img }}
+    {{ $full := $img.Fit "1600x1200 q85" }}
+    <div class="photo-detail__frame">
+      <img src="{{ $full.RelPermalink }}" alt="{{ .Title }} — photo by {{ .Params.photographer }}" width="{{ $full.Width }}" height="{{ $full.Height }}">
+    </div>
+    {{ end }}
+
+    <div class="photo-detail__meta">
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.photographer }}
+      <p class="photo-detail__credit">Photograph by {{ . }}</p>
+      {{ end }}
+    </div>
+
+    <div class="photo-detail__nav">
+      {{ with .PrevInSection }}<a class="btn-new btn-new--outline-dark" href="{{ .Permalink }}">&larr; Previous</a>{{ end }}
+      {{ with .Parent }}<a class="btn-new btn-new--purple" href="{{ .Permalink }}">Back to gallery</a>{{ end }}
+      {{ with .NextInSection }}<a class="btn-new btn-new--outline-dark" href="{{ .Permalink }}">Next &rarr;</a>{{ end }}
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .photo-detail { padding: var(--space-xl) 0; background: var(--purple-dark); }
+  .photo-detail__frame {
+    background: #000;
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.25);
+    margin-bottom: var(--space-lg);
+  }
+  .photo-detail__frame img {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    display: block;
+  }
+  .photo-detail__meta { color: #fff; text-align: center; margin-bottom: var(--space-lg); }
+  .photo-detail__meta h1 { color: #fff; margin-bottom: var(--space-xs); }
+  .photo-detail__credit {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--orange);
+    margin: 0;
+  }
+  .photo-detail__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+
+{{ end }}

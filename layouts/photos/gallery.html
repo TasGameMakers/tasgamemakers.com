@@ -1,0 +1,93 @@
+{{ define "main" }}
+
+<div class="page-hero page-hero--purple">
+  <div class="container">
+    <h1 class="page-hero__title">{{ .Title }}</h1>
+    {{ with .Params.summary }}
+    <p class="page-hero__desc">{{ . }}</p>
+    {{ end }}
+  </div>
+</div>
+
+<div class="page-content">
+  <div class="container">
+
+    {{ with .Params.photographers }}
+    <p class="gallery-credit">{{ . }}</p>
+    {{ end }}
+
+    <div class="gallery-grid">
+      {{ range .Pages.ByWeight }}
+      {{ $img := resources.Get .Params.image }}
+      {{ if $img }}
+      {{ $thumb := $img.Fill "500x500 Center q80" }}
+      <a href="{{ .Permalink }}" class="gallery-item" aria-label="Photo by {{ .Params.photographer }}">
+        <img src="{{ $thumb.RelPermalink }}" alt="{{ $.Title }} — photo by {{ .Params.photographer }}" loading="lazy" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}">
+        <span class="gallery-item__credit">{{ .Params.photographer }}</span>
+      </a>
+      {{ end }}
+      {{ end }}
+    </div>
+
+    <div class="section" style="text-align:center;">
+      <a href="/photos/" class="btn-new btn-new--purple">&larr; All photo galleries</a>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .gallery-credit {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--pink);
+    margin-bottom: var(--space-lg);
+  }
+  .gallery-grid {
+    display: grid;
+    gap: var(--space-sm);
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 600px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 900px) { .gallery-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  .gallery-item {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    background: var(--purple-dark);
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.25s ease;
+  }
+  .gallery-item:hover img,
+  .gallery-item:focus-visible img { transform: scale(1.05); }
+
+  .gallery-item__credit {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: var(--space-sm);
+    background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0));
+    color: #fff;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(0.5rem);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .gallery-item:hover .gallery-item__credit,
+  .gallery-item:focus-visible .gallery-item__credit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+{{ end }}
