@@ -12,8 +12,11 @@
 <div class="page-content">
   <div class="container">
 
-    {{ with .Params.photographers }}
-    <p class="gallery-credit">{{ . }}</p>
+    {{ if or .Params.photographers .Params.usage }}
+    <div class="gallery-meta">
+      {{ with .Params.photographers }}<p class="gallery-credit">{{ . }}</p>{{ end }}
+      {{ with .Params.usage }}<p class="gallery-usage">{{ . }}</p>{{ end }}
+    </div>
     {{ end }}
 
     <div class="gallery-grid">
@@ -37,11 +40,19 @@
 </div>
 
 <style>
+  .gallery-meta { margin-bottom: var(--space-lg); }
   .gallery-credit {
     font-size: var(--text-sm);
     font-weight: 600;
     color: var(--pink);
-    margin-bottom: var(--space-lg);
+    margin: 0;
+  }
+  .gallery-usage {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: #999;
+    max-width: 640px;
+    margin: 0.4rem 0 0;
   }
   .gallery-grid {
     display: grid;

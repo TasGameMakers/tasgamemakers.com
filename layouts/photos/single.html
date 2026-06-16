@@ -17,6 +17,9 @@
       {{ with .Params.photographer }}
       <p class="photo-detail__credit">Photograph by {{ . }}</p>
       {{ end }}
+      {{ with .Parent.Params.usage }}
+      <p class="photo-detail__usage">{{ . }}</p>
+      {{ end }}
     </div>
 
     <div class="photo-detail__nav">
@@ -31,16 +34,17 @@
 <style>
   .photo-detail { padding: var(--space-xl) 0; background: var(--purple-dark); }
   .photo-detail__frame {
-    background: #000;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto var(--space-lg);
     box-shadow: 6px 6px 0 rgba(0,0,0,0.25);
-    margin-bottom: var(--space-lg);
   }
   .photo-detail__frame img {
-    width: 100%;
-    height: auto;
-    max-height: 80vh;
-    object-fit: contain;
     display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 80vh;
   }
   .photo-detail__meta { color: #fff; text-align: center; margin-bottom: var(--space-lg); }
   .photo-detail__meta h1 { color: #fff; margin-bottom: var(--space-xs); }
@@ -49,6 +53,14 @@
     font-weight: 600;
     color: var(--orange);
     margin: 0;
+  }
+  .photo-detail__meta .photo-detail__usage {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.45);
+    max-width: 600px;
+    margin: var(--space-lg) auto 0;
+    text-align: center;
   }
   .photo-detail__nav {
     display: flex;

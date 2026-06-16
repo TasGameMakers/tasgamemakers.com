@@ -130,8 +130,12 @@
       </header>
 
       {{ with .Params.address }}
-      <a href="https://www.google.com/maps/search/?api=1&query={{ . | urlquery }}" target="_blank" rel="noopener" class="event-article__map-link" id="event-map-link" style="display:none;">
-        <div class="event-article__map" id="event-map" data-address="{{ . }}" data-label="{{ $.Params.location | default $.Title }}"></div>
+      {{ $lat := $.Params.latitude }}
+      {{ $lng := $.Params.longitude }}
+      {{ $maphref := printf "https://www.google.com/maps/search/?api=1&query=%s" (. | urlquery) }}
+      {{ if and $lat $lng }}{{ $maphref = printf "https://www.google.com/maps/search/?api=1&query=%v,%v" $lat $lng }}{{ end }}
+      <a href="{{ $maphref }}" target="_blank" rel="noopener" class="event-article__map-link" id="event-map-link" style="display:none;">
+        <div class="event-article__map" id="event-map" data-address="{{ . }}" data-label="{{ $.Params.location | default $.Title }}"{{ if and $lat $lng }} data-lat="{{ $lat }}" data-lng="{{ $lng }}"{{ end }}></div>
         <span class="event-article__map-cta">Open in Google Maps</span>
       </a>
       {{ end }}
@@ -177,30 +181,39 @@
 (function() {
   var el = document.getElementById('event-map');
   if (!el) return;
-  var address = el.dataset.address;
   var label = el.dataset.label;
+
+  function render(lat, lon) {
+    var link = document.getElementById('event-map-link');
+    if (link) link.style.display = '';
+    var map = L.map('event-map', {
+      dragging: false,
+      touchZoom: false,
+      scrollWheelZoom: false,
+      doubleClickZoom: false,
+      boxZoom: false,
+      keyboard: false,
+      zoomControl: false
+    }).setView([lat, lon], 16);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 19
+    }).addTo(map);
+    L.marker([lat, lon]).addTo(map).bindPopup(label);
+  }
+
+  // Use explicit coordinates when provided; otherwise geocode the address.
+  if (el.dataset.lat && el.dataset.lng) {
+    render(parseFloat(el.dataset.lat), parseFloat(el.dataset.lng));
+    return;
+  }
+
+  var address = el.dataset.address;
   fetch('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(address) + '&format=json&limit=1')
     .then(function(r) { return r.json(); })
     .then(function(data) {
       if (!data.length) return;
-      var link = document.getElementById('event-map-link');
-      if (link) link.style.display = '';
-      var lat = parseFloat(data[0].lat);
-      var lon = parseFloat(data[0].lon);
-      var map = L.map('event-map', {
-        dragging: false,
-        touchZoom: false,
-        scrollWheelZoom: false,
-        doubleClickZoom: false,
-        boxZoom: false,
-        keyboard: false,
-        zoomControl: false
-      }).setView([lat, lon], 16);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 19
-      }).addTo(map);
-      L.marker([lat, lon]).addTo(map).bindPopup(label);
+      render(parseFloat(data[0].lat), parseFloat(data[0].lon));
     });
 })();
 </script>
