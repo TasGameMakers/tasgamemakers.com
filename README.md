@@ -20,13 +20,12 @@ The site will be available at `http://localhost:1313`, for example.
 
 ## Adding an event
 
-Create a new `.md` file in `content/events/`. The filename becomes the last part of the URL, and the date from the front matter is added automatically. For example, a file called `march-social-meetup.md` with a date of `2026-03-05` becomes:
+Create a new `.md` file in `content/events/`. The title from the front matter becomes the last part of the URL, and the date from the front matter is added automatically. For example, a file with a title of `March Social Meetup (Launceston)` with a date of `2026-03-05` becomes:
 
 ```
-https://tasgamemakers.com/events/2026/03/05/march-social-meetup/
+https://tasgamemakers.com/events/2026/03/05/march-social-meetup-launceston/
 ```
-
-So keep filenames short, lowercase, and hyphenated (e.g. `my-cool-event.md`).
+To avoid file collisions and keep an easy to understand chronological order, prefix events with the date they run in reverse date order, followed by a short description, lowercase and hyphenated (e.g. `2026-04-17-lut-hobart.md`).
 
 ### All front matter fields
 
