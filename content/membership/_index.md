@@ -38,6 +38,12 @@ Your membership is valid for 12 months, and gives access to the benefits listed 
 
 {{< membership-create >}}
 
+### Request a pay it forward membership
+
+Pay it forward memberships exist to allow anyone who wants to participate in our community to do so, without the financial burden.
+
+If this would benefit you, please send an email to hello@tasgamemakers.com or contact any of our board members through Discord.
+
 ## Manage Existing Membership
 
 If you're already a member and you want to update your billing information, please enter the email address that you used to sign up to Tas Game Makers, and we'll send you a link to manage your details.
